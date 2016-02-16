@@ -16,7 +16,14 @@ void setup() {
   Serial.begin(9600);
 
 }
-
+void LED_on()
+{
+  digitalWrite(ledPin,HIGH);
+}
+void LED_off()
+{
+  digitalWrite(ledPin,LOW);
+}
 void loop() {
   int valPir = digitalRead(inputPin);                      // read input value
   int valButton = digitalRead(buttonPin);
@@ -24,14 +31,14 @@ void loop() {
 
   // ======================= BUTTON 
   if(valButton == HIGH) {
-    digitalWrite(ledPin, HIGH);
+   LED_on();
     if(buttonState == LOW) 
     {
     Serial.println("Someone pressed the doorbell!");           // We only want to print on the output change, not state
     buttonState = HIGH;
     } 
   } else {
-      digitalWrite(ledPin, LOW);                  // turn LED OFF
+     LED_off();                // turn LED OFF
       if (buttonState == HIGH)                       // we have just turned off
           {
           buttonState = LOW;
