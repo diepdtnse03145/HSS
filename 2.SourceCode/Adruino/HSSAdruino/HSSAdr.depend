@@ -1,0 +1,89 @@
+# depslib dependency file v1.0
+1456233824 source:c:\users\diep mloc unlimited\documents\hssadr\hssadr.ino
+	<Arduino.h>
+	"HSSConstant.h"
+	"ConnectionLayer/ConnectionLayer.h"
+
+1371033102 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\arduino.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"pins_arduino.h"
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\binary.h
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\wcharacter.h
+	<ctype.h>
+
+1371033134 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\wstring.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\hardwareserial.h
+	<inttypes.h>
+	"Stream.h"
+	"USBAPI.h"
+
+1371032830 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\stream.h
+	<inttypes.h>
+	"Print.h"
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\printable.h
+	<new.h>
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\new.h
+	<stdlib.h>
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\usbapi.h
+
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\variants\standard\pins_arduino.h
+	<avr/pgmspace.h>
+
+1456233300 source:c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\connectionlayer.c
+	"ConnectionLayer.h"
+	<stdlib.h>
+	<stdio.h>
+	<Arduino.h>
+
+1456219411 c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\connectionlayer.h
+
+1456233346 source:c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\rpc_auto\rpcclient.c
+	"RPCClient.h"
+	"../../HSSConstant.h"
+	<stdio.h>
+
+1456233512 c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\rpc_auto\rpcclient.h
+	"../ConnectionLayer.h"
+	"../../HSSConstant.h"
+
+1456233519 source:c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\rpc_auto\rpcserverfunc.c
+	"../ConnectionLayer.h"
+	"../RPCServer.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1456233300 c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\rpcserver.h
+	"ConnectionLayer.h"
+
+1456233824 source:c:\users\diep mloc unlimited\documents\hssadr\connectionlayer\rpcserver.c
+	"RPCServer.h"
+	<Arduino.h>
+
+1456233300 c:\users\diep mloc unlimited\documents\hssadr\hssconstant.h
+
