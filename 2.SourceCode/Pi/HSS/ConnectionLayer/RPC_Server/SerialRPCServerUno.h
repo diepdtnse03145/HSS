@@ -1,10 +1,10 @@
 #ifndef TCPRPCSERVER_H
 #define TCPRPCSERVER_H
 
-#include "RPCServerBase.h"
+#include "../RPC_Base/RPCServerBase.h"
 #include <string>
 
-class TcpRPCServer: public RPCServerBase
+class SerialRPCServerUno: public RPCServerBase
 {
 public:
     void _receiveMsg(std::string msg) override;

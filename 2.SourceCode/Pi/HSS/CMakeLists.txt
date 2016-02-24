@@ -2,12 +2,14 @@ project(HSS)
 cmake_minimum_required(VERSION 2.8)
 
 aux_source_directory(. SRC_LIST)
-
 aux_source_directory(ConnectionLayer CONNECTION_LAYER)
 LIST(APPEND SRC_LIST ${CONNECTION_LAYER})
-
-aux_source_directory(ConnectionLayer/RPC_Auto CONNECTION_LAYER_RPC_AUTO)
-LIST(APPEND SRC_LIST ${CONNECTION_LAYER_RPC_AUTO})
+aux_source_directory(ConnectionLayer/RPC_Base CONNECTION_LAYER_RPC_BASE)
+LIST(APPEND SRC_LIST ${CONNECTION_LAYER_RPC_BASE})
+aux_source_directory(ConnectionLayer/RPC_Client CONNECTION_LAYER_RPC_CLIENT)
+LIST(APPEND SRC_LIST ${CONNECTION_LAYER_RPC_CLIENT})
+aux_source_directory(ConnectionLayer/RPC_Server CONNECTION_LAYER_RPC_SERVER)
+LIST(APPEND SRC_LIST ${CONNECTION_LAYER_RPC_SERVER})
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 

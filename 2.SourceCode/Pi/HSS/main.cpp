@@ -1,15 +1,19 @@
 #include <iostream>
 #include "ConnectionLayer/TcpConnectionLayer.h"
-#include "ConnectionLayer/TcpRPCServer.h"
+#include "ConnectionLayer/RPC_Server/TcpRPCServer.h"
 #include "ConnectionLayer/SerialConnectionLayer.h"
+#include "ConnectionLayer/RPC_Client/TcpRPCClient.h"
 
 int main(int argc, char *argv[])
 {
-    TcpRPCServer sv;
-    TcpConnectionLayer c{sv};
     boost::asio::io_service io;
-    SerialConnectionLayer serial{sv,io};
-    serial.sendMsg("ad_ledOn");
+    TcpRPCServer sv;
+    TcpConnectionLayer c{sv, 13, io};
+    TcpRPCClient cl{c};
+    cl.MoeFunct(33);
+
+//    SerialConnectionLayer serial{sv,"COM7" ,io};
+//    serial.sendMsg("ad_ledOn");
     io.run();
     return 0;
 }
