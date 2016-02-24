@@ -87,3 +87,97 @@
 
 1456233300 c:\users\diep mloc unlimited\documents\hssadr\hssconstant.h
 
+1456235561 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.c
+	"ConnectionLayer.h"
+	<stdlib.h>
+	<stdio.h>
+	<Arduino.h>
+
+1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.h
+
+1371033102 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\arduino.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<avr/pgmspace.h>
+	<avr/io.h>
+	<avr/interrupt.h>
+	"binary.h"
+	"WCharacter.h"
+	"WString.h"
+	"HardwareSerial.h"
+	"pins_arduino.h"
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\binary.h
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\wcharacter.h
+	<ctype.h>
+
+1371033134 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\wstring.h
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<avr/pgmspace.h>
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\hardwareserial.h
+	<inttypes.h>
+	"Stream.h"
+	"USBAPI.h"
+
+1371032830 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\stream.h
+	<inttypes.h>
+	"Print.h"
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\print.h
+	<inttypes.h>
+	<stdio.h>
+	"WString.h"
+	"Printable.h"
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\printable.h
+	<new.h>
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\new.h
+	<stdlib.h>
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\usbapi.h
+
+1362986950 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\variants\standard\pins_arduino.h
+	<avr/pgmspace.h>
+
+1456235561 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.c
+	"RPCClient.h"
+	"../../HSSConstant.h"
+	<stdio.h>
+
+1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.h
+	"../ConnectionLayer.h"
+	"../../HSSConstant.h"
+
+1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\hssconstant.h
+
+1456307118 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcserverfunc.c
+	"../ConnectionLayer.h"
+	"../RPCServer.h"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<Arduino.h>
+
+1456307131 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpcserver.h
+	"ConnectionLayer.h"
+
+1456307118 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpcserver.c
+	"RPCServer.h"
+	<Arduino.h>
+
+1456293822 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\hssadr.ino
+	<Arduino.h>
+	"HSSConstant.h"
+	"ConnectionLayer/ConnectionLayer.h"
+
+1456286109 d:\final project\hss\2.sourcecode\adruino\hssadruino\hssadr.ino
+	<Arduino.h>
+	"HSSConstant.h"
+	"ConnectionLayer/ConnectionLayer.h"
+

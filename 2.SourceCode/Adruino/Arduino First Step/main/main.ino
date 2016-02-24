@@ -6,6 +6,13 @@ int switchPin = 3;              // choose the pin for magnetic switch
 int switchState = LOW;          // we start, assuming door is closed
 int buttonPin = 4;
 int buttonState = LOW;          // we start, assuming button is not pressed
+int previous = LOW;
+long time = 0;
+long debounce = 200;
+int stateLED = LOW; 
+
+boolean lockLow = true;
+boolean takeLowTime;  
 
 void setup() {
   pinMode(switchPin, INPUT);                        // declare switch as input
@@ -16,63 +23,34 @@ void setup() {
   Serial.begin(9600);
 
 }
-void LED_on()
+
+void startLED()
 {
-  digitalWrite(ledPin,HIGH);
+   int valButton = digitalRead(buttonPin);
+  if(valButton == HIGH && previous == LOW && millis() - time > debounce) {
+    if(stateLED == HIGH){
+      stateLED = LOW; 
+    } else {
+       stateLED = HIGH;
+    }
+    time = millis();
+  }
+  digitalWrite(ledPin,stateLED);
+  previous == valButton;
 }
-void LED_off()
+
+void startPIR()
 {
-  digitalWrite(ledPin,LOW);
-}
-void loop() {
-  int valPir = digitalRead(inputPin);                      // read input value
-  int valButton = digitalRead(buttonPin);
-  int valSwitch = digitalRead(switchPin);
-
-  // ======================= BUTTON 
-  if(valButton == HIGH) {
-   LED_on();
-    if(buttonState == LOW) 
-    {
-    Serial.println("Someone pressed the doorbell!");           // We only want to print on the output change, not state
-    buttonState = HIGH;
-    } 
-  } else {
-     LED_off();                // turn LED OFF
-      if (buttonState == HIGH)                       // we have just turned off
-          {
-          buttonState = LOW;
-          }
-        }
-   
-  // ======================= BUTTON 
-
-  if (valSwitch == HIGH) {                                               // check if the input is HIGH
-    digitalWrite(ledPin, HIGH);                     // turn LED ON
-    if (switchState == LOW)                           // we have just turned on
-      {
-      Serial.println("The door is opened!");           // We only want to print on the output change, not state
-      switchState = HIGH;
-      }
-    } else 
-        {
-        digitalWrite(ledPin, LOW);                  // turn LED OFF
-        if (switchState == HIGH)                       // we have just turned off
-          {
-          Serial.println("The door is closed!");          // We only want to print on the output change, not state
-          switchState = LOW;
-          }
-        }
-
-
-  // =================== Start PIR
+  int valPir = digitalRead(inputPin); 
   if (valPir == HIGH)
     {                                               // check if the input is HIGH
     digitalWrite(ledPin, HIGH);                     // turn LED ON
     if (pirState == LOW)                            // we have just turned on
       {
-      Serial.println("Motion detected!");           // We only want to print on the output change, not state
+                 // We only want to print on the output change, not state
       pirState = HIGH;
+      Serial.println("Motion detected");
+     
       }
     } else 
         {
@@ -83,6 +61,48 @@ void loop() {
           pirState = LOW;
           }
         }
-  // =================== End PIR
+}
+
+/*void startSwitch()
+{
+   int valSwitch = digitalRead(switchPin);
+   if (valSwitch == HIGH) {
+                            digitalWrite(ledPin, LOW);
+                            if(lockLow){  
+                                          lockLow = false;            
+                                          delay(50);
+                                       }         
+                            takeLowTime = true;
+                           }       
+else {
+digitalWrite(ledPin, HIGH);
+ if(takeLowTime){
+                    takeLowTime = false;       
+                    lockLow = true;                        
+                    Serial.println("Door opened ");      //output
+                    Serial.write("c");
+                    delay(50);
+                }
+      } 
+}*/
+
+void startSwitch()
+{
+ int  StatoSwitch = digitalRead(switchPin); //Leggo il valore del Reed
+ if (StatoSwitch == HIGH)
+  {
+    digitalWrite(ledPin, LOW);
+    
+  }
+ else
+  {
+    digitalWrite(ledPin, HIGH);
+   
+  }
+}
+void loop() {                 
+ startLED();  
+ startSwitch();
+ startPIR();
 }
 
