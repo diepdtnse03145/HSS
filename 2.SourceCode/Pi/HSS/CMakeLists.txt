@@ -1,9 +1,14 @@
 project(HSS)
 cmake_minimum_required(VERSION 2.8)
 
-
-
 aux_source_directory(. SRC_LIST)
+
+aux_source_directory(ConnectionLayer CONNECTION_LAYER)
+LIST(APPEND SRC_LIST ${CONNECTION_LAYER})
+
+aux_source_directory(ConnectionLayer/RPC_Auto CONNECTION_LAYER_RPC_AUTO)
+LIST(APPEND SRC_LIST ${CONNECTION_LAYER_RPC_AUTO})
+
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
 set(Boost_USE_STATIC_LIBS        ON) # only find static libs
@@ -15,3 +20,9 @@ if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
   target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 endif()
+
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} wsock32 ws2_32)
+endif()
+
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)

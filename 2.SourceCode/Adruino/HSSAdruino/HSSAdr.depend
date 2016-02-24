@@ -87,12 +87,17 @@
 
 1456233300 c:\users\diep mloc unlimited\documents\hssadr\hssconstant.h
 
+<<<<<<< HEAD
 1456235561 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.c
+=======
+1456233300 source:c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.c
+>>>>>>> 6de1992c5120392c0c9fed32e6ecdeefdc133d5e
 	"ConnectionLayer.h"
 	<stdlib.h>
 	<stdio.h>
 	<Arduino.h>
 
+<<<<<<< HEAD
 1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.h
 
 1371033102 c:\users\syn\downloads\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\cores\arduino\arduino.h
@@ -146,10 +151,16 @@
 	<avr/pgmspace.h>
 
 1456235561 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.c
+=======
+1456219411 c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\connectionlayer.h
+
+1456233346 source:c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.c
+>>>>>>> 6de1992c5120392c0c9fed32e6ecdeefdc133d5e
 	"RPCClient.h"
 	"../../HSSConstant.h"
 	<stdio.h>
 
+<<<<<<< HEAD
 1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.h
 	"../ConnectionLayer.h"
 	"../../HSSConstant.h"
@@ -157,11 +168,21 @@
 1456235561 d:\final project\hss\2.sourcecode\adruino\hssadruino\hssconstant.h
 
 1456307118 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcserverfunc.c
+=======
+1456233512 c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcclient.h
+	"../ConnectionLayer.h"
+	"../../HSSConstant.h"
+
+1456233300 c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\hssconstant.h
+
+1456235322 source:c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpc_auto\rpcserverfunc.c
+>>>>>>> 6de1992c5120392c0c9fed32e6ecdeefdc133d5e
 	"../ConnectionLayer.h"
 	"../RPCServer.h"
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
+<<<<<<< HEAD
 	<Arduino.h>
 
 1456307131 d:\final project\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpcserver.h
@@ -172,12 +193,28 @@
 	<Arduino.h>
 
 1456293822 source:d:\final project\hss\2.sourcecode\adruino\hssadruino\hssadr.ino
+=======
+
+1456235322 c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpcserver.h
+	"ConnectionLayer.h"
+
+1456235320 source:c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\connectionlayer\rpcserver.c
+	"RPCServer.h"
+	<Arduino.h>
+
+1456234042 source:c:\users\diep mloc unlimited\documents\github\hss\2.sourcecode\adruino\hssadruino\hssadr.ino
+>>>>>>> 6de1992c5120392c0c9fed32e6ecdeefdc133d5e
 	<Arduino.h>
 	"HSSConstant.h"
 	"ConnectionLayer/ConnectionLayer.h"
 
+<<<<<<< HEAD
 1456286109 d:\final project\hss\2.sourcecode\adruino\hssadruino\hssadr.ino
 	<Arduino.h>
 	"HSSConstant.h"
 	"ConnectionLayer/ConnectionLayer.h"
+=======
+1362986950 c:\users\diep mloc unlimited\documents\codeblocks-arduino-20140626\codeblocks\arduino\hardware\arduino\variants\mega\pins_arduino.h
+	<avr/pgmspace.h>
+>>>>>>> 6de1992c5120392c0c9fed32e6ecdeefdc133d5e
 
