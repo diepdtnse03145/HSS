@@ -1,15 +1,11 @@
 #include <Arduino.h>
 #include "HSSConstant.h"
 #include "ConnectionLayer/ConnectionLayer.h"
-
+#include "ConnectionLayer/RPCServer.h"
 char _inBuf[_BUFFER_SIZE];
 int _inRes;
 
-int ledPin = 13;
-int inputPin = 2;
-int pirState = LOW;
-int switchPin = 3;
-int switchState = LOW;
+
 void setup()
 {
 	Serial.begin(9600);

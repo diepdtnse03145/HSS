@@ -36,4 +36,14 @@ void _receiveMsg(char *msg)
     {
         ad_SwitchOn();
     }
+
+     if (!strcmp(funcName, "ad_PIRoff"))
+    {
+        ad_PIRoff();
+    }
+
+     if (!strcmp(funcName, "ad_SwitchOff"))
+    {
+        ad_SwitchOff();
+    }
 }

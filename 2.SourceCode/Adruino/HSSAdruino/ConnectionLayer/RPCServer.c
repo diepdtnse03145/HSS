@@ -1,8 +1,12 @@
 #include "RPCServer.h"
 #include <Arduino.h>
 
-
-
+int ledPin = 13;
+int inputPin = 2;
+int pirState = LOW;
+int switchPin = 3;
+int switchState = LOW;
+int StatoSwitch = HIGH;
 void ad_moeFunc(int moeVl)
 {
     //
@@ -22,6 +26,7 @@ void ad_ledOff()
 
 void ad_PIRon()
 {
+    Serial.println("1234");
     int valPir = digitalRead(inputPin);
     if (valPir == HIGH)
         {                                               // check if the input is HIGH
@@ -44,17 +49,28 @@ void ad_PIRon()
                 }
 }
 
+void ad_PIRoff()
+{
+    Serial.println("PIR deactivated");
+}
 void ad_SwitchOn()
 {
-    int  StatoSwitch = digitalRead(switchPin); //Leggo il valore del Reed
+    Serial.println("Door active");
+    StatoSwitch = digitalRead(switchPin); //Leggo il valore del Reed
     if (StatoSwitch == HIGH)
         {
             digitalWrite(ledPin, LOW);
+            Serial.println("Door closed");
 
         }
         else
         {
             digitalWrite(ledPin, HIGH);
-
+            Serial.println("Door opened");
         }
+}
+
+void ad_SwitchOff()
+{
+    Serial.println("Door deactivated");
 }
