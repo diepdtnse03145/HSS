@@ -11,6 +11,8 @@ extern int ledPin;
 extern int switchPin;
 extern int switchState;
 extern int StatoSwitch;
+extern bool lockLow;
+extern bool takeLowTime;
 void ad_moeFunc(int moeVl);
 void ad_ledOn();
 void ad_ledOff();
