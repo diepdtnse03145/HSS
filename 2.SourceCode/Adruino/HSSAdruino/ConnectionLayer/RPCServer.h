@@ -18,7 +18,7 @@ void ad_ledOn();
 void ad_ledOff();
 void ad_PIRon();
 void ad_SwitchOn();
-void ad_PIRoff();
 void ad_SwitchOff();
+void ad_PIRoff();
 #endif //RPCSERVER_H
 

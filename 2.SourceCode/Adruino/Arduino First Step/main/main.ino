@@ -32,6 +32,7 @@ void startLED()
       stateLED = LOW; 
     } else {
        stateLED = HIGH;
+       Serial.write("a");
     }
     time = millis();
   }
@@ -50,7 +51,7 @@ void startPIR()
                  // We only want to print on the output change, not state
       pirState = HIGH;
       Serial.println("Motion detected");
-     
+     Serial.write("b");
       }
     } else 
         {
@@ -92,12 +93,11 @@ void startSwitch()
  if (StatoSwitch == HIGH)
   {
     digitalWrite(ledPin, LOW);
-    
   }
  else
   {
     digitalWrite(ledPin, HIGH);
-   
+   Serial.write("c");
   }
 }
 void loop() {                 
