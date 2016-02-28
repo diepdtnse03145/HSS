@@ -8,7 +8,6 @@ int buttonPin = 4;
 int buttonState = LOW;          // we start, assuming button is not pressed
 int previous = LOW;
 long time = 0;
-long debounce = 200;
 int stateLED = LOW; 
 
 boolean lockLow = true;
@@ -26,18 +25,14 @@ void setup() {
 
 void startLED()
 {
-   int valButton = digitalRead(buttonPin);
-  if(valButton == HIGH && previous == LOW && millis() - time > debounce) {
-    if(stateLED == HIGH){
-      stateLED = LOW; 
-    } else {
-       stateLED = HIGH;
-       Serial.write("a");
-    }
-    time = millis();
+   buttonState = digitalRead(buttonPin);
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
   }
-  digitalWrite(ledPin,stateLED);
-  previous == valButton;
 }
 
 void startPIR()

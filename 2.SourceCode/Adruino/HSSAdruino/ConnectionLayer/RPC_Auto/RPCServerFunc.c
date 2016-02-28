@@ -46,4 +46,9 @@ void _receiveMsg(char *msg)
     {
         ad_SwitchOff();
     }
+
+    if (!strcmp(funcName, "ad_Bell"))
+    {
+        ad_Bell();
+    }
 }

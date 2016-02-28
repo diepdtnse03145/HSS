@@ -7,6 +7,8 @@ int pirState = LOW;
 int switchPin = 3;
 int switchState = LOW;
 int StatoSwitch = HIGH;
+int buttonPin = 4;
+int buttonState = LOW;
 bool lockLow = true;
 bool takeLowTime;
 void ad_moeFunc(int moeVl)
@@ -24,6 +26,20 @@ void ad_ledOff()
 {
     Serial.println("ad_ledOff");
     digitalWrite(ledPin, LOW);
+}
+
+void ad_Bell()
+{
+    buttonState = digitalRead(buttonPin);
+    if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin, HIGH);
+    Serial.write("1");
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin, LOW);
+  }
+
 }
 void ad_PIRon()
 {
