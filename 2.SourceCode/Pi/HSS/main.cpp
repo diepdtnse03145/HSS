@@ -1,19 +1,15 @@
 #include <iostream>
-#include "ConnectionLayer/TcpConnectionLayer.h"
-#include "ConnectionLayer/RPC_Server/TcpRPCServer.h"
-#include "ConnectionLayer/SerialConnectionLayer.h"
-#include "ConnectionLayer/RPC_Client/TcpRPCClient.h"
+#include "Engine/androidengine.h"
+#include "Engine/arduinoengine.h"
 
 int main(int argc, char *argv[])
 {
     boost::asio::io_service io;
-    TcpRPCServer sv;
-    TcpConnectionLayer c{sv, 13, io};
-    TcpRPCClient cl{c};
-    cl.MoeFunct(33);
+    AndroidEngine android{13, io};
+    ArduinoEngine arduino{"COM3", io};
 
-//    SerialConnectionLayer serial{sv,"COM7" ,io};
-//    serial.sendMsg("ad_ledOn");
-    io.run();
-    return 0;
+    android.setArduinoEngine(&arduino);
+    arduino.setAndroidEngine(&android);
+
+    return io.run();
 }
