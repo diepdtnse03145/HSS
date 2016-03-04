@@ -4,6 +4,9 @@
 #include "../../HSSConstant.h"
 
 extern char _outBuf[_BUFFER_SIZE];
-void pi_moeFunc(int vl);
+
+extern void pi_returnPirValue(int vl);
+extern void pi_returnBellValue(int vl);
+extern void pi_returnSwitchValue(int vl);
 
 #endif //RPCCLIENT_H
