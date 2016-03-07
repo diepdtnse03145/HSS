@@ -1,7 +1,7 @@
 #include "androidengine.h"
 
-AndroidEngine::AndroidEngine(int port, boost::asio::io_service &io) :
-    TcpConnection{port,io}
+AndroidEngine::AndroidEngine(Setting &setting, boost::asio::io_service &io) :
+    TcpConnection{setting,io}
 {
 
 }

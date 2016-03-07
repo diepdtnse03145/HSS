@@ -4,8 +4,8 @@
 #include <boost/bind.hpp>
 #include <bits/stdc++.h>
 
-ArduinoEngine::ArduinoEngine(const std::string &portName, boost::asio::io_service &io) :
-    SerialConnection{portName, io},
+ArduinoEngine::ArduinoEngine(Setting &setting, boost::asio::io_service &io) :
+    SerialConnection{setting, io},
     _sensorTimer{io}
 {
     _requestSensorValue();

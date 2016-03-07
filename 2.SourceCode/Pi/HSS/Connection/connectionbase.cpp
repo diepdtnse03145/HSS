@@ -1,7 +1,8 @@
 #include "connectionbase.h"
 #include <iostream>
 
-ConnectionBase::ConnectionBase()
+ConnectionBase::ConnectionBase(Setting &setting) :
+    _setting{setting}
 {
 
 }

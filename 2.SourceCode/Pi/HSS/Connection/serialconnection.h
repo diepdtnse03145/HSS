@@ -7,7 +7,7 @@
 class SerialConnection : public ConnectionBase
 {
 public:
-    SerialConnection(const std::string& portName, boost::asio::io_service& io);
+    SerialConnection(Setting& setting, boost::asio::io_service& io);
 
 protected:
     void _hss_sendMsg() override final;

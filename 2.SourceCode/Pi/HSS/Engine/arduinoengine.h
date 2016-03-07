@@ -10,9 +10,9 @@ class AndroidEngine;
 class ArduinoEngine : public SerialConnection
 {
 public:
-    ArduinoEngine(const std::string& portName, boost::asio::io_service& io);
+    ArduinoEngine(Setting& setting, boost::asio::io_service& io);
     void setAndroidEngine(AndroidEngine* engine);
-    void _requestSensorValue(const boost::system::error_code& ec = boost::system::errc::success);
+    void _requestSensorValue(const boost::system::error_code& ec = boost::system::error_code{});
 
     int pirValue() const;
     int bellValue() const;

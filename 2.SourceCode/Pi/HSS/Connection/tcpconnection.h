@@ -7,7 +7,7 @@
 class TcpConnection : public ConnectionBase
 {
 public:
-    TcpConnection(int port, boost::asio::io_service& io);
+    TcpConnection(Setting& setting, boost::asio::io_service& io);
 
 protected:
     void _hss_sendMsg() override final;

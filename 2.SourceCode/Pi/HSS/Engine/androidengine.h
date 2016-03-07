@@ -8,7 +8,7 @@ class ArduinoEngine;
 class AndroidEngine : public TcpConnection
 {
 public:
-    AndroidEngine(int port, boost::asio::io_service& io);
+    AndroidEngine(Setting& setting, boost::asio::io_service& io);
     void pushNoti(const std::string& msg);
     void setArduinoEngine(ArduinoEngine* engine);
 

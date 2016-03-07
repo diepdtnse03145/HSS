@@ -1,8 +1,9 @@
 #include "tcpconnection.h"
 #include <boost/bind.hpp>
 #include <iostream>
-TcpConnection::TcpConnection(int port, boost::asio::io_service &io) :
-    _tcp_sv{io, boost::asio::ip::tcp::endpoint{boost::asio::ip::tcp::v4(), static_cast<unsigned short>(port)}},
+TcpConnection::TcpConnection(Setting &setting, boost::asio::io_service &io) :
+    ConnectionBase{setting},
+    _tcp_sv{io, boost::asio::ip::tcp::endpoint{boost::asio::ip::tcp::v4(), _getOptionsValue<unsigned short>("tcp_sv_port")}},
     _sock{io},
     _isSending{false}
 {

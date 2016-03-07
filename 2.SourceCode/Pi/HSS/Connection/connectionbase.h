@@ -1,13 +1,15 @@
 #ifndef CONNECTIONBASE_H
 #define CONNECTIONBASE_H
 
+#include "../Setting/setting.h"
+
 #include <string>
 #include <queue>
 
 class ConnectionBase
 {
 public:
-    ConnectionBase();
+    ConnectionBase(Setting& setting);
 
 protected:
     void _sendMsg(const std::string& msg);
@@ -17,6 +19,15 @@ protected:
     virtual void _hss_recvMsg(const std::string& msg) = 0;
     virtual bool _hss_isSending() = 0;
     std::queue<std::string> _sendQueue;
+
+    template<typename T>
+    T _getOptionsValue(const std::string name)
+    {
+        return boost::any_cast<T>(_setting[name]);
+    }
+
+private:
+    Setting _setting;
 };
 
 #endif // CONNECTIONBASE_H

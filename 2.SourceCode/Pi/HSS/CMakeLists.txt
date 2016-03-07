@@ -6,13 +6,15 @@ aux_source_directory(Connection HSS_CONNECTION)
 LIST(APPEND SRC_LIST ${HSS_CONNECTION})
 aux_source_directory(Engine HSS_ENGINE)
 LIST(APPEND SRC_LIST ${HSS_ENGINE})
+aux_source_directory(Setting HSS_SETTING)
+LIST(APPEND SRC_LIST ${HSS_SETTING})
 
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 
 set(Boost_USE_STATIC_LIBS        ON) # only find static libs
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
-find_package(Boost 1.55.0 COMPONENTS date_time filesystem system )
+find_package(Boost 1.55.0 COMPONENTS program_options filesystem system )
 
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})

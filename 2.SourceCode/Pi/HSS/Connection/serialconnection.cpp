@@ -2,11 +2,12 @@
 #include <boost/bind.hpp>
 #include <iostream>
 
-SerialConnection::SerialConnection(const std::string& portName, boost::asio::io_service& io) :
+SerialConnection::SerialConnection(Setting &setting, boost::asio::io_service& io) :
+    ConnectionBase{setting},
     _port{io},
     _isSending{false}
 {
-    _port.open(portName);
+    _port.open(_getOptionsValue<std::string>("arduino_port"));
     _port.set_option(boost::asio::serial_port_base::baud_rate(9600));
 
     boost::asio::async_read_until(_port, _buf, "\n",
