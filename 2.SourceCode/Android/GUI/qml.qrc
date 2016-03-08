@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/">
-        <file>loginScr.qml</file>
-        <file>homeScreen.qml</file>
-        <file>activitylogScr.qml</file>
-        <file>cameraScr.qml</file>
-        <file>doorbellScr.qml</file>
-        <file>settingScr.qml</file>
-        <file>changePass.qml</file>
+        <file>ActivitylogScreen.qml</file>
+        <file>CameraScreen.qml</file>
+        <file>ChangePass.qml</file>
+        <file>DoorbellScreen.qml</file>
+        <file>LoginScreen.qml</file>
+        <file>SettingScreen.qml</file>
+        <file>main.qml</file>
     </qresource>
 </RCC>

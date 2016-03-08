@@ -41,7 +41,7 @@ Rectangle{
         width: 646
         height: 536
         fillMode: Image.Stretch
-        source: "../../../../../../Downloads/logo.png"
+        source: "qrc:/img/logo.png"
     }
 
     Image {
@@ -50,7 +50,7 @@ Rectangle{
         y: 978
         width: 113
         height: 113
-        source: "../../../../../../Downloads/user.png"
+        source: "qrc:/img/user.png"
     }
 
     Image {
@@ -59,7 +59,7 @@ Rectangle{
         y: 1106
         width: 92
         height: 113
-        source: "../../../../../../Downloads/pass.png"
+        source: "qrc:/img/pass.png"
     }
 
     Rectangle {

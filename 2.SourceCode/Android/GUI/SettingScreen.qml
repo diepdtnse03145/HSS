@@ -22,7 +22,7 @@ Rectangle{
             y: 25
             width: 150
             height: 150
-            source: "../../../../../../Downloads/back.png"
+            source: "qrc:/img/back.png"
         }
 
         Text {

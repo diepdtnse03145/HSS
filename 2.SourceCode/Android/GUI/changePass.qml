@@ -19,7 +19,7 @@ Rectangle{
             y: 25
             width: 150
             height: 150
-            source: "../../../../../../Downloads/back.png"
+            source: "qrc:/img/back.png"
         }
 
         Text {
@@ -42,7 +42,7 @@ Rectangle{
         y: 307
         width: 113
         height: 113
-        source: "../../../../../../Downloads/user.png"
+        source: "qrc:/img/user.png"
     }
 
     TextInput {

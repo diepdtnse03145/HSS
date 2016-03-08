@@ -19,7 +19,7 @@ Rectangle{
             y: 25
             width: 150
             height: 150
-            source: "../../../../../../Downloads/back.png"
+            source: "qrc:/img/back.png"
         }
 
         Text {
@@ -29,13 +29,12 @@ Rectangle{
             width: 510
             height: 102
             color: "#ffffff"
-            text: qsTr("Activity Log")
+            text: qsTr("Camera")
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 80
         }
     }
-
 
 
 }
