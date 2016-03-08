@@ -22,7 +22,7 @@ Rectangle{
             y: 25
             width: 150
             height: 150
-            source: "../../../Downloads/1457262154_circle-back-arrow-outline-stroke.png"
+            source: "../../../../../../Downloads/back.png"
         }
 
         Text {

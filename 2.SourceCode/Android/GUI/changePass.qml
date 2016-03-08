@@ -14,12 +14,12 @@ Rectangle{
         color: "#005fbf"
 
         Image {
-            id: buttonBack
+            id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
-            source: "../../../Downloads/1457262154_circle-back-arrow-outline-stroke.png"
+            source: "../../../../../../Downloads/back.png"
         }
 
         Text {
@@ -42,7 +42,7 @@ Rectangle{
         y: 307
         width: 113
         height: 113
-        source: "../../../Downloads/1457257722_user_male2.png"
+        source: "../../../../../../Downloads/user.png"
     }
 
     TextInput {
