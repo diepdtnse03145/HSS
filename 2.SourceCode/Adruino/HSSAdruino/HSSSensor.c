@@ -16,7 +16,7 @@ void readPirValue()
 
 void readDoorBellValue()
 {
-    bellValue = digitalRead(_PIR_PIN);
+    bellValue = digitalRead(_BELL_PIN);
     if (bellValue == HIGH) {                                     //Bell ring
             pi_returnBellValue(bellValue);                        //call Pi server
      }
