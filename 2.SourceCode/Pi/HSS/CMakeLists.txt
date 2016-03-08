@@ -25,4 +25,13 @@ if(WIN32)
     target_link_libraries(${PROJECT_NAME} wsock32 ws2_32)
 endif()
 
+set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
+find_package(Threads REQUIRED)
+
+#if(CMAKE_USE_PTHREADS_INIT)
+#    set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-pthread")
+#endif()
+
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} )
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
