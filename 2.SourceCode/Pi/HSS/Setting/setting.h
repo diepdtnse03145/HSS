@@ -9,7 +9,7 @@ class Setting
 public:
     Setting();
 
-    const boost::any& operator[](const std::string& name);
+    boost::any& operator[](const std::string& name);
 
 private:
     std::map<std::string, boost::any> _value_map;

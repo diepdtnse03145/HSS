@@ -17,9 +17,14 @@ Setting::Setting()
         _value_map["arduino_port"] = vm["arduino_port"].as<std::string>();
         _value_map["tcp_sv_port"] = vm["tcp_sv_port"].as<unsigned short>();
     }
+    _value_map["dt_motion_enable"] = true;
+    _value_map["sys_stt_enable"] = true;
+    _value_map["dt_door_enable"] = true;
+    _value_map["door_bell_enable"] = true;
+
 }
 
-const boost::any &Setting::operator[](const std::string &name)
+boost::any &Setting::operator[](const std::string &name)
 {
     return _value_map[name];
 }

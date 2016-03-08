@@ -21,9 +21,14 @@ protected:
     std::queue<std::string> _sendQueue;
 
     template<typename T>
-    T _getOptionsValue(const std::string name)
+    T _getOptionsValue(const std::string& name)
     {
         return boost::any_cast<T>(_setting[name]);
+    }
+
+    void _setOptionsValue(const std::string& name, boost::any value)
+    {
+        _setting[name] = value;
     }
 
 private:

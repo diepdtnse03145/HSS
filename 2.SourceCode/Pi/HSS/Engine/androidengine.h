@@ -17,6 +17,11 @@ private:
 
     void _hss_recvMsg(const std::string &msg) override final;
 
+    void pi_changePassword(const std::string& oldpwd, const std::string& newpwd);
+    void pi_enableDetectMotion(const bool& enable);
+    void pi_enableSystemStatus(const bool& enable);
+    void pi_enableDetectDoor(const bool& enable);
+    void pi_enableDoorBell(const bool& enable);
 };
 
 #endif // ANDROIDENGINE_H
