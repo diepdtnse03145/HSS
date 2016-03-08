@@ -93,7 +93,7 @@ void ArduinoEngine::_requestSensorValue(const boost::system::error_code &ec)
         _sensorTimer.cancel();
         _sensorTimer.expires_from_now(std::chrono::seconds{5});
         _sensorTimer.async_wait(boost::bind(
-                                    ArduinoEngine::_requestSensorValue,
+                                    &ArduinoEngine::_requestSensorValue,
                                     this, boost::asio::placeholders::error)
                                 );
     }

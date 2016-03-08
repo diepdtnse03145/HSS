@@ -11,7 +11,7 @@ SerialConnection::SerialConnection(Setting &setting, boost::asio::io_service& io
     _port.set_option(boost::asio::serial_port_base::baud_rate(9600));
 
     boost::asio::async_read_until(_port, _buf, "\n",
-                                  boost::bind(SerialConnection::_handleRead,
+                                  boost::bind(&SerialConnection::_handleRead,
                                               this, boost::placeholders::_1, boost::placeholders::_2
                                               )
                                   );
@@ -22,7 +22,7 @@ void SerialConnection::_hss_sendMsg()
     if (!_hss_isSending()) {
         std::cout<<__FUNCTION__<<": "<<_sendQueue.front()<<std::endl;
         boost::asio::async_write(_port, boost::asio::buffer(_sendQueue.front()),
-                                      boost::bind(SerialConnection::_handleWrite,
+                                      boost::bind(&SerialConnection::_handleWrite,
                                                   this, boost::placeholders::_1, boost::placeholders::_2
                                                   )
                                       );
@@ -48,7 +48,7 @@ void SerialConnection::_handleRead(const boost::system::error_code &ec, std::siz
     _recvMsg(line);
     std::cout<<__FUNCTION__<<": "<<line<<std::endl;
     boost::asio::async_read_until(_port, _buf, "\n",
-                                  boost::bind(SerialConnection::_handleRead,
+                                  boost::bind(&SerialConnection::_handleRead,
                                               this, boost::placeholders::_1, boost::placeholders::_2
                                               )
                                   );
