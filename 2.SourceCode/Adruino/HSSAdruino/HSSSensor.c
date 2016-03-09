@@ -8,26 +8,29 @@ int bellValue;
 
 void readPirValue()
 {
-    pirValue = digitalRead(_PIR_PIN);
-    if (pirValue == HIGH) {                                     //Have motion
-            pi_returnPirValue(pirValue);                        //call Pi server
-     }
+    int tmp = digitalRead(_PIR_PIN);                      //read sensor value
+    if (pirValue != tmp) {                                //if sensor value changed
+        pirValue = tmp;
+        pi_returnPirValue(pirValue);                      //call Pi server
+    }
 }
 
 void readDoorBellValue()
 {
-    bellValue = digitalRead(_BELL_PIN);
-    if (bellValue == HIGH) {                                     //Bell ring
-            pi_returnBellValue(bellValue);                        //call Pi server
-     }
+    int tmp = digitalRead(_BELL_PIN);                      //read sensor value
+    if (bellValue != tmp) {                                //if sensor value changed
+        bellValue = tmp;
+        pi_returnPirValue(bellValue);                      //call Pi server
+    }
 }
 
 void readSwitchValue()
 {
-    switchValue = digitalRead(_SWITCH_PIN);
-    if (switchValue == HIGH) {                                     //Door openned
-            pi_returnSwitchValue(switchValue);                        //call Pi server
-     }
+    int tmp = digitalRead(_SWITCH_PIN);                      //read sensor value
+    if (switchValue != tmp) {                                //if sensor value changed
+        switchValue = tmp;
+        pi_returnPirValue(switchValue);                      //call Pi server
+    }
 }
 
 void updateSensorValue()
