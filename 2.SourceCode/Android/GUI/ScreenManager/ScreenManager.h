@@ -15,8 +15,18 @@ public:
 
 signals:
     void currentScreenChanged(QUrl);
-    void viewerToManager();
-    void managerToViewer();
+    void loginToMainScr();
+    void cameraToMainScr();
+    void mainToCameraScr();
+    void mainToSettingScr();
+    void settingToMainScr();
+    void doorBellToMainScr();
+    void mainToDoorBellScr();
+    void mainToActivityLogScr();
+    void activityLogToMainScr();
+    void settingToLoginScr();
+    void changePassToSettingScr();
+    void settingToChangePassScr();
 
 public slots:
 

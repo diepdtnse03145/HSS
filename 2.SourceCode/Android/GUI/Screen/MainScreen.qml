@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import "../Component"
 
 Rectangle{
     id:root
@@ -36,7 +37,7 @@ Rectangle{
         }
     }
 
-    Rectangle {
+    HSS_Button {
         id: buttonLogin
         x: 190
         y: 422
@@ -57,6 +58,10 @@ Rectangle{
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
             font.pointSize: 62
+        }
+
+        onClicked: {
+            ScreenManager.mainToActivityLogScr()
         }
     }
 

@@ -6,7 +6,7 @@ import QtQuick.Dialogs 1.2
 ApplicationWindow {
     id:root
     width:1080
-    height:1920
+    height:1860
     visible: true
 
     function loadScreen(screenSource){

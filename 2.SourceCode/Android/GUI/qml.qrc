@@ -1,12 +1,13 @@
 <RCC>
     <qresource prefix="/">
-        <file>ActivitylogScreen.qml</file>
-        <file>CameraScreen.qml</file>
-        <file>ChangePass.qml</file>
-        <file>DoorbellScreen.qml</file>
-        <file>LoginScreen.qml</file>
-        <file>SettingScreen.qml</file>
-        <file>MainScreen.qml</file>
         <file>main.qml</file>
+        <file>Screen/ActivitylogScreen.qml</file>
+        <file>Screen/CameraScreen.qml</file>
+        <file>Screen/ChangePass.qml</file>
+        <file>Screen/DoorbellScreen.qml</file>
+        <file>Screen/LoginScreen.qml</file>
+        <file>Screen/SettingScreen.qml</file>
+        <file>Component/HSS_Button.qml</file>
+        <file>Screen/MainScreen.qml</file>
     </qresource>
 </RCC>

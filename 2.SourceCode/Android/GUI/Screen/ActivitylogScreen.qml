@@ -3,15 +3,16 @@ import QtQuick 2.5
 Rectangle{
     id:root
     width:1080
-    height:1920
+    height:1860
 
     Rectangle {
         id: rectangle1
-        x: 0
-        y: 0
-        width: 1080
         height: 200
         color: "#005fbf"
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.left: parent.left
 
         Image {
             id: backButton

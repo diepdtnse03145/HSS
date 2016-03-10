@@ -1,10 +1,11 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.3
+import "../Component"
 
 Rectangle{
     id:root
     width:1080
-    height:1920
-
+    height:1860
 
     TextInput {
         id: input_user
@@ -62,24 +63,26 @@ Rectangle{
         source: "qrc:/img/pass.png"
     }
 
-    Rectangle {
+    HSS_Button {
         id: buttonLogin
         x: 358
         y: 1310
         width: 363
         height: 100
         color: "#005fbf"
-        anchors.right: parent.right
-        anchors.rightMargin: 359
 
         Text {
             id:textLogin
-            width: 148
-            height: 65
+            anchors.fill: parent
             color: "#ffffff"
-            anchors.centerIn: parent
             text: "Login"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
             font.pointSize: 40
+        }
+
+        onClicked: {
+            ScreenManager.loginToMainScr()
         }
     }
 

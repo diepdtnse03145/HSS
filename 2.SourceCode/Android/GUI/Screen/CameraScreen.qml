@@ -3,7 +3,7 @@ import QtQuick 2.5
 Rectangle{
     id:root
     width:1080
-    height:1920
+    height:1860
 
     Rectangle {
         id: rectangle1
