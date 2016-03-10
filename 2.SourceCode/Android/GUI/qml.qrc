@@ -6,6 +6,7 @@
         <file>DoorbellScreen.qml</file>
         <file>LoginScreen.qml</file>
         <file>SettingScreen.qml</file>
+        <file>MainScreen.qml</file>
         <file>main.qml</file>
     </qresource>
 </RCC>
