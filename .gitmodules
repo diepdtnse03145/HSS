@@ -1,6 +1,6 @@
-[submodule "2.SourceCode\\Pi\\HSS\\Libs\\nlohmann-json"]
-	path = 2.SourceCode\\Pi\\HSS\\Libs\\nlohmann-json
+[submodule "2.SourceCode/Pi/HSS/Libs/nlohmann-json"]
+	path = 2.SourceCode/Pi/HSS/Libs/nlohmann-json
 	url = https://github.com/nlohmann/json.git
-[submodule "2.SourceCode\\Pi\\HSS\\Libs\\cppformat"]
-	path = 2.SourceCode\\Pi\\HSS\\Libs\\cppformat
+[submodule "2.SourceCode/Pi/HSS/Libs/cppformat"]
+	path = 2.SourceCode/Pi/HSS/Libs/cppformat
 	url = https://github.com/cppformat/cppformat.git
