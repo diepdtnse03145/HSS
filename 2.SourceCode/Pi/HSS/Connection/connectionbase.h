@@ -23,12 +23,13 @@ protected:
     template<typename T>
     T _getOptionsValue(const std::string& name)
     {
-        return boost::any_cast<T>(_setting[name]);
+        return _setting.value<T>(name);
     }
 
-    void _setOptionsValue(const std::string& name, boost::any value)
+    template <typename T>
+    void _setOptionsValue(const std::string& name, const T& value)
     {
-        _setting[name] = value;
+        _setting.setValue(name, value);
     }
 
 private:

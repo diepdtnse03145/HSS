@@ -8,7 +8,7 @@ ArduinoEngine::ArduinoEngine(Setting &setting, boost::asio::io_service &io) :
     SerialConnection{setting, io},
     _sensorTimer{io}
 {
-    _requestSensorValue();
+//    _requestSensorValue();
 }
 
 void ArduinoEngine::setAndroidEngine(AndroidEngine *engine)

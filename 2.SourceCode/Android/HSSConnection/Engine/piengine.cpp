@@ -39,6 +39,24 @@ void PiEngine::pi_enableDoorBell(const bool &enable)
     _sendMsg(msg);
 }
 
+void PiEngine::pi_requestDoorStatus()
+{
+    QString msg = QStringLiteral("pi_requestDoorStatus\n");
+    _sendMsg(msg);
+}
+
+void PiEngine::pi_requestMotionStatus()
+{
+    QString msg = QStringLiteral("pi_requestMotionStatus\n");
+    _sendMsg(msg);
+}
+
+void PiEngine::pi_requestBellStatus()
+{
+    QString msg = QStringLiteral("pi_requestBellStatus\n");
+    _sendMsg(msg);
+}
+
 void PiEngine::_hss_recvMsg(const QString &msg)
 {
     auto v = msg.split(QRegExp{R"mm(\s+)mm"}, QString::SkipEmptyParts);
@@ -48,9 +66,44 @@ void PiEngine::_hss_recvMsg(const QString &msg)
         and_changePwResult(and_changePwResult_arg1);
     }
 
+    if (v.at(0) == "and_changePwResult") {
+        bool and_changePwResult_arg1 = msgArgToBool(v.at(1));
+        and_changePwResult(and_changePwResult_arg1);
+    }
+
+    if (v.at(0) == "and_returnDoorStatus") {
+        int and_returnDoorStatus_arg1 = msgArgToInt(v.at(1));
+        and_returnDoorStatus(and_returnDoorStatus_arg1);
+    }
+
+    if (v.at(0) == "pi_requestMotionStatus") {
+        bool pi_requestMotionStatus_arg1 = msgArgToInt(v.at(1));
+        pi_requestMotionStatus(pi_requestMotionStatus_arg1);
+    }
+
+    if (v.at(0) == "pi_requestBellStatus") {
+        bool pi_requestBellStatus_arg1 = msgArgToInt(v.at(1));
+        pi_requestBellStatus(pi_requestBellStatus_arg1);
+    }
+
 }
 
 void PiEngine::and_changePwResult(bool result)
+{
+
+}
+
+void PiEngine::and_returnDoorStatus(int status)
+{
+
+}
+
+void PiEngine::pi_requestMotionStatus(int status)
+{
+
+}
+
+void PiEngine::pi_requestBellStatus(int status)
 {
 
 }

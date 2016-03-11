@@ -7,14 +7,14 @@ SerialConnection::SerialConnection(Setting &setting, boost::asio::io_service& io
     _port{io},
     _isSending{false}
 {
-    _port.open(_getOptionsValue<std::string>("arduino_port"));
-    _port.set_option(boost::asio::serial_port_base::baud_rate(9600));
+//    _port.open(_getOptionsValue<std::string>("arduino_port"));
+//    _port.set_option(boost::asio::serial_port_base::baud_rate(9600));
 
-    boost::asio::async_read_until(_port, _buf, "\n",
-                                  boost::bind(&SerialConnection::_handleRead,
-                                              this, boost::placeholders::_1, boost::placeholders::_2
-                                              )
-                                  );
+//    boost::asio::async_read_until(_port, _buf, "\n",
+//                                  boost::bind(&SerialConnection::_handleRead,
+//                                              this, boost::placeholders::_1, boost::placeholders::_2
+//                                              )
+//                                  );
 }
 
 void SerialConnection::_hss_sendMsg()

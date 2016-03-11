@@ -1,5 +1,6 @@
 #include "androidengine.h"
 #include "../rpc_pr.h"
+#include "../hss_global.h"
 #include <bits/stdc++.h>
 #include <boost/algorithm/string.hpp>
 
@@ -19,6 +20,11 @@ void AndroidEngine::setArduinoEngine(ArduinoEngine *engine)
     _ard = engine;
 }
 
+void AndroidEngine::and_changePwResult(bool result)
+{
+//    std::string msg = "and_changePwResult"
+}
+
 void AndroidEngine::pi_changePassword(const std::string &oldpwd, const std::string &newpwd)
 {
 
@@ -27,25 +33,25 @@ void AndroidEngine::pi_changePassword(const std::string &oldpwd, const std::stri
 void AndroidEngine::pi_enableDetectMotion(const bool &enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
-    _setOptionsValue("dt_motion_enable", enable);
+    _setOptionsValue(HSS_DT_MOTION_ENABLE_SETTING, enable);
 }
 
 void AndroidEngine::pi_enableSystemStatus(const bool &enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
-    _setOptionsValue("sys_stt_enable", enable);
+    _setOptionsValue(HSS_SYS_STT_ENABLE_SETTING, enable);
 }
 
 void AndroidEngine::pi_enableDetectDoor(const bool &enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
-    _setOptionsValue("dt_door_enable", enable);
+    _setOptionsValue(HSS_DT_DOOR_ENABLE_SETTING, enable);
 }
 
 void AndroidEngine::pi_enableDoorBell(const bool &enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
-    _setOptionsValue("door_bell_enable", enable);
+    _setOptionsValue(HSS_DOOR_BELL_ENABLE_SETTING, enable);
 }
 
 void AndroidEngine::_hss_recvMsg(const std::string &msg)

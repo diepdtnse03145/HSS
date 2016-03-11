@@ -9,4 +9,7 @@ QString boolToMsgArg(const bool& vl);
 QString msgArgToString(const QString& arg);
 QString stringToMsgArg(const QString& vl);
 
+int msgArgToInt(const QString& arg);
+QString intToMsgArg(const int& vl);
+
 #endif // RPC_PR_H

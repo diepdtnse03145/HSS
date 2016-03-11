@@ -15,10 +15,19 @@ public slots:
     void pi_enableDetectDoor(const bool& enable);
     void pi_enableDoorBell(const bool& enable);
 
+    void pi_requestDoorStatus();
+    void pi_requestMotionStatus();
+    void pi_requestBellStatus();
+
+
 private:
     void _hss_recvMsg(const QString &msg) override;
 
     void and_changePwResult(bool result);
+    void and_returnDoorStatus(int status);
+    void pi_requestMotionStatus(int status);
+    void pi_requestBellStatus(int status);
+
 };
 
 #endif // PIENGINE_H

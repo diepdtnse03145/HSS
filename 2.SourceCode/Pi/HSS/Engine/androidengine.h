@@ -12,6 +12,8 @@ public:
     void pushNoti(const std::string& msg);
     void setArduinoEngine(ArduinoEngine* engine);
 
+    void and_changePwResult(bool result);
+
 private:
     ArduinoEngine* _ard;
 

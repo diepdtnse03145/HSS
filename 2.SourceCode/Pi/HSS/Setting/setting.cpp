@@ -1,30 +1,21 @@
 #include "setting.h"
-#include <boost/program_options.hpp>
 #include <bits/stdc++.h>
 
 Setting::Setting()
 {
-    boost::program_options::options_description desc{"Setting"};
-    desc.add_options()
-            ("arduino_port", boost::program_options::value<std::string>(), "Adruino Port")
-            ("tcp_sv_port", boost::program_options::value<unsigned short>(), "TCP Server port");
-    boost::program_options::variables_map vm;
-    std::filebuf fb;
-    if (fb.open ("setting.ini",std::ios::in))
-    {
-        std::istream config_file(&fb);
-        boost::program_options::store(boost::program_options::parse_config_file(config_file, desc), vm);
-        _value_map["arduino_port"] = vm["arduino_port"].as<std::string>();
-        _value_map["tcp_sv_port"] = vm["tcp_sv_port"].as<unsigned short>();
-    }
-    _value_map["dt_motion_enable"] = true;
-    _value_map["sys_stt_enable"] = true;
-    _value_map["dt_door_enable"] = true;
-    _value_map["door_bell_enable"] = true;
+    inputFromFile(HSS_SETTING_FILE);
 
 }
 
-boost::any &Setting::operator[](const std::string &name)
+void Setting::inputFromFile(const std::string &filePath)
 {
-    return _value_map[name];
+    std::ifstream i{filePath};
+    i >> _setting;
 }
+
+void Setting::outputToFile(const std::string &filePath)
+{
+    std::ofstream o{filePath, std::ios::trunc};
+    o << std::setw(4) << _setting << std::endl;
+}
+

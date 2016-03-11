@@ -14,7 +14,7 @@ add_executable(${PROJECT_NAME} ${SRC_LIST})
 set(Boost_USE_STATIC_LIBS        ON) # only find static libs
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
-find_package(Boost 1.55.0 COMPONENTS program_options filesystem system )
+find_package(Boost 1.60.0 COMPONENTS filesystem system )
 
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
@@ -27,11 +27,11 @@ endif()
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 find_package(Threads REQUIRED)
-
-#if(CMAKE_USE_PTHREADS_INIT)
-#    set(CMAKE_C_FLAGS ${CMAKE_C_FLAGS} "-pthread")
-#endif()
-
 target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} )
 
+set(HSS_LIBS_DIR Libs)
+set(nlohman_json_INCLUDE ${HSS_LIBS_DIR}/json-master/src)
+include_directories(${PROJECT_NAME} ${nlohman_json_INCLUDE})
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
+#file(COPY "setting.json" DESTINATION ${CMAKE_BINARY_DIR})

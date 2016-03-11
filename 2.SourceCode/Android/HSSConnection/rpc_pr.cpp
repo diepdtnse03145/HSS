@@ -14,10 +14,20 @@ QString boolToMsgArg(const bool &vl)
 
 QString msgArgToString(const QString &arg)
 {
-
+    return arg.toLatin1().toHex();
 }
 
 QString stringToMsgArg(const QString &vl)
 {
+    return QByteArray::fromHex(vl.toLatin1());
+}
 
+int msgArgToInt(const QString &arg)
+{
+    return arg.toInt();
+}
+
+QString intToMsgArg(const int &vl)
+{
+    return QString::number(vl);
 }
