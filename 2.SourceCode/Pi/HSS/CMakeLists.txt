@@ -30,7 +30,7 @@ find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} )
 
 set(HSS_LIBS_DIR Libs)
-set(nlohman_json_INCLUDE ${HSS_LIBS_DIR}/json-master/src)
+set(nlohman_json_INCLUDE ${HSS_LIBS_DIR}/nlohmann-json/src)
 include_directories(${PROJECT_NAME} ${nlohman_json_INCLUDE})
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
