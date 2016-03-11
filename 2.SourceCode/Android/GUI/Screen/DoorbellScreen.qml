@@ -13,13 +13,17 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        Image {
+        HSS_Button {
             id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
             source: "qrc:/img/back.png"
+			
+			onClicked: {
+            ScreenManager.doorBellToMainScr()
+			}
         }
 
         Text {
@@ -46,7 +50,7 @@ Rectangle{
         font.pixelSize: 70
     }
 
-    Rectangle {
+    HSS_Button {
         id: callButton
         x: 71
         y: 636
@@ -64,7 +68,7 @@ Rectangle{
         }
     }
 
-    Rectangle {
+    HSS_Button {
         id: endButton
         x: 556
         y: 636

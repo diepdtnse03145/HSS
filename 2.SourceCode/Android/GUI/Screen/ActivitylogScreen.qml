@@ -14,13 +14,17 @@ Rectangle{
         anchors.top: parent.top
         anchors.left: parent.left
 
-        Image {
+        HSS_Button {
             id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
             source: "qrc:/img/back.png"
+			
+			onClicked: {
+            ScreenManager.activitylogToMainScr()
+			}
         }
 
         Text {

@@ -13,13 +13,17 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        Image {
+        HSS_Button {
             id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
             source: "qrc:/img/back.png"
+			
+			onClicked: {
+            ScreenManager.cameraToMainScr()
+			}
         }
 
         Text {

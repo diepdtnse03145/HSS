@@ -16,13 +16,17 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        Image {
+        HSS_Button {
             id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
             source: "qrc:/img/back.png"
+			
+			onClicked: {
+            ScreenManager.settingToMainScr()
+			}
         }
 
         Text {
@@ -59,13 +63,14 @@ Rectangle{
         Switch { id: switchtch; x: 0; y: 15; width: 57; height: 26; z: 0; rotation: 0; enabled: true; smooth: true; opacity: 1; clip: false; visible: true; antialiasing: false; scale: 8; transformOrigin: Item.TopLeft; activeFocusOnPress: false; checked: true }
     }
 
-    Rectangle {
-        id: endButton
+    HSS_Button {
+        id: buttonLogout
         x: 550
         y: 1688
         width: 492
         height: 127
         color: "#e65959"
+		
         Text {
             id: endText
             x: 121
@@ -77,6 +82,10 @@ Rectangle{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 70
         }
+		
+		onClicked: {
+            ScreenManager.settingToLoginScr()
+		}
     }
 
     Text {
@@ -193,15 +202,16 @@ Rectangle{
         transformOrigin: Item.TopLeft
     }
 
-    Rectangle {
-        id: endButton1
+    HSS_Button {
+        id: buttonChangePassword
         x: 36
         y: 1688
         width: 492
         height: 127
         color: "#e65959"
+		
         Text {
-            id: endText1
+            id: textChangePassword
             x: 121
             y: 22
             width: 251

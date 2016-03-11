@@ -14,15 +14,6 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        Image {
-            id: backButton
-            x: 25
-            y: 25
-            width: 150
-            height: 150
-            source: "qrc:/img/back.png"
-        }
-
         Text {
             id: mainHeadline
             x: 285
@@ -38,7 +29,7 @@ Rectangle{
     }
 
     HSS_Button {
-        id: buttonLogin
+        id: buttonActivityLog
         x: 190
         y: 422
         width: 700
@@ -48,7 +39,7 @@ Rectangle{
         anchors.rightMargin: 190
 
         Text {
-            id:textLogin
+            id:textActivityLog
             width: 352
             height: 127
             color: "#ffffff"
@@ -65,8 +56,8 @@ Rectangle{
         }
     }
 
-    Rectangle {
-        id: buttonLogin1
+    HSS_Button {
+        id: buttonCamera
         x: 190
         y: 689
         width: 700
@@ -74,8 +65,9 @@ Rectangle{
         color: "#005fbf"
         anchors.rightMargin: 190
         anchors.right: parent.right
+		
         Text {
-            id: textLogin1
+            id: textCamera
             width: 352
             height: 127
             color: "#ffffff"
@@ -86,10 +78,14 @@ Rectangle{
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 62
         }
+		
+		onClicked: {
+            ScreenManager.mainToCameraScr()
+        }
     }
 
-    Rectangle {
-        id: buttonLogin2
+    HSS_Button {
+        id: button_DoorBell
         x: 190
         y: 956
         width: 700
@@ -97,8 +93,9 @@ Rectangle{
         color: "#005fbf"
         anchors.rightMargin: 190
         anchors.right: parent.right
+		
         Text {
-            id: textLogin2
+            id: textDoorBell
             width: 352
             height: 127
             color: "#ffffff"
@@ -109,10 +106,14 @@ Rectangle{
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 62
         }
+		
+		onClicked: {
+            ScreenManager.mainToDoorBellScr()
+        }
     }
 
-    Rectangle {
-        id: buttonLogin3
+    HSS_Button {
+        id: buttonSetting
         x: 190
         y: 1223
         width: 700
@@ -120,8 +121,9 @@ Rectangle{
         color: "#005fbf"
         anchors.rightMargin: 190
         anchors.right: parent.right
+		
         Text {
-            id: textLogin3
+            id: textSetting
             width: 352
             height: 127
             color: "#ffffff"
@@ -131,6 +133,10 @@ Rectangle{
             anchors.centerIn: parent
             horizontalAlignment: Text.AlignHCenter
             font.pointSize: 62
+        }
+		
+		onClicked: {
+            ScreenManager.mainToSettingScr()
         }
     }
 

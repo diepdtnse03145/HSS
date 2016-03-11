@@ -13,17 +13,21 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        Image {
+        HSS_Button {
             id: backButton
             x: 25
             y: 25
             width: 150
             height: 150
             source: "qrc:/img/back.png"
+			
+			onClicked: {
+            ScreenManager.changePassToSetiingScr()
+			}
         }
 
         Text {
-            id: textTitle
+            id: textHeadlineChangePassword
             x: 285
             y: 49
             width: 510
@@ -136,7 +140,7 @@ Rectangle{
         }
     }
 
-    Rectangle {
+    HSS_Button {
         id: buttonChangePwd
         x: 358
         y: 1743
