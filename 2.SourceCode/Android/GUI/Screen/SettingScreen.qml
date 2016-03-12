@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
+import "../Component"
 
 Rectangle{
     id:root
@@ -18,21 +19,18 @@ Rectangle{
 
         HSS_Button{
             color: "transparent"
-			x: 25
+            x: 25
             y: 25
             width: 150
             height: 150
             Image {
                 id: backButton
-                x: 25
-                y: 25
-                width: 150
-                height: 150
+                anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
 
             onClicked: {
-            ScreenManager.settingToMainScr()
+                ScreenManager.settingToMainScr()
             }
         }
 
@@ -77,7 +75,7 @@ Rectangle{
         width: 492
         height: 127
         color: "#e65959"
-		
+
         Text {
             id: endText
             x: 121
@@ -89,10 +87,10 @@ Rectangle{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 70
         }
-		
-		onClicked: {
+
+        onClicked: {
             ScreenManager.settingToLoginScr()
-		}
+        }
     }
 
     Text {
@@ -216,7 +214,7 @@ Rectangle{
         width: 492
         height: 127
         color: "#e65959"
-		
+
         Text {
             id: textChangePassword
             x: 121

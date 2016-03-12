@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import "../Component"
 
 Rectangle{
     id:root
@@ -15,21 +16,18 @@ Rectangle{
 
         HSS_Button{
             color: "transparent"
-			x: 25
+            x: 25
             y: 25
             width: 150
             height: 150
             Image {
                 id: backButton
-                x: 25
-                y: 25
-                width: 150
-                height: 150
+                anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
 
             onClicked: {
-            ScreenManager.doorBellToMainScr()
+                ScreenManager.doorBellToMainScr()
             }
         }
 
