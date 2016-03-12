@@ -3,6 +3,7 @@
 #include "../hss_global.h"
 #include <bits/stdc++.h>
 #include <boost/algorithm/string.hpp>
+#include <cppformat/format.h>
 
 AndroidEngine::AndroidEngine(Setting &setting, boost::asio::io_service &io) :
     TcpConnection{setting,io}
@@ -20,9 +21,10 @@ void AndroidEngine::setArduinoEngine(ArduinoEngine *engine)
     _ard = engine;
 }
 
-void AndroidEngine::and_changePwResult(bool result)
+void AndroidEngine::and_changePwResult(const bool &result)
 {
-//    std::string msg = "and_changePwResult"
+    std::string msg = fmt::format("and_changePwResult {0}", boolToMsgArg(result));
+    _sendMsg(msg);
 }
 
 void AndroidEngine::pi_changePassword(const std::string &oldpwd, const std::string &newpwd)
@@ -61,7 +63,9 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
     boost::split(vec, msg, boost::is_any_of(" \n"), boost::token_compress_on);
 
     if(vec.at(0) == "pi_changePassword") {
-/////////////////////////////////////////////////////
+        std::string pi_changePassword_arg1 = msgArgToString(vec.at(1));
+        std::string pi_changePassword_arg2 = msgArgToString(vec.at(2));
+        pi_changePassword(pi_changePassword_arg1, pi_changePassword_arg2);
     }
 
     if(vec.at(0) == "pi_enableDetectMotion") {

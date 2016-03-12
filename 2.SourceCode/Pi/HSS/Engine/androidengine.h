@@ -12,7 +12,7 @@ public:
     void pushNoti(const std::string& msg);
     void setArduinoEngine(ArduinoEngine* engine);
 
-    void and_changePwResult(bool result);
+    void and_changePwResult(const bool& result);
 
 private:
     ArduinoEngine* _ard;

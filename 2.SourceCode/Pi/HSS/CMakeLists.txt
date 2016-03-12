@@ -27,11 +27,16 @@ endif()
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 find_package(Threads REQUIRED)
-target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} )
+target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
 set(HSS_LIBS_DIR Libs)
 set(nlohman_json_INCLUDE ${HSS_LIBS_DIR}/nlohmann-json/src)
 include_directories(${PROJECT_NAME} ${nlohman_json_INCLUDE})
 
+add_subdirectory(${HSS_LIBS_DIR}/cppformat)
+set(cppformat_INCLUDE ${HSS_LIB_DIR}/cppformat)
+include_directories(${PROJECT_NAME} ${nlohman_json_INCLUDE})
+target_link_libraries(${PROJECT_NAME} cppformat)
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 14)
-#file(COPY "setting.json" DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY "setting.json" DESTINATION ${CMAKE_BINARY_DIR})
