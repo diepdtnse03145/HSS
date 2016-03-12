@@ -16,17 +16,20 @@ Rectangle{
         height: 200
         color: "#005fbf"
 
-        HSS_Button {
-            id: backButton
-            x: 25
-            y: 25
-            width: 150
-            height: 150
-            source: "qrc:/img/back.png"
-			
-			onClicked: {
+        HSS_Button{
+            color: "transparent"
+            Image {
+                id: backButton
+                x: 25
+                y: 25
+                width: 150
+                height: 150
+                source: "qrc:/img/back.png"
+            }
+
+            onClicked: {
             ScreenManager.settingToMainScr()
-			}
+            }
         }
 
         Text {
