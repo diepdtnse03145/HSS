@@ -16,6 +16,10 @@ Rectangle{
 
         HSS_Button{
             color: "transparent"
+			x: 285
+            y: 49
+            width: 510
+            height: 102
             Image {
                 id: backButton
                 x: 25
