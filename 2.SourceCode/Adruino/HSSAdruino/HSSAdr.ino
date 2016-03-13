@@ -5,12 +5,12 @@
 #include "HSSSensor.h"
 
 char _inBuf[_BUFFER_SIZE];
-int _inRes;
+bool _inCPL = false;
 
 
 void setup()
 {
-	Serial.begin(9600);
+    Serial.begin(9600);
     Serial.setTimeout(10000);
     pinMode(_LED_PIN, OUTPUT);
     pinMode(_PIR_PIN, INPUT);
@@ -20,12 +20,24 @@ void setup()
 
 void loop()
 {
-  _inRes = Serial.readBytesUntil('\n',_inBuf,_BUFFER_SIZE - 1);
-    _receiveMsg(_inBuf);
-  if(_inRes) {
-    memset( _inBuf, '\0', sizeof(char) * _BUFFER_SIZE);
-    _inRes = 0;
-  }
-  updateSensorValue();
+    if(_inCPL) {
+        _receiveMsg(_inBuf);
+        memset( _inBuf, '\0', sizeof(char) * _BUFFER_SIZE);
+        _inCPL = false;
+    }
+    updateSensorValue();
 }
 
+void serialEvent()
+{
+    while (Serial.available()) {
+        char _charBuf[2];
+        memset( _charBuf, '\0', sizeof(char) * 2);
+        _charBuf[0] = (char)Serial.read();
+        strcat(_inBuf, _charBuf);
+
+        if (_charBuf[0] == '\n') {
+            _inCPL = true;
+        }
+    }
+}
