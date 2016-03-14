@@ -76,14 +76,14 @@ void PiEngine::_hss_recvMsg(const QString &msg)
         and_returnDoorStatus(and_returnDoorStatus_arg1);
     }
 
-    if (v.at(0) == "pi_requestMotionStatus") {
-        bool pi_requestMotionStatus_arg1 = msgArgToInt(v.at(1));
-        pi_requestMotionStatus(pi_requestMotionStatus_arg1);
+    if (v.at(0) == "and_returnMotionStatus") {
+        bool and_returnMotionStatus_arg1 = msgArgToInt(v.at(1));
+        and_returnMotionStatus(and_returnMotionStatus_arg1);
     }
 
-    if (v.at(0) == "pi_requestBellStatus") {
-        bool pi_requestBellStatus_arg1 = msgArgToInt(v.at(1));
-        pi_requestBellStatus(pi_requestBellStatus_arg1);
+    if (v.at(0) == "and_returnBellStatus") {
+        bool and_returnBellStatus_arg1 = msgArgToInt(v.at(1));
+        and_returnBellStatus(and_returnBellStatus_arg1);
     }
 
 }
@@ -98,12 +98,13 @@ void PiEngine::and_returnDoorStatus(int status)
 
 }
 
-void PiEngine::pi_requestMotionStatus(int status)
+void PiEngine::and_returnMotionStatus(int status)
 {
 
 }
 
-void PiEngine::pi_requestBellStatus(int status)
+void PiEngine::and_returnBellStatus(int status)
 {
 
 }
+

@@ -1,10 +1,11 @@
 #include "tcpconnection.h"
+#include "../hss_global.h"
 #include <boost/bind.hpp>
 #include <iostream>
 
 TcpConnection::TcpConnection(Setting &setting, boost::asio::io_service &io) :
     ConnectionBase{setting},
-    _tcp_sv{io, boost::asio::ip::tcp::endpoint{boost::asio::ip::tcp::v4(), _getOptionsValue<unsigned short>("tcp_sv_port")}},
+    _tcp_sv{io, boost::asio::ip::tcp::endpoint{boost::asio::ip::tcp::v4(), _getOptionsValue<unsigned short>(HSS_TCP_SV_PORT_SETTING)}},
     _sock{io},
     _isSending{false}
 {

@@ -11,3 +11,5 @@ SELECT COUNT(User) FROM UserDB -- dem so luong user co ten user la "Hung" --
 WHERE User="Hung";
 
 
+SELECT COUNT(*) FROM HSS_USER WHERE ID = 'DiepDTN' AND PW = 'MoeMoe'
+UPDATE HSS_USER SET PW = 'moe' WHERE ID = 'DiepDTN2'

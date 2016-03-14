@@ -25,8 +25,8 @@ private:
 
     void and_changePwResult(bool result);
     void and_returnDoorStatus(int status);
-    void pi_requestMotionStatus(int status);
-    void pi_requestBellStatus(int status);
+    void and_returnMotionStatus(int status);
+    void and_returnBellStatus(int status);
 
 };
 

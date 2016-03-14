@@ -33,7 +33,7 @@ protected:
     }
 
 private:
-    Setting _setting;
+    Setting& _setting;
 };
 
 #endif // CONNECTIONBASE_H

@@ -3,8 +3,7 @@
 
 Setting::Setting()
 {
-    inputFromFile(HSS_SETTING_FILE);
-
+    inputFromFile(HSS_SETTING_F);
 }
 
 void Setting::inputFromFile(const std::string &filePath)
