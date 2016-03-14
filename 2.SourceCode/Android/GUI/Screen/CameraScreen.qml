@@ -27,7 +27,7 @@ Rectangle{
             }
 
             onClicked: {
-                ScreenManager.cameraToMainScr()
+                ScreenManager.toMainScr()
             }
         }
 

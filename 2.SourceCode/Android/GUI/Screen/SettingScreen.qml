@@ -30,7 +30,7 @@ Rectangle{
             }
 
             onClicked: {
-                ScreenManager.settingToMainScr()
+                ScreenManager.toMainScr()
             }
         }
 
@@ -89,7 +89,7 @@ Rectangle{
         }
 
         onClicked: {
-            ScreenManager.settingToLoginScr()
+            ScreenManager.toLoginScr();
         }
     }
 

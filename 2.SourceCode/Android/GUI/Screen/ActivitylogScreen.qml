@@ -28,7 +28,7 @@ Rectangle{
             }
 
             onClicked: {
-            ScreenManager.activitylogToMainScr()
+            ScreenManager.toMainScr()
 			}
         }
 

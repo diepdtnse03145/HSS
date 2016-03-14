@@ -27,7 +27,7 @@ Rectangle{
             }
 
             onClicked: {
-                ScreenManager.doorBellToMainScr()
+                ScreenManager.toMainScr()
             }
         }
 

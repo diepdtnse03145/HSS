@@ -52,7 +52,7 @@ Rectangle{
         }
 
         onClicked: {
-            ScreenManager.mainToActivityLogScr()
+            ScreenManager.toActivityLogScr();
         }
     }
 
@@ -80,7 +80,7 @@ Rectangle{
         }
 		
 		onClicked: {
-            ScreenManager.mainToCameraScr()
+            ScreenManager.toCameraScr();
         }
     }
 
@@ -108,7 +108,7 @@ Rectangle{
         }
 		
 		onClicked: {
-            ScreenManager.mainToDoorBellScr()
+            ScreenManager.toDoorBellScr();
         }
     }
 
@@ -136,7 +136,7 @@ Rectangle{
         }
 		
 		onClicked: {
-            ScreenManager.mainToSettingScr()
+            ScreenManager.toSettingScr();
         }
     }
 

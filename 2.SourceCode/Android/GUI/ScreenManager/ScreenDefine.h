@@ -1,13 +1,13 @@
 #ifndef SCREENDEFINE
 #define SCREENDEFINE
 
-#define ActivitylogScreen           QStringLiteral("qrc:/Screen/ActivitylogScreen.qml")
-#define CameraScreen                QStringLiteral("qrc:/Screen/CameraScreen.qml")
-#define ChangePassScreen            QStringLiteral("qrc:/Screen/ChangePass.qml")
-#define DoorBellScreen              QStringLiteral("qrc:/Screen/DoorbellScreen.qml")
-#define LoginScreen                 QStringLiteral("qrc:/Screen/LoginScreen.qml")
-#define SettingScreen               QStringLiteral("qrc:/Screen/SettingScreen.qml")
-#define MainScreen                  QStringLiteral("qrc:/Screen/MainScreen.qml")
+#define ActivitylogScreen           QUrl(QStringLiteral("qrc:/Screen/ActivitylogScreen.qml"))
+#define CameraScreen                QUrl(QStringLiteral("qrc:/Screen/CameraScreen.qml"))
+#define ChangePassScreen            QUrl(QStringLiteral("qrc:/Screen/ChangePass.qml"))
+#define DoorBellScreen              QUrl(QStringLiteral("qrc:/Screen/DoorbellScreen.qml"))
+#define LoginScreen                 QUrl(QStringLiteral("qrc:/Screen/LoginScreen.qml"))
+#define SettingScreen               QUrl(QStringLiteral("qrc:/Screen/SettingScreen.qml"))
+#define MainScreen                  QUrl(QStringLiteral("qrc:/Screen/MainScreen.qml"))
 
 #endif // SCREENDEFINE
 

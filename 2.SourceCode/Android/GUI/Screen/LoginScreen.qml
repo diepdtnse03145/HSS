@@ -82,7 +82,7 @@ Rectangle{
         }
 
         onClicked: {
-            ScreenManager.loginToMainScr()
+            ScreenManager.toMainScr()
         }
     }
 

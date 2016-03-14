@@ -27,7 +27,7 @@ Rectangle{
             }
 
             onClicked: {
-                ScreenManager.changePassToSettingScr()
+                ScreenManager.toSettingScr();
             }
         }
 

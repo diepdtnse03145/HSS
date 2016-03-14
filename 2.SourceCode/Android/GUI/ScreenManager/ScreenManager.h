@@ -15,23 +15,17 @@ public:
 
 signals:
     void currentScreenChanged(QUrl);
-    void loginToMainScr();
-    void cameraToMainScr();
-    void mainToCameraScr();
-    void mainToSettingScr();
-    void settingToMainScr();
-    void doorBellToMainScr();
-    void mainToDoorBellScr();
-    void mainToActivityLogScr();
-    void activityLogToMainScr();
-    void settingToLoginScr();
-    void changePassToSettingScr();
-    void settingToChangePassScr();
 
-public slots:
+public slots:    
+    void toLoginScr();
+    void toActivityLogScr();
+    void toCameraScr();
+    void toChangePassScr();
+    void toDoorBellScr();
+    void toSettingScr();
+    void toMainScr();
 
 private:
-    QStateMachine machine;
     QUrl m_currentScreenSource;
 };
 
