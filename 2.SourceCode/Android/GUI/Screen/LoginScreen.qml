@@ -65,10 +65,10 @@ Rectangle{
 
     HSS_Button {
         id: buttonLogin
-        x: 358
-        y: 899
-        width: 363
-        height: 100
+        x: 270
+        y: 897
+        width: 600
+        height: 150
         color: "#005fbf"
 
         Text {
@@ -76,9 +76,14 @@ Rectangle{
             anchors.fill: parent
             color: "#ffffff"
             text: "Login"
+            anchors.rightMargin: 0
+            anchors.bottomMargin: -8
+            anchors.leftMargin: 0
+            anchors.topMargin: 8
+            font.family: "Arial"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pointSize: 40
+            font.pointSize: 30
         }
 
         onClicked: {

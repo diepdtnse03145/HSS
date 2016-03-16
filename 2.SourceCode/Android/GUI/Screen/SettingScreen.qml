@@ -8,6 +8,9 @@ Rectangle{
     id:root
     width:1080
     height:1920
+    clip: false
+    smooth: true
+    enabled: true
 
     Rectangle {
         id: rectangle1
@@ -62,37 +65,17 @@ Rectangle{
         textFormat: Text.AutoText
     }
 
-    Column {
-        id: switchButton
-        x: 600
-        y: 250
-        width: 387
-        height: 171
-        smooth: true
-        visible: true
-        clip: false
-        transformOrigin: Item.Center
+
         Switch {
             id: switchtch
-            x: 180
-            y: 0
-            width: 50
-            height: 30
-            smooth: true
-            antialiasing: false
-            z: 0
-            activeFocusOnPress: false
-            transformOrigin: Item.Top
-            clip: false
-            opacity: 1
-            enabled: true
-            rotation: 0
-            checked: true
-            scale: 8
-            visible: true
+            x: 773
+            y: 312
+            width: 240
+            height: 80
+
         }
 
-    }
+
 
     HSS_Button {
         id: buttonLogout
@@ -129,40 +112,17 @@ Rectangle{
         font.pixelSize: 70
     }
 
-    Column {
-        id: switchButton1
-        x: 600
-        y: 495
-        width: 387
-        height: 171
-        smooth: true
-        visible: true
-        clip: false
-        transformOrigin: Item.Center
+
         Switch {
             id: switchtch1
-            x: 100
-            width: 50
-            height: 30
-            anchors.top: parent.top
-            anchors.topMargin: 0
-            anchors.left: parent.left
-            anchors.leftMargin: 0
-            smooth: true
-            antialiasing: true
-            z: 0
-            activeFocusOnPress: false
-            transformOrigin: Item.TopLeft
-            clip: false
-            opacity: 1
-            enabled: true
-            rotation: 0
-            checked: true
-            scale: 8
-            visible: true
+            x: 773
+            y: 551
+            width: 240
+            height: 80
+
         }
 
-    }
+
 
     Text {
         id: statusConnection2
@@ -174,38 +134,18 @@ Rectangle{
         font.pixelSize: 70
     }
 
-    Column {
-        id: switchButton2
-        x: 605
-        y: 735
-        width: 387
-        height: 171
-        transformOrigin: Item.Center
-        smooth: true
-        clip: false
+
         Switch {
             id: switchtch2
-            width: 50
-            height: 30
-            anchors.top: parent.top
-            anchors.topMargin: 0
-            anchors.left: parent.left
-            anchors.leftMargin: 0
-            smooth: true
-            z: 0
-            antialiasing: true
-            activeFocusOnPress: false
-            transformOrigin: Item.TopLeft
-            opacity: 1
-            clip: false
-            enabled: true
-            rotation: 0
-            checked: true
-            visible: true
-            scale: 8
+            x: 773
+            y: 791
+            width: 240
+            height: 80
+            scale: 1
+
         }
 
-    }
+
 
     Text {
         id: statusConnection3
@@ -216,35 +156,13 @@ Rectangle{
         text: qsTr("Doorbell")
         font.pixelSize: 70
     }
-
-    Column {
-        id: switchButton3
-        x: 605
-        y: 985
-        width: 387
-        height: 171
-        transformOrigin: Item.Center
-        smooth: true
-        clip: false
-        Switch {
-            id: switchtch3
-            x: 0
-            y: 15
-            width: 50
-            height: 30
-            smooth: false
-            antialiasing: true
-            z: 0
-            activeFocusOnPress: false
-            transformOrigin: Item.TopLeft
-            clip: false
-            opacity: 1
-            enabled: true
-            rotation: 0
-            checked: true
-            scale: 8
-            visible: true
-        }
+    Switch {
+        id: switchtch3
+        x: 773
+        y: 1041
+        width: 240
+        height: 80
+        scale: 1
 
     }
 
@@ -268,5 +186,9 @@ Rectangle{
             font.pixelSize: 70
         }
     }
+
+
+
+
 }
 

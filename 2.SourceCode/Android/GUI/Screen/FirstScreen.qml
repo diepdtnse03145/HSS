@@ -40,7 +40,7 @@ Rectangle{
         }
 
         onClicked: {
-            ScreenManager.toMainScr()
+            ScreenManager.toLoginScr()
         }
     }
 

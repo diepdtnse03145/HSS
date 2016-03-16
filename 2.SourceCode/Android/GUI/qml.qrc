@@ -9,5 +9,7 @@
         <file>Screen/SettingScreen.qml</file>
         <file>Component/HSS_Button.qml</file>
         <file>Screen/MainScreen.qml</file>
+        <file>Screen/FirstScreen.qml</file>
+        <file>Screen/CameraAloneScreen.qml</file>
     </qresource>
 </RCC>

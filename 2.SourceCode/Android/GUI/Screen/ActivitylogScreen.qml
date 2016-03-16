@@ -49,7 +49,7 @@ Rectangle{
     Rectangle {
         id: deleteActivityLogButton
         x: 0
-        y: 1664
+        y: 1505
         width: 1080
         height: 200
         color: "#d0150a"

@@ -51,7 +51,7 @@ Rectangle{
     Rectangle {
         id: addCameraButton
         x: 0
-        y: 1664
+        y: 1505
         width: 1080
         height: 200
         color: "#005fbf"
@@ -68,6 +68,8 @@ Rectangle{
             font.pixelSize: 80
             verticalAlignment: Text.AlignVCenter
         }
+
+
     }
 
 
