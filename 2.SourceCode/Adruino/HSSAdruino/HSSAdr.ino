@@ -6,7 +6,7 @@
 
 char _inBuf[_BUFFER_SIZE];
 bool _inCPL = false;
-
+char _charBuf[2];
 
 void setup()
 {
@@ -16,6 +16,8 @@ void setup()
     pinMode(_PIR_PIN, INPUT);
     pinMode(_SWITCH_PIN, INPUT);
     pinMode(_BELL_PIN, INPUT);
+    memset( _charBuf, '\0', sizeof(char) * 2);
+    memset( _inBuf, '\0', sizeof(char) * _BUFFER_SIZE);
 }
 
 void loop()
@@ -31,8 +33,6 @@ void loop()
 void serialEvent()
 {
     while (Serial.available()) {
-        char _charBuf[2];
-        memset( _charBuf, '\0', sizeof(char) * 2);
         _charBuf[0] = (char)Serial.read();
         strcat(_inBuf, _charBuf);
 

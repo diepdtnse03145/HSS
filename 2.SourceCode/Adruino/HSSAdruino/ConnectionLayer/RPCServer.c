@@ -22,6 +22,7 @@ void ad_requestBellVal()
 {
     pi_returnBellValue(bellValue);
 }
+
 void ad_requestSwitchVal()
 {
     pi_returnSwitchValue(switchValue);
