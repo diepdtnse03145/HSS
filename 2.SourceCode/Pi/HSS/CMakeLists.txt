@@ -36,6 +36,7 @@ set(cppformat_INCLUDE ${HSS_LIB_DIR}/cppformat)
 include_directories(${PROJECT_NAME} ${nlohman_json_INCLUDE})
 target_link_libraries(${PROJECT_NAME} cppformat)
 
+option(SQLITECPP_RUN_CPPLINT "Run cpplint.py tool for Google C++ StyleGuide." OFF)
 add_subdirectory(${HSS_LIBS_DIR}/SQLiteCpp)
 set(SQLiteCpp_INCLUDE ${HSS_LIBS_DIR}/SQLiteCpp/include)
 include_directories(${PROJECT_NAME} ${SQLiteCpp_INCLUDE})

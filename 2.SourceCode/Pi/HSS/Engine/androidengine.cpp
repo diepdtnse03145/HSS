@@ -24,31 +24,37 @@ void AndroidEngine::setArduinoEngine(ArduinoEngine *engine)
 
 void AndroidEngine::and_loginResult(bool result)
 {
-    std::string msg = fmt::format("and_loginResult {0}", boolToMsgArg(result));
+    std::string msg = fmt::format("and_loginResult {0}\n", boolToMsgArg(result));
     _sendMsg(msg);
 }
 
 void AndroidEngine::and_changePwResult(bool result)
 {
-    std::string msg = fmt::format("and_changePwResult {0}", boolToMsgArg(result));
+    std::string msg = fmt::format("and_changePwResult {0}\n", boolToMsgArg(result));
     _sendMsg(msg);
 }
 
 void AndroidEngine::and_returnDoorStatus(int status)
 {
-    std::string msg = fmt::format("and_returnDoorStatus {0}", intToMsgArg(status));
+    std::string msg = fmt::format("and_returnDoorStatus {0}\n", intToMsgArg(status));
     _sendMsg(msg);
 }
 
 void AndroidEngine::and_returnMotionStatus(int status)
 {
-    std::string msg = fmt::format("and_returnMotionStatus {0}", intToMsgArg(status));
+    std::string msg = fmt::format("and_returnMotionStatus {0}\n", intToMsgArg(status));
     _sendMsg(msg);
 }
 
 void AndroidEngine::and_returnBellStatus(int status)
 {
-    std::string msg = fmt::format("and_returnBellStatus {0}", intToMsgArg(status));
+    std::string msg = fmt::format("and_returnBellStatus {0}\n", intToMsgArg(status));
+    _sendMsg(msg);
+}
+
+void AndroidEngine::and_returnCameraInfo(const std::string &cameraUrl)
+{
+    std::string msg = fmt::format("and_returnCameraInfo {0}\n", stringToMsgArg(cameraUrl));
     _sendMsg(msg);
 }
 
@@ -99,6 +105,10 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
     if(vec.at(0) == "pi_requestBellStatus") {
         pi_requestBellStatus();
     }
+
+    if(vec.at(0) == "pi_requestCameraInfo") {
+        pi_requestCameraInfo();
+    }
 }
 
 void AndroidEngine::pi_requestLogin(const std::string &username,
@@ -114,25 +124,25 @@ void AndroidEngine::pi_changePassword(const std::string &username,
 
 }
 
-void AndroidEngine::pi_enableDetectMotion(const bool &enable)
+void AndroidEngine::pi_enableDetectMotion(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DT_MOTION_ENABLE_SETTING, enable);
 }
 
-void AndroidEngine::pi_enableSystemStatus(const bool &enable)
+void AndroidEngine::pi_enableSystemStatus(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_SYS_STT_ENABLE_SETTING, enable);
 }
 
-void AndroidEngine::pi_enableDetectDoor(const bool &enable)
+void AndroidEngine::pi_enableDetectDoor(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DT_DOOR_ENABLE_SETTING, enable);
 }
 
-void AndroidEngine::pi_enableDoorBell(const bool &enable)
+void AndroidEngine::pi_enableDoorBell(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DOOR_BELL_ENABLE_SETTING, enable);
@@ -151,5 +161,9 @@ void AndroidEngine::pi_requestMotionStatus()
 void AndroidEngine::pi_requestBellStatus()
 {
     and_returnBellStatus(_ard->bellValue());
+}
+
+void AndroidEngine::pi_requestCameraInfo()
+{
 
 }

@@ -17,6 +17,7 @@ public:
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
+    void and_returnCameraInfo(const std::string& cameraUrl);
 
 private:
     ArduinoEngine* _ard;
@@ -28,14 +29,14 @@ private:
     void pi_changePassword(const std::string& username,
                            const std::string& oldpwd,
                            const std::string& newpwd);
-    void pi_enableDetectMotion(const bool& enable);
-    void pi_enableSystemStatus(const bool& enable);
-    void pi_enableDetectDoor(const bool& enable);
-    void pi_enableDoorBell(const bool& enable);
+    void pi_enableDetectMotion(bool enable);
+    void pi_enableSystemStatus(bool enable);
+    void pi_enableDetectDoor(bool enable);
+    void pi_enableDoorBell(bool enable);
     void pi_requestDoorStatus();
     void pi_requestMotionStatus();
     void pi_requestBellStatus();
-
+    void pi_requestCameraInfo();
 };
 
 #endif // ANDROIDENGINE_H

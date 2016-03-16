@@ -2,7 +2,7 @@
 #define CONNECTIONBASE_H
 
 #include "../Setting/setting.h"
-
+#include "../Database/hssdatabase.h"
 #include <string>
 #include <queue>
 
@@ -34,6 +34,7 @@ protected:
 
 private:
     Setting& _setting;
+    HSSDatabase& _db;
 };
 
 #endif // CONNECTIONBASE_H
