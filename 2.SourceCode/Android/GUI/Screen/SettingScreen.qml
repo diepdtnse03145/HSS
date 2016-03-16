@@ -7,7 +7,7 @@ import "../Component"
 Rectangle{
     id:root
     width:1080
-    height:1860
+    height:1920
 
     Rectangle {
         id: rectangle1
@@ -56,22 +56,48 @@ Rectangle{
         height: 71
         text: qsTr("System Status:")
         font.pixelSize: 70
+        font.family: "Arial"
+        style: Text.Normal
+        wrapMode: Text.NoWrap
+        textFormat: Text.AutoText
     }
 
     Column {
-        id:switchButton
-        x: 604
-        y: 256
+        id: switchButton
+        x: 600
+        y: 250
         width: 387
         height: 171
-        transformOrigin: Item.TopLeft
-        Switch { id: switchtch; x: 0; y: 15; width: 57; height: 26; z: 0; rotation: 0; enabled: true; smooth: true; opacity: 1; clip: false; visible: true; antialiasing: false; scale: 8; transformOrigin: Item.TopLeft; activeFocusOnPress: false; checked: true }
+        smooth: true
+        visible: true
+        clip: false
+        transformOrigin: Item.Center
+        Switch {
+            id: switchtch
+            x: 180
+            y: 0
+            width: 50
+            height: 30
+            smooth: true
+            antialiasing: false
+            z: 0
+            activeFocusOnPress: false
+            transformOrigin: Item.Top
+            clip: false
+            opacity: 1
+            enabled: true
+            rotation: 0
+            checked: true
+            scale: 8
+            visible: true
+        }
+
     }
 
     HSS_Button {
         id: buttonLogout
         x: 550
-        y: 1688
+        y: 1500
         width: 492
         height: 127
         color: "#e65959"
@@ -105,18 +131,25 @@ Rectangle{
 
     Column {
         id: switchButton1
-        x: 605
+        x: 600
         y: 495
         width: 387
         height: 171
+        smooth: true
+        visible: true
+        clip: false
+        transformOrigin: Item.Center
         Switch {
             id: switchtch1
-            x: 0
-            y: 15
-            width: 57
-            height: 26
+            x: 100
+            width: 50
+            height: 30
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            anchors.left: parent.left
+            anchors.leftMargin: 0
             smooth: true
-            antialiasing: false
+            antialiasing: true
             z: 0
             activeFocusOnPress: false
             transformOrigin: Item.TopLeft
@@ -128,7 +161,7 @@ Rectangle{
             scale: 8
             visible: true
         }
-        transformOrigin: Item.TopLeft
+
     }
 
     Text {
@@ -147,15 +180,20 @@ Rectangle{
         y: 735
         width: 387
         height: 171
+        transformOrigin: Item.Center
+        smooth: true
+        clip: false
         Switch {
             id: switchtch2
-            x: 0
-            y: 15
-            width: 57
-            height: 26
+            width: 50
+            height: 30
+            anchors.top: parent.top
+            anchors.topMargin: 0
+            anchors.left: parent.left
+            anchors.leftMargin: 0
             smooth: true
             z: 0
-            antialiasing: false
+            antialiasing: true
             activeFocusOnPress: false
             transformOrigin: Item.TopLeft
             opacity: 1
@@ -166,7 +204,7 @@ Rectangle{
             visible: true
             scale: 8
         }
-        transformOrigin: Item.TopLeft
+
     }
 
     Text {
@@ -185,14 +223,17 @@ Rectangle{
         y: 985
         width: 387
         height: 171
+        transformOrigin: Item.Center
+        smooth: true
+        clip: false
         Switch {
             id: switchtch3
             x: 0
             y: 15
-            width: 57
-            height: 26
-            smooth: true
-            antialiasing: false
+            width: 50
+            height: 30
+            smooth: false
+            antialiasing: true
             z: 0
             activeFocusOnPress: false
             transformOrigin: Item.TopLeft
@@ -204,13 +245,13 @@ Rectangle{
             scale: 8
             visible: true
         }
-        transformOrigin: Item.TopLeft
+
     }
 
     HSS_Button {
         id: buttonChangePassword
         x: 36
-        y: 1688
+        y: 1500
         width: 492
         height: 127
         color: "#e65959"
