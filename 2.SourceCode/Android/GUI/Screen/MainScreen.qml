@@ -31,12 +31,10 @@ Rectangle{
     HSS_Button {
         id: buttonActivityLog
         x: 190
-        y: 420
+        y: 422
         width: 700
         height: 200
         color: "#005fbf"
-        antialiasing: false
-        transformOrigin: Item.Center
         anchors.right: parent.right
         anchors.rightMargin: 190
 
@@ -47,15 +45,10 @@ Rectangle{
             color: "#ffffff"
             anchors.centerIn: parent
             text: "Activity Log"
-            font.family: "Arial"
-            style: Text.Normal
-            wrapMode: Text.NoWrap
-            font.pixelSize: 76
-            verticalAlignment: Text.AlignVCenter
-            textFormat: Text.AutoText
             horizontalAlignment: Text.AlignHCenter
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
+            font.pointSize: 62
         }
 
         onClicked: {
@@ -70,61 +63,48 @@ Rectangle{
         width: 700
         height: 200
         color: "#005fbf"
-        antialiasing: false
-        transformOrigin: Item.Center
-        anchors.right: parent.right
         anchors.rightMargin: 190
-
+        anchors.right: parent.right
+		
         Text {
-            id:textCamera
+            id: textCamera
             width: 352
             height: 127
             color: "#ffffff"
-            anchors.centerIn: parent
             text: "Camera"
-            font.family: "Arial"
-            style: Text.Normal
-            wrapMode: Text.NoWrap
-            font.pixelSize: 76
-            verticalAlignment: Text.AlignVCenter
-            textFormat: Text.AutoText
-            horizontalAlignment: Text.AlignHCenter
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 62
         }
-
-        onClicked: {
+		
+		onClicked: {
             ScreenManager.toCameraScr();
         }
     }
+
     HSS_Button {
         id: button_DoorBell
         x: 190
-        y: 960
+        y: 956
         width: 700
         height: 200
         color: "#005fbf"
-        antialiasing: false
-        transformOrigin: Item.Center
-        anchors.right: parent.right
         anchors.rightMargin: 190
+        anchors.right: parent.right
 		
         Text {
-            id:textDoorBell
+            id: textDoorBell
             width: 352
             height: 127
             color: "#ffffff"
-            anchors.centerIn: parent
             text: "Door Bell"
-            font.family: "Arial"
-            style: Text.Normal
-            wrapMode: Text.NoWrap
-            font.pixelSize: 76
-            verticalAlignment: Text.AlignVCenter
-            textFormat: Text.AutoText
-            horizontalAlignment: Text.AlignHCenter
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 62
         }
 		
 		onClicked: {
@@ -135,31 +115,24 @@ Rectangle{
     HSS_Button {
         id: buttonSetting
         x: 190
-        y: 1230
+        y: 1223
         width: 700
         height: 200
         color: "#005fbf"
-        antialiasing: false
-        transformOrigin: Item.Center
-        anchors.right: parent.right
         anchors.rightMargin: 190
+        anchors.right: parent.right
 		
         Text {
-            id:textSetting
+            id: textSetting
             width: 352
             height: 127
             color: "#ffffff"
-            anchors.centerIn: parent
             text: "Setting"
-            font.family: "Arial"
-            style: Text.Normal
-            wrapMode: Text.NoWrap
-            font.pixelSize: 76
-            verticalAlignment: Text.AlignVCenter
-            textFormat: Text.AutoText
-            horizontalAlignment: Text.AlignHCenter
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
+            anchors.centerIn: parent
+            horizontalAlignment: Text.AlignHCenter
+            font.pointSize: 62
         }
 		
 		onClicked: {
