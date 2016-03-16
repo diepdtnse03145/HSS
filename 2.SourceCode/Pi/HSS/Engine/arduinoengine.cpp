@@ -4,8 +4,8 @@
 #include <boost/bind.hpp>
 #include <bits/stdc++.h>
 
-ArduinoEngine::ArduinoEngine(Setting &setting, boost::asio::io_service &io) :
-    SerialConnection{setting, io},
+ArduinoEngine::ArduinoEngine(Setting &setting, HSSDatabase &db, boost::asio::io_service &io) :
+    SerialConnection{setting, db, io},
     _sensorTimer{io}
 {
     _requestSensorValue();
@@ -66,7 +66,6 @@ void ArduinoEngine::ad_requestSwitchVal()
 
 void ArduinoEngine::pi_returnPirValue(int vl)
 {
-    //do some thing with vl
     std::cout<<__FUNCTION__<<":"<<vl<<std::endl;
     setPirValue(vl);
 }
@@ -111,11 +110,11 @@ void ArduinoEngine::_hss_recvMsg(const std::string &msg)
 
     if(vec.at(0) == "pi_returnBellValue") {
         int pi_returnBellValue_arg1 = std::stoi(vec.at(1));
-        pi_returnPirValue(pi_returnBellValue_arg1);
+        pi_returnBellValue(pi_returnBellValue_arg1);
     }
 
     if(vec.at(0) == "pi_returnSwitchValue") {
         int pi_returnSwitchValue_arg1 = std::stoi(vec.at(1));
-        pi_returnPirValue(pi_returnSwitchValue_arg1);
+        pi_returnSwitchValue(pi_returnSwitchValue_arg1);
     }
 }

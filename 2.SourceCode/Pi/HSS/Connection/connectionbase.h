@@ -9,7 +9,7 @@
 class ConnectionBase
 {
 public:
-    ConnectionBase(Setting& setting);
+    ConnectionBase(Setting& setting, HSSDatabase& db);
 
 protected:
     void _sendMsg(const std::string& msg);
@@ -18,7 +18,6 @@ protected:
     virtual void _hss_sendMsg() = 0;
     virtual void _hss_recvMsg(const std::string& msg) = 0;
     virtual bool _hss_isSending() = 0;
-    std::queue<std::string> _sendQueue;
 
     template<typename T>
     T _getOptionsValue(const std::string& name)
@@ -32,9 +31,11 @@ protected:
         _setting.setValue(name, value);
     }
 
+    std::queue<std::string> _sendQueue;
+    HSSDatabase& _db;
+
 private:
     Setting& _setting;
-    HSSDatabase& _db;
 };
 
 #endif // CONNECTIONBASE_H

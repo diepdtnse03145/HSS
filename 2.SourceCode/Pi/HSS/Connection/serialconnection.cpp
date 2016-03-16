@@ -3,8 +3,8 @@
 #include <boost/bind.hpp>
 #include <iostream>
 
-SerialConnection::SerialConnection(Setting &setting, boost::asio::io_service& io) :
-    ConnectionBase{setting},
+SerialConnection::SerialConnection(Setting &setting, HSSDatabase &db, boost::asio::io_service& io) :
+    ConnectionBase{setting, db},
     _port{io},
     _isSending{false}
 {

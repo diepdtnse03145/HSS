@@ -7,7 +7,9 @@
 class SerialConnection : public ConnectionBase
 {
 public:
-    SerialConnection(Setting& setting, boost::asio::io_service& io);
+    SerialConnection(Setting& setting,
+                     HSSDatabase& db,
+                     boost::asio::io_service& io);
 
 protected:
     void _hss_sendMsg() override final;

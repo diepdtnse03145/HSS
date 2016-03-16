@@ -6,8 +6,8 @@
 #include <boost/algorithm/string.hpp>
 #include <cppformat/format.h>
 
-AndroidEngine::AndroidEngine(Setting &setting, boost::asio::io_service &io) :
-    TcpConnection{setting,io}
+AndroidEngine::AndroidEngine(Setting &setting, HSSDatabase &db, boost::asio::io_service &io) :
+    TcpConnection{setting, db, io}
 {
 
 }
@@ -114,14 +114,18 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
 void AndroidEngine::pi_requestLogin(const std::string &username,
                                     const std::string &pwd)
 {
-
+    auto loginRes = _db.isUsernamePWDCorrect(username, pwd);
+    and_loginResult(loginRes);
 }
 
 void AndroidEngine::pi_changePassword(const std::string &username,
                                       const std::string &oldpwd,
                                       const std::string &newpwd)
 {
-
+    auto changePwdRes = _db.changePWD(username,
+                                      oldpwd,
+                                      newpwd);
+    and_changePwResult(changePwdRes);
 }
 
 void AndroidEngine::pi_enableDetectMotion(bool enable)
