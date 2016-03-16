@@ -45,5 +45,27 @@ Rectangle{
             font.pixelSize: 80
         }
     }
+
+    Rectangle {
+        id: deleteActivityLogButton
+        x: 0
+        y: 1664
+        width: 1080
+        height: 200
+        color: "#d0150a"
+
+        Text {
+            id: deleteActivityLogText
+            x: 285
+            y: 54
+            width: 510
+            height: 102
+            color: "#ffffff"
+            text: qsTr("Delete Activity Log")
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 80
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
 }
 

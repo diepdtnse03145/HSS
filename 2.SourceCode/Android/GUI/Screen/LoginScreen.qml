@@ -10,7 +10,7 @@ Rectangle{
     TextInput {
         id: input_user
         x: 261
-        y: 978
+        y: 608
         width: 737
         height: 113
         text: qsTr("Username")
@@ -24,7 +24,7 @@ Rectangle{
     TextInput {
         id: input_pass
         x: 261
-        y: 1106
+        y: 736
         width: 737
         height: 113
         text: qsTr("")
@@ -37,10 +37,10 @@ Rectangle{
 
     Image {
         id: image_Logo
-        x: 217
-        y: 286
-        width: 646
-        height: 536
+        x: 279
+        y: 95
+        width: 521
+        height: 447
         fillMode: Image.Stretch
         source: "qrc:/img/logo.png"
     }
@@ -48,7 +48,7 @@ Rectangle{
     Image {
         id: image_User
         x: 75
-        y: 978
+        y: 608
         width: 113
         height: 113
         source: "qrc:/img/user.png"
@@ -57,7 +57,7 @@ Rectangle{
     Image {
         id: image_Pass
         x: 88
-        y: 1106
+        y: 736
         width: 92
         height: 113
         source: "qrc:/img/pass.png"
@@ -66,7 +66,7 @@ Rectangle{
     HSS_Button {
         id: buttonLogin
         x: 358
-        y: 1310
+        y: 899
         width: 363
         height: 100
         color: "#005fbf"

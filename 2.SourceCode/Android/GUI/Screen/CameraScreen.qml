@@ -13,7 +13,8 @@ Rectangle{
         width: 1080
         height: 200
         color: "#005fbf"
-
+        
+        
         HSS_Button{
             color: "transparent"
             x: 25
@@ -25,12 +26,13 @@ Rectangle{
                 anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
-
+            
             onClicked: {
                 ScreenManager.toMainScr()
             }
         }
-
+        
+        
         Text {
             id: mainHeadline
             x: 285
@@ -38,10 +40,33 @@ Rectangle{
             width: 510
             height: 102
             color: "#ffffff"
-            text: qsTr("Camera")
+            text: qsTr("Camera IP List")
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 80
+        }
+        
+    }
+    
+    Rectangle {
+        id: addCameraButton
+        x: 0
+        y: 1664
+        width: 1080
+        height: 200
+        color: "#005fbf"
+
+        Text {
+            id: addCameraText
+            x: 285
+            y: 54
+            width: 510
+            height: 102
+            color: "#ffffff"
+            text: qsTr("Add Camera")
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 80
+            verticalAlignment: Text.AlignVCenter
         }
     }
 

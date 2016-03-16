@@ -45,6 +45,7 @@ Rectangle{
         }
     }
 
+
     Text {
         id: statusConnection
         x: 73
@@ -52,6 +53,20 @@ Rectangle{
         width: 583
         height: 84
         text: qsTr("Connection Status:")
+        font.pixelSize: 70
+    }
+
+
+    Text {
+        id: statusConnection1
+        x: 675
+        y: 413
+        width: 372
+        height: 84
+        color: "#e50c0c"
+        text: qsTr("Idle")
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignLeft
         font.pixelSize: 70
     }
 
@@ -73,6 +88,7 @@ Rectangle{
         }
     }
 
+
     HSS_Button {
         id: endButton
         x: 556
@@ -90,18 +106,6 @@ Rectangle{
         }
     }
 
-    Text {
-        id: statusConnection1
-        x: 675
-        y: 413
-        width: 372
-        height: 84
-        color: "#e50c0c"
-        text: qsTr("Idle")
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
-        font.pixelSize: 70
-    }
 
 
 }
