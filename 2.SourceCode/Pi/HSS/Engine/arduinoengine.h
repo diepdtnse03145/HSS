@@ -10,7 +10,10 @@ class AndroidEngine;
 class ArduinoEngine : public SerialConnection
 {
 public:
-    ArduinoEngine(Setting& setting, boost::asio::io_service& io);
+    ArduinoEngine(Setting& setting,
+                  HSSDatabase& db,
+                  boost::asio::io_service& io);
+
     void setAndroidEngine(AndroidEngine* engine);
     void _requestSensorValue(const boost::system::error_code& ec = boost::system::error_code{});
 

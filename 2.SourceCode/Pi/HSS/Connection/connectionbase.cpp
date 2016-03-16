@@ -1,8 +1,9 @@
 #include "connectionbase.h"
 #include <iostream>
 
-ConnectionBase::ConnectionBase(Setting &setting) :
-    _setting{setting}
+ConnectionBase::ConnectionBase(Setting &setting, HSSDatabase &db) :
+    _setting{setting},
+    _db{db}
 {
 
 }
