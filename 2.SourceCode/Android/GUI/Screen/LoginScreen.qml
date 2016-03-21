@@ -87,9 +87,8 @@ Rectangle{
         }
 
         onClicked: {
-            ScreenManager.toMainScr()
+            Engine.pi_requestLogin(input_user.text, input_pass.text)
         }
     }
-
 }
 

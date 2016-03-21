@@ -1,12 +1,15 @@
-#ifndef PIENGINE_H
-#define PIENGINE_H
+#ifndef HSSENGINE_H
+#define HSSENGINE_H
 
-#include "../Connection/connectionbase.h"
+#include "ScreenManager/ScreenManager.h"
+#include "Connection/connectionbase.h"
+#include <QQmlApplicationEngine>
 
-class PiEngine : public ConnectionBase
+class HSSEngine : public ConnectionBase
 {
 public:
-    PiEngine(QObject* parent = 0);
+    HSSEngine(QObject* parent = 0);
+    void run();
 
 public slots:
     void pi_requestLogin(const QString& username,
@@ -33,6 +36,11 @@ private:
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
     void and_returnCameraInfo(const QString& cameraUrl);
+
+
+private:
+    QQmlApplicationEngine _engine;
+    ScreenManager _scrMng;
 };
 
-#endif // PIENGINE_H
+#endif // HSSENGINE_H

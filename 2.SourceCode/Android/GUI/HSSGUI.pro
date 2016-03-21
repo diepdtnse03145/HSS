@@ -5,8 +5,10 @@ QT += qml quick widgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    hssengine.cpp \
-    ScreenManager/ScreenManager.cpp
+    ScreenManager/ScreenManager.cpp \
+    Engine/hssengine.cpp \
+    Connection/connectionbase.cpp \
+    Connection/rpc_pr.cpp
 
 RESOURCES += qml.qrc \
     img.qrc
@@ -18,7 +20,9 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    hssengine.h \
     ScreenManager/ScreenDefine.h \
-    ScreenManager/ScreenManager.h
+    ScreenManager/ScreenManager.h \
+    Engine/hssengine.h \
+    Connection/connectionbase.h \
+    Connection/rpc_pr.h
 

@@ -1,13 +1,28 @@
-#include "piengine.h"
-#include "../rpc_pr.h"
+#include "hssengine.h"
+#include "Connection/rpc_pr.h"
+#include <QtQml>
 
-PiEngine::PiEngine(QObject *parent):
+HSSEngine::HSSEngine(QObject *parent):
     ConnectionBase{parent}
 {
+    _engine.rootContext()->setContextProperty("ScreenManager", &_scrMng);
+    _engine.rootContext()->setContextProperty("Engine", this);
+}
+
+void HSSEngine::run()
+{
+    connectToHost("localhost", 13);
+
+    _engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    QObject::connect(&_scrMng,&ScreenManager::currentScreenChanged,[this](QUrl source){
+        QMetaObject::invokeMethod(_engine.rootObjects().at(0), "loadScreen",
+                                  Q_ARG(QVariant, source));
+    });
+    _scrMng.run();
 
 }
 
-void PiEngine::pi_requestLogin(const QString &username, const QString &pwd)
+void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
 {
     QString msg = QStringLiteral("pi_requestLogin %1 %2\n")
             .arg(stringToMsgArg(username))
@@ -15,7 +30,7 @@ void PiEngine::pi_requestLogin(const QString &username, const QString &pwd)
     _sendMsg(msg);
 }
 
-void PiEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
+void HSSEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
 {
     QString msg = QStringLiteral("pi_changePassword %1 %2 %3\n")
             .arg(stringToMsgArg(username))
@@ -24,59 +39,59 @@ void PiEngine::pi_changePassword(const QString &username, const QString &oldpwd,
     _sendMsg(msg);
 }
 
-void PiEngine::pi_enableDetectMotion(const bool &enable)
+void HSSEngine::pi_enableDetectMotion(const bool &enable)
 {
     QString msg = QStringLiteral("pi_enableDetectMotion %1\n")
             .arg(boolToMsgArg(enable));
     _sendMsg(msg);
 }
 
-void PiEngine::pi_enableSystemStatus(const bool &enable)
+void HSSEngine::pi_enableSystemStatus(const bool &enable)
 {
     QString msg = QStringLiteral("pi_enableSystemStatus %1\n")
             .arg(boolToMsgArg(enable));
     _sendMsg(msg);
 }
 
-void PiEngine::pi_enableDetectDoor(const bool &enable)
+void HSSEngine::pi_enableDetectDoor(const bool &enable)
 {
     QString msg = QStringLiteral("pi_enableDetectDoor %1\n")
             .arg(boolToMsgArg(enable));
     _sendMsg(msg);
 }
 
-void PiEngine::pi_enableDoorBell(const bool &enable)
+void HSSEngine::pi_enableDoorBell(const bool &enable)
 {
     QString msg = QStringLiteral("pi_enableDoorBell %1\n")
             .arg(boolToMsgArg(enable));
     _sendMsg(msg);
 }
 
-void PiEngine::pi_requestDoorStatus()
+void HSSEngine::pi_requestDoorStatus()
 {
     QString msg = QStringLiteral("pi_requestDoorStatus\n");
     _sendMsg(msg);
 }
 
-void PiEngine::pi_requestMotionStatus()
+void HSSEngine::pi_requestMotionStatus()
 {
     QString msg = QStringLiteral("pi_requestMotionStatus\n");
     _sendMsg(msg);
 }
 
-void PiEngine::pi_requestBellStatus()
+void HSSEngine::pi_requestBellStatus()
 {
     QString msg = QStringLiteral("pi_requestBellStatus\n");
     _sendMsg(msg);
 }
 
-void PiEngine::pi_requestCameraInfo()
+void HSSEngine::pi_requestCameraInfo()
 {
     QString msg = QStringLiteral("pi_requestCameraInfo\n");
     _sendMsg(msg);
 }
 
-void PiEngine::_hss_recvMsg(const QString &msg)
+void HSSEngine::_hss_recvMsg(const QString &msg)
 {
     auto v = msg.split(QRegExp{R"mm(\s+)mm"}, QString::SkipEmptyParts);
 
@@ -111,38 +126,38 @@ void PiEngine::_hss_recvMsg(const QString &msg)
     }
 
     if (v.at(0) == "and_returnCameraInfo") {
-        QString and_returnCameraInfo_arg1 = msgArgToInt(v.at(1));
+        QString and_returnCameraInfo_arg1 = msgArgToString(v.at(1));
         and_returnCameraInfo(and_returnCameraInfo_arg1);
     }
 
 }
 
-void PiEngine::and_loginResult(bool result)
+void HSSEngine::and_loginResult(bool result)
+{
+    _scrMng.toMainScr();
+}
+
+void HSSEngine::and_changePwResult(bool result)
+{
+    _scrMng.toLoginScr();
+}
+
+void HSSEngine::and_returnDoorStatus(int status)
 {
 
 }
 
-void PiEngine::and_changePwResult(bool result)
+void HSSEngine::and_returnMotionStatus(int status)
 {
 
 }
 
-void PiEngine::and_returnDoorStatus(int status)
+void HSSEngine::and_returnBellStatus(int status)
 {
 
 }
 
-void PiEngine::and_returnMotionStatus(int status)
-{
-
-}
-
-void PiEngine::and_returnBellStatus(int status)
-{
-
-}
-
-void PiEngine::and_returnCameraInfo(const QString &cameraUrl)
+void HSSEngine::and_returnCameraInfo(const QString &cameraUrl)
 {
 
 }
