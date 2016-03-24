@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>HSS_Onscr.qml</file>
     </qresource>
 </RCC>
