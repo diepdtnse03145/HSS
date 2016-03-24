@@ -11,7 +11,7 @@ class ConnectionBase : public QObject
     Q_OBJECT
 public:
     explicit ConnectionBase(QObject *parent = 0);
-    void connectToHost(const QString &hostName, quint16 port);
+    bool connectToHost(const QString &hostName, quint16 port);
 
 private slots:
     void _recvMsg();
@@ -19,6 +19,9 @@ private slots:
 protected:
     void _sendMsg(const QString& msg);
     virtual void _hss_recvMsg(const QString& msg) = 0;
+
+signals:
+    void _connectToHostResult(bool res);
 
 private:
     void _hss_sendMsg(const QString& msg);

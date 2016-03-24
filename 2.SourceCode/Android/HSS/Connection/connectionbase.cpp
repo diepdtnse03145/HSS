@@ -5,13 +5,11 @@ ConnectionBase::ConnectionBase(QObject *parent) : QObject(parent)
     connect(&_sock, &QIODevice::readyRead, this, &ConnectionBase::_recvMsg);
 }
 
-void ConnectionBase::connectToHost(const QString &hostName, quint16 port)
+bool ConnectionBase::connectToHost(const QString &hostName, quint16 port)
 {
     qDebug()<<"Connecting:"<<hostName<<port;
     _sock.connectToHost(hostName, port);
-    qDebug()<<"Connected:"<<_sock.waitForConnected(-1);
-    qDebug()<<_sock.errorString();
-
+    return _sock.waitForConnected(-1);
 }
 
 void ConnectionBase::_recvMsg()
@@ -23,6 +21,9 @@ void ConnectionBase::_recvMsg()
 
 void ConnectionBase::_sendMsg(const QString &msg)
 {
+    if (_sock.state() != QTcpSocket::ConnectedState) {
+        emit _connectToHostResult(connectToHost("localhost", 13));
+    }
     _hss_sendMsg(msg);
 }
 

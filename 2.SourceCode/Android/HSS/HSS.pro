@@ -4,13 +4,21 @@ QT += qml quick widgets androidextras
 
 CONFIG += c++11
 
-SOURCES += main.cpp \
-    Engine/hssengine.cpp
-
 HEADERS += \
-    Engine/hssengine.h
+    ScreenManager/ScreenDefine.h \
+    ScreenManager/ScreenManager.h \
+    Engine/hssengine.h \
+    Connection/connectionbase.h \
+    Connection/rpc_pr.h
 
-RESOURCES += qml.qrc
+SOURCES += main.cpp \
+    ScreenManager/ScreenManager.cpp \
+    Engine/hssengine.cpp \
+    Connection/connectionbase.cpp \
+    Connection/rpc_pr.cpp
+
+RESOURCES += qml.qrc \
+    img.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -30,5 +38,3 @@ DISTFILES += \
     android/java/org/hss/hss/MyService.java
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
-
-

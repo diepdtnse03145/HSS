@@ -3,16 +3,22 @@
 #include <QtQml>
 
 HSSEngine::HSSEngine(QObject *parent):
-    ConnectionBase{parent}
+    ConnectionBase{parent},
+    _javaMainAct{QAndroidJniObject::
+                 callStaticObjectMethod("org/hss/hss/MyActivity",
+                                        "getIns",
+                                        "()Lorg/hss/hss/MyActivity;")
+                 }
 {
     _engine.rootContext()->setContextProperty("ScreenManager", &_scrMng);
     _engine.rootContext()->setContextProperty("Engine", this);
+
+    connect(this, &ConnectionBase::_connectToHostResult,
+            this, &HSSEngine::handleConnectToHost);
 }
 
 void HSSEngine::run()
 {
-    connectToHost("localhost", 13);
-
     _engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     QObject::connect(&_scrMng,&ScreenManager::currentScreenChanged,[this](QUrl source){
         QMetaObject::invokeMethod(_engine.rootObjects().at(0), "loadScreen",
@@ -134,7 +140,12 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
 
 void HSSEngine::and_loginResult(bool result)
 {
-    _scrMng.toMainScr();
+    if (result) {
+        showOnscreen("Login Sucessfull!");
+        _scrMng.toMainScr();
+    } else {
+        showOnscreen("Login Failed!");
+    }
 }
 
 void HSSEngine::and_changePwResult(bool result)
@@ -162,3 +173,25 @@ void HSSEngine::and_returnCameraInfo(const QString &cameraUrl)
 
 }
 
+void HSSEngine::handleConnectToHost(bool result)
+{
+    if (result) {
+        showOnscreen("Connected");
+    } else {
+        showOnscreen("Connect failed!");
+    }
+}
+
+void HSSEngine::registerNativeMethods()
+{
+
+}
+
+void HSSEngine::showOnscreen(const QString &msg)
+{
+    QAndroidJniObject javaMsg = QAndroidJniObject::fromString(msg);
+    _javaMainAct.callMethod<void>("showToast",
+                                  "(Ljava/lang/String;)V",
+                                  javaMsg.object<jstring>()
+                                  );
+}
