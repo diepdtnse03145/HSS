@@ -1,0 +1,13 @@
+Prepare:
+- Install CMake >= 3.5
+- Install Boost >= 1.60
+- Install python-dev = 2.7
+
+Build:
+- mkdir build
+- cd build
+- cmake ..
+- make
+
+Run:
+- ./HSS_PushServer
