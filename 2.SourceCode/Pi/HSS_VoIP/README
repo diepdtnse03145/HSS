@@ -1,0 +1,13 @@
+Prepare:
+- Install CMake >= 3.5
+- Download and build linphone-desktop
+- Edit liblinphone library and include path in CMakeList.txt
+
+Build:
+- mkdir build
+- cd build
+- cmake ..
+- make
+
+Run:
+- ./HSS_VoIP
