@@ -7,12 +7,8 @@
 #include <cppformat/format.h>
 
 AndroidEngine::AndroidEngine(Setting &setting, HSSDatabase &db, boost::asio::io_service &io) :
-    TcpConnection{setting, db, io}
-{
-
-}
-
-void AndroidEngine::pushNoti(const std::string &msg)
+    TcpConnection{setting, db, io},
+    HSSPushable{}
 {
 
 }
@@ -34,6 +30,24 @@ void AndroidEngine::and_changePwResult(bool result)
     _sendMsg(msg);
 }
 
+void AndroidEngine::and_enableDetectMotionResult(bool result)
+{
+    std::string msg = fmt::format("and_enableDetectMotionResult {0}\n", boolToMsgArg(result));
+    _sendMsg(msg);
+}
+
+void AndroidEngine::and_enableDetectDoorResult(bool result)
+{
+    std::string msg = fmt::format("and_enableDetectDoorResult {0}\n", boolToMsgArg(result));
+    _sendMsg(msg);
+}
+
+void AndroidEngine::and_enableDoorBellResult(bool result)
+{
+    std::string msg = fmt::format("and_enableDoorBellResult {0}\n", boolToMsgArg(result));
+    _sendMsg(msg);
+}
+
 void AndroidEngine::and_returnDoorStatus(int status)
 {
     std::string msg = fmt::format("and_returnDoorStatus {0}\n", intToMsgArg(status));
@@ -52,12 +66,10 @@ void AndroidEngine::and_returnBellStatus(int status)
     _sendMsg(msg);
 }
 
-void AndroidEngine::and_returnCameraInfo(const std::string &cameraUrl)
+void AndroidEngine::and_appendCameraInfo(const std::string &cameraName, const std::string &cameraUrl)
 {
-    std::string msg = fmt::format("and_returnCameraInfo {0}\n", stringToMsgArg(cameraUrl));
-    _sendMsg(msg);
-}
 
+}
 
 void AndroidEngine::_hss_recvMsg(const std::string &msg)
 {
@@ -77,11 +89,6 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
     if(vec.at(0) == "pi_enableDetectMotion") {
         bool pi_enableDetectMotion_arg1 = msgArgToBool(vec.at(1));
         pi_enableDetectMotion(pi_enableDetectMotion_arg1);
-    }
-
-    if(vec.at(0) == "pi_enableSystemStatus") {
-        bool pi_enableSystemStatus_arg1 = msgArgToBool(vec.at(1));
-        pi_enableSystemStatus(pi_enableSystemStatus_arg1);
     }
 
     if(vec.at(0) == "pi_enableDetectDoor") {
@@ -132,24 +139,21 @@ void AndroidEngine::pi_enableDetectMotion(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DT_MOTION_ENABLE_SETTING, enable);
-}
-
-void AndroidEngine::pi_enableSystemStatus(bool enable)
-{
-    std::cout<<__FUNCTION__<<std::endl;
-    _setOptionsValue(HSS_SYS_STT_ENABLE_SETTING, enable);
+    and_enableDetectMotionResult(enable);
 }
 
 void AndroidEngine::pi_enableDetectDoor(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DT_DOOR_ENABLE_SETTING, enable);
+    and_enableDetectDoorResult(enable);
 }
 
 void AndroidEngine::pi_enableDoorBell(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DOOR_BELL_ENABLE_SETTING, enable);
+    and_enableDoorBellResult(enable);
 }
 
 void AndroidEngine::pi_requestDoorStatus()

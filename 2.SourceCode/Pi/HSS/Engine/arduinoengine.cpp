@@ -6,9 +6,10 @@
 
 ArduinoEngine::ArduinoEngine(Setting &setting, HSSDatabase &db, boost::asio::io_service &io) :
     SerialConnection{setting, db, io},
+    HSSPushable{},
     _sensorTimer{io}
 {
-    _requestSensorValue();
+    //_requestSensorValue();
 }
 
 void ArduinoEngine::setAndroidEngine(AndroidEngine *engine)
@@ -67,6 +68,7 @@ void ArduinoEngine::ad_requestSwitchVal()
 void ArduinoEngine::pi_returnPirValue(int vl)
 {
     std::cout<<__FUNCTION__<<":"<<vl<<std::endl;
+
     setPirValue(vl);
 }
 
@@ -89,12 +91,12 @@ void ArduinoEngine::_requestSensorValue(const boost::system::error_code &ec)
         ad_requestBellVal();
         ad_requestSwitchVal();
 
-        _sensorTimer.cancel();
-        _sensorTimer.expires_from_now(std::chrono::seconds{5});
-        _sensorTimer.async_wait(boost::bind(
-                                    &ArduinoEngine::_requestSensorValue,
-                                    this, boost::asio::placeholders::error)
-                                );
+//        _sensorTimer.cancel();
+//        _sensorTimer.expires_from_now(std::chrono::seconds{5});
+//        _sensorTimer.async_wait(boost::bind(
+//                                    &ArduinoEngine::_requestSensorValue,
+//                                    this, boost::asio::placeholders::error)
+//                                );
     }
 }
 

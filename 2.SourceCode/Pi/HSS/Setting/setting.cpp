@@ -4,6 +4,7 @@
 Setting::Setting()
 {
     inputFromFile(HSS_SETTING_F);
+    std::cout<<"input"<<std::endl;
 }
 
 void Setting::inputFromFile(const std::string &filePath)

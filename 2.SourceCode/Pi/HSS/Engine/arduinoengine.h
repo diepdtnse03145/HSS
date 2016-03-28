@@ -2,12 +2,13 @@
 #define ARDUINOENGINE_H
 
 #include "../Connection/serialconnection.h"
+#include "../Connection/hsspushable.h"
 #include <boost/asio/steady_timer.hpp>
 #include <boost/system/error_code.hpp>
 
 class AndroidEngine;
 
-class ArduinoEngine : public SerialConnection
+class ArduinoEngine : public SerialConnection, public HSSPushable
 {
 public:
     ArduinoEngine(Setting& setting,

@@ -52,13 +52,6 @@ void HSSEngine::pi_enableDetectMotion(const bool &enable)
     _sendMsg(msg);
 }
 
-void HSSEngine::pi_enableSystemStatus(const bool &enable)
-{
-    QString msg = QStringLiteral("pi_enableSystemStatus %1\n")
-            .arg(boolToMsgArg(enable));
-    _sendMsg(msg);
-}
-
 void HSSEngine::pi_enableDetectDoor(const bool &enable)
 {
     QString msg = QStringLiteral("pi_enableDetectDoor %1\n")
@@ -150,7 +143,34 @@ void HSSEngine::and_loginResult(bool result)
 
 void HSSEngine::and_changePwResult(bool result)
 {
-    _scrMng.toLoginScr();
+//    _scrMng.toLoginScr();
+}
+
+void HSSEngine::and_enableDetectMotionResult(bool result)
+{
+    if(result) {
+        showOnscreen("Motion Detector Enabled!");
+    } else {
+        showOnscreen("Motion Detector Disabled!");
+    }
+}
+
+void HSSEngine::and_enableDetectDoorResult(bool result)
+{
+    if(result) {
+        showOnscreen("Door Detector Enabled!");
+    } else {
+        showOnscreen("Door Detector Disabled!");
+    }
+}
+
+void HSSEngine::and_enableDoorBellResult(bool result)
+{
+    if(result) {
+        showOnscreen("Door Bell Enabled!");
+    } else {
+        showOnscreen("Door Bell Disabled!");
+    }
 }
 
 void HSSEngine::and_returnDoorStatus(int status)

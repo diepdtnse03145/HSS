@@ -2,25 +2,29 @@
 #define ANDROIDENGINE_H
 
 #include "../Connection/tcpconnection.h"
+#include "../Connection/hsspushable.h"
 
 class ArduinoEngine;
 
-class AndroidEngine : public TcpConnection
+class AndroidEngine : public TcpConnection, public HSSPushable
 {
 public:
     AndroidEngine(Setting& setting,
                   HSSDatabase& db,
                   boost::asio::io_service& io);
 
-    void pushNoti(const std::string& msg);    
     void setArduinoEngine(ArduinoEngine* engine);
 
     void and_loginResult(bool result);
     void and_changePwResult(bool result);
+    void and_enableDetectMotionResult(bool result);
+    void and_enableDetectDoorResult(bool result);
+    void and_enableDoorBellResult(bool result);
+
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
-    void and_returnCameraInfo(const std::string& cameraUrl);
+    void and_appendCameraInfo(const std::string& cameraName, const std::string& cameraUrl);
 
 private:
     ArduinoEngine* _ard;
@@ -33,7 +37,6 @@ private:
                            const std::string& oldpwd,
                            const std::string& newpwd);
     void pi_enableDetectMotion(bool enable);
-    void pi_enableSystemStatus(bool enable);
     void pi_enableDetectDoor(bool enable);
     void pi_enableDoorBell(bool enable);
     void pi_requestDoorStatus();

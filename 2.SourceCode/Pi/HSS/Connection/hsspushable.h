@@ -4,6 +4,7 @@
 #include <string>
 #include <boost/python.hpp>
 
+
 class HSSPushable
 {
 public:
@@ -12,6 +13,7 @@ public:
 
 private:
     boost::python::object _namespace;
+    static bool firstInit;
 };
 
 #endif // HSSPUSHABLE_H

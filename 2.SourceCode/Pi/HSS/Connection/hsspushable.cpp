@@ -1,4 +1,6 @@
 #include "hsspushable.h"
+#include <cppformat/format.h>
+#include <bits/stdc++.h>
 
 const char _pushCall[] = "import pusher\n"
                          "\n"
@@ -9,16 +11,22 @@ const char _pushCall[] = "import pusher\n"
                          "  ssl=True\n"
                          ")\n"
                          "\n"
-                         "pusher_client.trigger('test_channel', 'my_event', {'message': 'hello world'})";
+                         "pusher_client.trigger('test_channel', 'my_event', \"{}\")";
+
+bool HSSPushable::firstInit = true;
 
 HSSPushable::HSSPushable()
 {
-    Py_Initialize();
-    _namespace = boost::python::import("__main__").attr("__dict__");
+    if (firstInit) {
+        std::cout<<"Python init"<<std::endl;
+        Py_Initialize();
+        _namespace = boost::python::import("__main__").attr("__dict__");
+        firstInit = false;
+    }
 }
 
 void HSSPushable::pushMessage(std::string msg)
 {
-    boost::python::exec(_pushCall, _namespace);
+    boost::python::exec(fmt::format(_pushCall, msg).c_str(), _namespace);
 }
 

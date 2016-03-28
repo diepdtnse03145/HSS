@@ -22,7 +22,6 @@ public slots:
                            const QString& oldpwd,
                            const QString& newpwd);
     void pi_enableDetectMotion(const bool& enable);
-    void pi_enableSystemStatus(const bool& enable);
     void pi_enableDetectDoor(const bool& enable);
     void pi_enableDoorBell(const bool& enable);
     void pi_requestDoorStatus();
@@ -35,6 +34,9 @@ private:
 
     void and_loginResult(bool result);
     void and_changePwResult(bool result);
+    void and_enableDetectMotionResult(bool result);
+    void and_enableDetectDoorResult(bool result);
+    void and_enableDoorBellResult(bool result);
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
