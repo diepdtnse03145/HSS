@@ -18,8 +18,8 @@ import java.io.IOException;
 
 public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
 {
+    private static native void toLoginScr();
     public static MyActivity currentActivity;
-
     public static MyActivity getIns()
     {
         return currentActivity;
@@ -39,4 +39,12 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
              }
         });
     }
+
+    public void toHome() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
+    }
+
 }

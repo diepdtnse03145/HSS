@@ -1,9 +1,15 @@
 #include "hssengine.h"
 #include "Connection/rpc_pr.h"
 #include <QtQml>
+#include <QtAndroidExtras>
+
+HSSEngine* ENGINE = nullptr;
 
 HSSEngine::HSSEngine(QObject *parent):
     ConnectionBase{parent},
+    _scrMng{this},
+    _cameraModel{this},
+    _activityModel{this},
     _javaMainAct{QAndroidJniObject::
                  callStaticObjectMethod("org/hss/hss/MyActivity",
                                         "getIns",
@@ -12,9 +18,12 @@ HSSEngine::HSSEngine(QObject *parent):
 {
     _engine.rootContext()->setContextProperty("ScreenManager", &_scrMng);
     _engine.rootContext()->setContextProperty("Engine", this);
+    _engine.rootContext()->setContextProperty("CameraModel", &_cameraModel);
+    _engine.rootContext()->setContextProperty("ActivityModel", &_activityModel);
 
     connect(this, &ConnectionBase::_connectToHostResult,
             this, &HSSEngine::handleConnectToHost);
+    ENGINE = this;
 }
 
 void HSSEngine::run()
@@ -28,12 +37,23 @@ void HSSEngine::run()
 
 }
 
+void HSSEngine::callHandleBack()
+{
+    QMetaObject::invokeMethod(_engine.rootObjects().at(0), "backKeyCaptured");
+}
+
+void HSSEngine::resumeToLogin()
+{
+    _scrMng.setIsLogin(false);
+}
+
 void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
 {
-    QString msg = QStringLiteral("pi_requestLogin %1 %2\n")
-            .arg(stringToMsgArg(username))
-            .arg(stringToMsgArg(pwd));
-    _sendMsg(msg);
+    //    QString msg = QStringLiteral("pi_requestLogin %1 %2\n")
+    //            .arg(stringToMsgArg(username))
+    //            .arg(stringToMsgArg(pwd));
+    //    _sendMsg(msg);
+    and_loginResult(true);
 }
 
 void HSSEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
@@ -86,8 +106,14 @@ void HSSEngine::pi_requestBellStatus()
 
 void HSSEngine::pi_requestCameraInfo()
 {
-    QString msg = QStringLiteral("pi_requestCameraInfo\n");
-    _sendMsg(msg);
+    //    QString msg = QStringLiteral("pi_requestCameraInfo\n");
+    //    _sendMsg(msg);
+    _cameraModel.add("absd", "dasfsdg");
+    _cameraModel.add("absd", "dasfsdg");
+    _cameraModel.add("absd", "dasfsdg");
+    _cameraModel.add("absd", "dasfsdg");
+    _cameraModel.add("absd", "dasfsdg");
+
 }
 
 void HSSEngine::_hss_recvMsg(const QString &msg)
@@ -124,9 +150,11 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
         and_returnBellStatus(and_returnBellStatus_arg1);
     }
 
-    if (v.at(0) == "and_returnCameraInfo") {
-        QString and_returnCameraInfo_arg1 = msgArgToString(v.at(1));
-        and_returnCameraInfo(and_returnCameraInfo_arg1);
+    if (v.at(0) == "and_appendCameraInfo") {
+        QString and_appendCameraInfo_arg1 = msgArgToString(v.at(1));
+        QString and_appendCameraInfo_arg2 = msgArgToString(v.at(2));
+        and_appendCameraInfo(and_appendCameraInfo_arg1,
+                             and_appendCameraInfo_arg2);
     }
 
 }
@@ -135,7 +163,7 @@ void HSSEngine::and_loginResult(bool result)
 {
     if (result) {
         showOnscreen("Login Sucessfull!");
-        _scrMng.toMainScr();
+        _scrMng.setIsLogin(true);
     } else {
         showOnscreen("Login Failed!");
     }
@@ -143,7 +171,12 @@ void HSSEngine::and_loginResult(bool result)
 
 void HSSEngine::and_changePwResult(bool result)
 {
-//    _scrMng.toLoginScr();
+    if (result) {
+        showOnscreen("Password changed!");
+        _scrMng.toLoginScr();
+    } else {
+        showOnscreen("Password unchanged!");
+    }
 }
 
 void HSSEngine::and_enableDetectMotionResult(bool result)
@@ -175,20 +208,21 @@ void HSSEngine::and_enableDoorBellResult(bool result)
 
 void HSSEngine::and_returnDoorStatus(int status)
 {
-
+    Q_UNUSED(status)
 }
 
 void HSSEngine::and_returnMotionStatus(int status)
 {
-
+    Q_UNUSED(status)
 }
 
 void HSSEngine::and_returnBellStatus(int status)
 {
-
+    Q_UNUSED(status)
 }
 
-void HSSEngine::and_returnCameraInfo(const QString &cameraUrl)
+void HSSEngine::and_appendCameraInfo(const QString &cameraName,
+                                     const QString &cameraUrl)
 {
 
 }
@@ -202,11 +236,6 @@ void HSSEngine::handleConnectToHost(bool result)
     }
 }
 
-void HSSEngine::registerNativeMethods()
-{
-
-}
-
 void HSSEngine::showOnscreen(const QString &msg)
 {
     QAndroidJniObject javaMsg = QAndroidJniObject::fromString(msg);
@@ -214,4 +243,36 @@ void HSSEngine::showOnscreen(const QString &msg)
                                   "(Ljava/lang/String;)V",
                                   javaMsg.object<jstring>()
                                   );
+}
+
+void HSSEngine::toHome()
+{
+    _javaMainAct.callMethod<void>("toHome");
+}
+
+void registerNativeMethods() {
+    JNINativeMethod methods[] {
+        {"toLoginScr", "()V",reinterpret_cast<void *>(ENGINE_toLoginScr)}
+    };
+
+    QAndroidJniObject javaClass = QAndroidJniObject::
+            callStaticObjectMethod("org/hss/hss/MyActivity",
+                                   "getIns",
+                                   "()Lorg/hss/hss/MyActivity;");
+
+    QAndroidJniEnvironment env;
+    jclass objectClass = env->GetObjectClass(javaClass.object<jobject>());
+    env->RegisterNatives(objectClass,
+                         methods,
+                         sizeof(methods) / sizeof(methods[0]));
+    env->DeleteLocalRef(objectClass);
+}
+
+void ENGINE_toLoginScr(JNIEnv *env, jobject thiz)
+{
+    Q_UNUSED(env)
+    Q_UNUSED(thiz)
+    if (ENGINE) {
+        ENGINE->resumeToLogin();
+    }
 }

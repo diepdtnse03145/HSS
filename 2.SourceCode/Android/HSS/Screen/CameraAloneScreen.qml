@@ -1,10 +1,11 @@
 import QtQuick 2.5
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1860
+    onBackKeyCaptured: {
+        backButton.clicked()
+    }
 
     Rectangle {
         id: rectangle1
@@ -16,13 +17,13 @@ Rectangle{
         
         
         HSS_Button{
+            id: backButton
             color: "transparent"
             x: 25
             y: 25
             width: 150
             height: 150
             Image {
-                id: backButton
                 anchors.fill: parent
                 source: "qrc:/img/back.png"
             }

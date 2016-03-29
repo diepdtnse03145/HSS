@@ -4,13 +4,11 @@ import QtQuick.Controls 1.2
 import QtQuick.Layouts 1.0
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1920
-    clip: false
-    smooth: true
-    enabled: true
+    onBackKeyCaptured: {
+        backButton.clicked()
+    }
 
     Rectangle {
         id: rectangle1
@@ -21,13 +19,13 @@ Rectangle{
         color: "#005fbf"
 
         HSS_Button{
+            id: backButton
             color: "transparent"
             x: 25
             y: 25
             width: 150
             height: 150
             Image {
-                id: backButton
                 anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
@@ -184,6 +182,9 @@ Rectangle{
             text: qsTr("Change Pwd")
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 70
+        }
+        onClicked: {
+            ScreenManager.toChangePassScr()
         }
     }
 

@@ -3,7 +3,9 @@
 
 #include <QtCore>
 
-ScreenManager::ScreenManager(QObject *parent) : QObject(parent)
+ScreenManager::ScreenManager(QObject *parent) :
+    QObject(parent),
+    m_isLogin{false}
 {
 
 }
@@ -13,12 +15,24 @@ void ScreenManager::run()
     toLoginScr();
 }
 
+
+bool ScreenManager::isLogin() const
+{
+    return m_isLogin;
+}
+
+void ScreenManager::setIsLogin(bool isLogin)
+{
+    if (m_isLogin != isLogin) {
+        m_isLogin = isLogin;
+        emit isLoginChanged(isLogin);
+    }
+}
+
 void ScreenManager::toLoginScr()
 {
-    if (m_currentScreenSource != LoginScreen) {
-        m_currentScreenSource = LoginScreen;
-        emit currentScreenChanged(m_currentScreenSource);
-    }
+    setIsLogin(false);
+    toMainScr();
 }
 
 void ScreenManager::toActivityLogScr()

@@ -2,6 +2,8 @@
 #define HSSENGINE_H
 
 #include "ScreenManager/ScreenManager.h"
+#include "ScreenManager/cameralistmodel.h"
+#include "ScreenManager/activitylistmodel.h"
 #include "Connection/connectionbase.h"
 #include <QQmlApplicationEngine>
 #include <QAndroidJniObject>
@@ -15,6 +17,9 @@ public:
 
 public slots:
     void showOnscreen(const QString &msg);
+    void toHome();
+    void callHandleBack();
+    void resumeToLogin();
 
     void pi_requestLogin(const QString& username,
                          const QString& pwd);
@@ -40,7 +45,8 @@ private:
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
-    void and_returnCameraInfo(const QString& cameraUrl);
+    void and_appendCameraInfo(const QString& cameraName,
+                              const QString& cameraUrl);
 
 private slots:
     void handleConnectToHost(bool result);
@@ -48,10 +54,13 @@ private slots:
 private:
     QQmlApplicationEngine _engine;
     ScreenManager _scrMng;
+    CameraListModel _cameraModel;
+    ActivityListModel _activityModel;
     QAndroidJniObject _javaMainAct;
-
-    void registerNativeMethods();
-
 };
+
+extern HSSEngine* ENGINE;
+void ENGINE_toLoginScr(JNIEnv *env, jobject thiz);
+void registerNativeMethods();
 
 #endif // HSSENGINE_H

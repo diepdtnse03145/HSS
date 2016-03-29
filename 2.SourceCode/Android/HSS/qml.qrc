@@ -11,5 +11,6 @@
         <file>Screen/MainScreen.qml</file>
         <file>Screen/FirstScreen.qml</file>
         <file>Screen/CameraAloneScreen.qml</file>
+        <file>Component/ScreenBase.qml</file>
     </qresource>
 </RCC>

@@ -9,15 +9,22 @@ ApplicationWindow {
     height:1860
     visible: true
 
-    function loadScreen(screenSource){
+    function loadScreen(screenSource) {
         prev.source = next.source
         next.source = screenSource
-        console.debug("Change to: "+screenSource)
         startChangeScreen()
     }
 
-    function startChangeScreen(){
+    function startChangeScreen() {
         screenChange.restart()
+    }
+
+    function backKeyCaptured() {
+        if (ScreenManager.isLogin) {
+            next.item.backKeyCaptured()
+            return
+        }
+        loginLoader.item.backKeyCaptured()
     }
 
     Loader{
@@ -26,6 +33,11 @@ ApplicationWindow {
 
     Loader{
         id: next
+    }
+
+    Loader{
+        id: loginLoader
+        source: ScreenManager.isLogin ? "" : "qrc:/Screen/LoginScreen.qml"
     }
 
     ParallelAnimation {

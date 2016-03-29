@@ -1,10 +1,12 @@
 import QtQuick 2.5
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1860
+
+    onBackKeyCaptured: {
+        backButton.clicked()
+    }
 
     Rectangle {
         id: rectangle1
@@ -16,13 +18,13 @@ Rectangle{
         
         
         HSS_Button{
+            id: backButton
             color: "transparent"
             x: 25
             y: 25
             width: 150
             height: 150
             Image {
-                id: backButton
                 anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
@@ -48,30 +50,31 @@ Rectangle{
         
     }
     
-    Rectangle {
-        id: addCameraButton
+
+    ListView {
+        id: listView1
         x: 0
-        y: 1505
+        y: 200
         width: 1080
-        height: 200
-        color: "#005fbf"
-
-        Text {
-            id: addCameraText
-            x: 285
-            y: 54
-            width: 510
-            height: 102
-            color: "#ffffff"
-            text: qsTr("Add Camera")
-            horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: 80
-            verticalAlignment: Text.AlignVCenter
+        height: 1660
+        clip: true
+        delegate: Item {
+            width: 1080
+            height: 150
+            Rectangle {
+                anchors.fill: parent
+                color: "steelblue"
+            }
+            Rectangle{
+                anchors.fill: parent
+                anchors.bottomMargin: 1
+                Text {
+                    anchors.fill: parent
+                    text: qsTr("text")
+                }
+            }
         }
-
-
+        model: CameraModel
     }
-
-
 }
 

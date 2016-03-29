@@ -1,10 +1,8 @@
 import QtQuick 2.5
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1920
 
     Rectangle {
         id: rectangle1
@@ -94,9 +92,12 @@ Rectangle{
         }
 
         onClicked: {
+            CameraModel.clear()
+            Engine.pi_requestCameraInfo();
             ScreenManager.toCameraScr();
         }
     }
+
     HSS_Button {
         id: button_DoorBell
         x: 190

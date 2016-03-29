@@ -9,13 +9,20 @@ HEADERS += \
     ScreenManager/ScreenManager.h \
     Engine/hssengine.h \
     Connection/connectionbase.h \
-    Connection/rpc_pr.h
+    Connection/rpc_pr.h \
+    ScreenManager/cameralistmodel.h \
+    ScreenManager/activitylistmodel.h \
+    Engine/applicationactivatefilter.h \
+    Engine/hsseventfilter.h
 
 SOURCES += main.cpp \
     ScreenManager/ScreenManager.cpp \
     Engine/hssengine.cpp \
     Connection/connectionbase.cpp \
-    Connection/rpc_pr.cpp
+    Connection/rpc_pr.cpp \
+    ScreenManager/cameralistmodel.cpp \
+    ScreenManager/activitylistmodel.cpp \
+    Engine/hsseventfilter.cpp
 
 RESOURCES += qml.qrc \
     img.qrc

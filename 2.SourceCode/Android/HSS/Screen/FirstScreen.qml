@@ -2,10 +2,8 @@ import QtQuick 2.5
 import QtQuick.Controls 1.3
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1860
 
     TextInput {
         id: inputIP

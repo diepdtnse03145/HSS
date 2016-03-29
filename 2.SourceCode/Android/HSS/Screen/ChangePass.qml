@@ -1,10 +1,12 @@
 import QtQuick 2.5
 import "../Component"
 
-Rectangle{
+ScreenBase{
     id:root
-    width:1080
-    height:1860
+
+    onBackKeyCaptured: {
+        backButton.clicked()
+    }
 
     Rectangle {
         id: title
@@ -15,13 +17,13 @@ Rectangle{
         color: "#005fbf"
 
         HSS_Button{
+            id: backButton
             color: "transparent"
             x: 25
             y: 25
             width: 150
             height: 150
             Image {
-                id: backButton
                 anchors.fill: parent
                 source: "qrc:/img/back.png"
             }
@@ -80,7 +82,6 @@ Rectangle{
 
         TextInput {
             id: inputOldPwd
-
             x: 0
             y: 121
             width: 906
@@ -163,6 +164,10 @@ Rectangle{
             anchors.centerIn: parent
             text: "Change"
             font.pointSize: 40
+        }
+
+        onClicked: {
+            Engine.pi_changePassword(input_user.text, textOldPwd.text, inputConfirmPwd.text)
         }
     }
 
