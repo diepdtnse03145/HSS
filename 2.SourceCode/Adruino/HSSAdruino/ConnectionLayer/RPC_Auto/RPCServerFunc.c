@@ -8,13 +8,12 @@
 void _receiveMsg(char *msg)
 {
     char* funcName = strtok(msg, " \n");
-/*
-    if (!strcmp(funcName, "ad_moeFunc"))
+
+    if (!strcmp(funcName, "ad_init"))
     {
-        int ad_moeFunc_arg1 = atoi(strtok(NULL, " "));
-        ad_moeFunc(ad_moeFunc_arg1);
+        ad_init();
     }
-*/
+
     if (!strcmp(funcName, "ad_ledOn"))
     {
         ad_ledOn();
@@ -25,20 +24,18 @@ void _receiveMsg(char *msg)
         ad_ledOff();
     }
 
-      if (!strcmp(funcName, "ad_requestPirVal"))
+    if (!strcmp(funcName, "ad_requestPirVal"))
     {
         ad_requestPirVal();
     }
 
-      if (!strcmp(funcName, "ad_requestBellVal"))
+    if (!strcmp(funcName, "ad_requestBellVal"))
     {
         ad_requestBellVal();
     }
 
-          if (!strcmp(funcName, "ad_requestSwitchVal"))
+    if (!strcmp(funcName, "ad_requestSwitchVal"))
     {
         ad_requestSwitchVal();
     }
-
-
 }

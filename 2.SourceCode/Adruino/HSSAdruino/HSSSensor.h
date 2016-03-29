@@ -7,7 +7,6 @@ extern int pirValue;
 extern int switchValue;
 extern int bellValue;
 
-
 extern void readPirValue();
 extern void readDoorBellValue();
 extern void readSwitchValue();
