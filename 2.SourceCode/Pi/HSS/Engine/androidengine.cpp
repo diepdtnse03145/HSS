@@ -66,8 +66,13 @@ void AndroidEngine::and_returnBellStatus(int status)
     _sendMsg(msg);
 }
 
-void AndroidEngine::and_appendCameraInfo(const std::string &cameraName, const std::string &cameraUrl)
+void AndroidEngine::and_appendCameraInfo(const std::string &cameraName,
+                                         const std::string &cameraUrl)
 {
+    std::string msg = fmt::format("and_appendCameraInfo {0} {1}\n",
+                                  stringToMsgArg(cameraName),
+                                  stringToMsgArg(cameraUrl));
+    _sendMsg(msg);
 
 }
 
