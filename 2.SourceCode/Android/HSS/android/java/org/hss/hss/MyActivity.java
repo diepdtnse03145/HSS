@@ -14,12 +14,19 @@ import android.app.NotificationManager;
 import android.app.IntentService;
 import android.widget.Toast;
 
+import com.pusher.client.Pusher;
+import com.pusher.client.channel.Channel;
+import com.pusher.client.channel.SubscriptionEventListener;
+
 import java.io.IOException;
 
 public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
 {
     private static native void toLoginScr();
     public static MyActivity currentActivity;
+    private Intent mServiceIntent;
+    public Pusher pusher;
+
     public static MyActivity getIns()
     {
         return currentActivity;
@@ -29,10 +36,12 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         currentActivity = this;
+
+        mServiceIntent = new Intent(this, MyService.class);
+        this.startService(mServiceIntent);
     }
 
     public void showToast(final String text) {
-        Log.w("TAG", "onCreate");
         currentActivity.runOnUiThread(new Runnable() {
              public void run() {
                   Toast.makeText(currentActivity, text, Toast.LENGTH_SHORT).show();
@@ -46,5 +55,4 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
     }
-
 }

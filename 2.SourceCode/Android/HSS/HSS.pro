@@ -42,6 +42,7 @@ DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.properties \
     android/gradlew.bat \
     android/java/org/hss/hss/MyActivity.java \
+    android/java/org/hss/hss/MyService.java \
     android/java/org/hss/hss/MyService.java
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

@@ -47,33 +47,11 @@ ScreenBase{
         }
     }
 
-    Image {
-        id: imageUser
-        x: 75
-        y: 307
-        width: 113
-        height: 113
-        source: "qrc:/img/user.png"
-    }
-
-    TextInput {
-        id: input_user
-        x: 261
-        y: 307
-        width: 737
-        height: 113
-        text: qsTr("Username")
-        inputMask: "Username"
-        font.family: "Tahoma"
-        horizontalAlignment: Text.AlignLeft
-        echoMode: TextInput.Normal
-        font.pixelSize: 80
-    }
 
     Text {
         id: textOldPwd
         x: 92
-        y: 524
+        y: 303
         width: 691
         height: 98
         text: qsTr("Enter Old Password:")
@@ -99,7 +77,7 @@ ScreenBase{
     Text {
         id: textNewPwd
         x: 92
-        y: 792
+        y: 583
         width: 691
         height: 98
         text: qsTr("Enter New Password:")
@@ -124,7 +102,7 @@ ScreenBase{
     Text {
         id: textConfirmPwd
         x: 92
-        y: 1075
+        y: 851
         width: 691
         height: 98
         text: qsTr("Confirm New Password:")
@@ -148,10 +126,10 @@ ScreenBase{
 
     HSS_Button {
         id: buttonChangePwd
-        x: 358
-        y: 1743
-        width: 363
-        height: 100
+        x: 359
+        y: 1146
+        width: 400
+        height: 150
         color: "#005fbf"
         anchors.right: parent.right
         anchors.rightMargin: 359
@@ -163,11 +141,11 @@ ScreenBase{
             color: "#ffffff"
             anchors.centerIn: parent
             text: "Change"
-            font.pointSize: 40
+            font.pointSize: 30
         }
 
         onClicked: {
-            Engine.pi_changePassword(input_user.text, textOldPwd.text, inputConfirmPwd.text)
+//            Engine.pi_changePassword(input_user.text, textOldPwd.text, inputConfirmPwd.text)
         }
     }
 

@@ -49,30 +49,27 @@ ScreenBase{
         }
     }
 
-    Text {
-        id: statusConnection
-        x: 59
-        y: 312
-        width: 426
-        height: 71
-        text: qsTr("System Status:")
-        font.pixelSize: 70
-        font.family: "Arial"
-        style: Text.Normal
-        wrapMode: Text.NoWrap
-        textFormat: Text.AutoText
-    }
+    Rectangle {
+        id: deleteActivityLogButton
+        x: 0
+        y: 1200
+        width: 1080
+        height: 200
+        color: "#d0150a"
 
-
-        Switch {
-            id: switchtch
-            x: 773
-            y: 312
-            width: 240
-            height: 80
-
+        Text {
+            id: deleteActivityLogText
+            x: 285
+            y: 54
+            width: 510
+            height: 102
+            color: "#ffffff"
+            text: qsTr("Delete Activity Log")
+            horizontalAlignment: Text.AlignHCenter
+            font.pixelSize: 80
+            verticalAlignment: Text.AlignVCenter
         }
-
+    }
 
 
     HSS_Button {
@@ -103,29 +100,26 @@ ScreenBase{
     Text {
         id: statusConnection1
         x: 60
-        y: 551
+        y: 348
         width: 426
         height: 71
         text: qsTr("Detect Motion")
         font.pixelSize: 70
     }
 
+    Switch {
+        id: switchtch1
+        x: 773
+        y: 348
+        width: 240
+        height: 80
 
-        Switch {
-            id: switchtch1
-            x: 773
-            y: 551
-            width: 240
-            height: 80
-
-        }
-
-
+    }
 
     Text {
         id: statusConnection2
         x: 60
-        y: 791
+        y: 558
         width: 426
         height: 71
         text: qsTr("Detect Door")
@@ -133,22 +127,20 @@ ScreenBase{
     }
 
 
-        Switch {
-            id: switchtch2
-            x: 773
-            y: 791
-            width: 240
-            height: 80
-            scale: 1
+    Switch {
+        id: switchtch2
+        x: 773
+        y: 558
+        width: 240
+        height: 80
+        scale: 1
 
-        }
-
-
+    }
 
     Text {
         id: statusConnection3
         x: 60
-        y: 1041
+        y: 780
         width: 426
         height: 71
         text: qsTr("Doorbell")
@@ -157,7 +149,7 @@ ScreenBase{
     Switch {
         id: switchtch3
         x: 773
-        y: 1041
+        y: 780
         width: 240
         height: 80
         scale: 1
@@ -183,13 +175,6 @@ ScreenBase{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 70
         }
-        onClicked: {
-            ScreenManager.toChangePassScr()
-        }
     }
-
-
-
-
 }
 
