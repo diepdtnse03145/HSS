@@ -1,8 +1,0 @@
-{
-    "arduino_port": "/dev/ttyACM0",
-    "door_bell_enable": true,
-    "dt_door_enable": true,
-    "dt_motion_enable": true,
-    "sys_stt_enable": true,
-    "tcp_sv_port": 1340
-}
