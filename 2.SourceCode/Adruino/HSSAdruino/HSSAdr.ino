@@ -18,7 +18,6 @@ void setup()
     pinMode(_BELL_PIN, INPUT);
     memset( _charBuf, '\0', sizeof(char) * 2);
     memset( _inBuf, '\0', sizeof(char) * _BUFFER_SIZE);
-    m_isInited = false;
 }
 
 void loop()

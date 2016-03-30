@@ -2,6 +2,7 @@
 #include "RPC_Auto/RPCClient.h"
 #include <Arduino.h>
 
+
 void ad_ledOn()
 {
     digitalWrite(_LED_PIN, HIGH);
@@ -25,10 +26,5 @@ void ad_requestBellVal()
 void ad_requestSwitchVal()
 {
     pi_returnSwitchValue(switchValue);
-}
-
-void ad_init()
-{
-    m_isInited = true;
 }
 
