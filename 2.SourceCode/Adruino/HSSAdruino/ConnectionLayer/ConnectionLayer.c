@@ -8,6 +8,6 @@ bool m_isInited = false;
 void _sendMsg(char *msg)
 {
     if (m_isInited) {
-        Serial.print(msg);
+        Serial.println(msg);
     }
 }

@@ -7,7 +7,7 @@
 
 void _receiveMsg(char *msg)
 {
-    char* funcName = strtok(msg, " \r\n");
+    char* funcName = strtok(msg, " \n");
 
     if (!strcmp(funcName, "ad_init"))
     {
