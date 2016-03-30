@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import QtQuick.Controls 1.4
 import "../Component"
 
 ScreenBase{
@@ -58,7 +59,7 @@ ScreenBase{
         wrapMode: Text.NoWrap
         font.pixelSize: 80
 
-        TextInput {
+        TextField {
             id: inputOldPwd
             x: 0
             y: 121
@@ -68,7 +69,6 @@ ScreenBase{
             horizontalAlignment: Text.AlignLeft
             font.family: "Tahoma"
             echoMode: TextInput.Password
-            inputMask: "Password"
             font.pixelSize: 80
         }
     }
@@ -84,7 +84,7 @@ ScreenBase{
         wrapMode: Text.NoWrap
         font.pixelSize: 80
 
-        TextInput {
+        TextField {
             id: inputNewPwd
             x: 0
             y: 121
@@ -94,7 +94,6 @@ ScreenBase{
             horizontalAlignment: Text.AlignLeft
             font.family: "Tahoma"
             echoMode: TextInput.Password
-            inputMask: "Password"
             font.pixelSize: 80
         }
     }
@@ -109,7 +108,7 @@ ScreenBase{
         wrapMode: Text.NoWrap
         font.pixelSize: 80
 
-        TextInput {
+        TextField {
             id: inputConfirmPwd
             x: 0
             y: 121
@@ -119,7 +118,6 @@ ScreenBase{
             horizontalAlignment: Text.AlignLeft
             font.family: "Tahoma"
             echoMode: TextInput.Password
-            inputMask: "Password"
             font.pixelSize: 80
         }
     }
@@ -145,7 +143,7 @@ ScreenBase{
         }
 
         onClicked: {
-//            Engine.pi_changePassword(input_user.text, textOldPwd.text, inputConfirmPwd.text)
+            Engine.pi_changePassword(Engine.username, textOldPwd.text, inputConfirmPwd.text)
         }
     }
 

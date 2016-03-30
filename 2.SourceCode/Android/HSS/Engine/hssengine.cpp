@@ -49,11 +49,13 @@ void HSSEngine::resumeToLogin()
 
 void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
 {
-    //    QString msg = QStringLiteral("pi_requestLogin %1 %2\n")
-    //            .arg(stringToMsgArg(username))
-    //            .arg(stringToMsgArg(pwd));
-    //    _sendMsg(msg);
-    and_loginResult(true);
+    m_loginingUsername = username;
+    QString msg = QStringLiteral("pi_requestLogin %1 %2\n")
+            .arg(stringToMsgArg(username))
+            .arg(stringToMsgArg(pwd));
+    _sendMsg(msg);
+    //TEST
+    //    and_loginResult(true);
 }
 
 void HSSEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
@@ -106,14 +108,21 @@ void HSSEngine::pi_requestBellStatus()
 
 void HSSEngine::pi_requestCameraInfo()
 {
-    //    QString msg = QStringLiteral("pi_requestCameraInfo\n");
-    //    _sendMsg(msg);
-    _cameraModel.add("absd", "dasfsdg");
-    _cameraModel.add("absd", "dasfsdg");
-    _cameraModel.add("absd", "dasfsdg");
-    _cameraModel.add("absd", "dasfsdg");
-    _cameraModel.add("absd", "dasfsdg");
+    QString msg = QStringLiteral("pi_requestCameraInfo\n");
+    _sendMsg(msg);
+    //TEST
+    //    QString res = "[\n"
+    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
+    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
+    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"}\n"
+    //                  "]";
+    //    and_returnCameraInfo(res);
+}
 
+void HSSEngine::pi_requestActivityLog()
+{
+    QString msg = QStringLiteral("pi_requestActivityLog\n");
+    _sendMsg(msg);
 }
 
 void HSSEngine::_hss_recvMsg(const QString &msg)
@@ -150,11 +159,14 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
         and_returnBellStatus(and_returnBellStatus_arg1);
     }
 
-    if (v.at(0) == "and_appendCameraInfo") {
-        QString and_appendCameraInfo_arg1 = msgArgToString(v.at(1));
-        QString and_appendCameraInfo_arg2 = msgArgToString(v.at(2));
-        and_appendCameraInfo(and_appendCameraInfo_arg1,
-                             and_appendCameraInfo_arg2);
+    if (v.at(0) == "and_returnCameraInfo") {
+        QString and_returnCameraInfo_arg1 = msgArgToString(v.at(1));
+        and_returnCameraInfo(and_returnCameraInfo_arg1);
+    }
+
+    if (v.at(0) == "and_returnActivityLog") {
+        QString and_returnActivityLog_arg1 = msgArgToString(v.at(1));
+        and_returnActivityLog(and_returnActivityLog_arg1);
     }
 
 }
@@ -164,6 +176,9 @@ void HSSEngine::and_loginResult(bool result)
     if (result) {
         showOnscreen("Login Sucessfull!");
         _scrMng.setIsLogin(true);
+        m_username = m_loginingUsername;
+        emit usernameChanged();
+
     } else {
         showOnscreen("Login Failed!");
     }
@@ -221,10 +236,25 @@ void HSSEngine::and_returnBellStatus(int status)
     Q_UNUSED(status)
 }
 
-void HSSEngine::and_appendCameraInfo(const QString &cameraName,
-                                     const QString &cameraUrl)
+void HSSEngine::and_returnCameraInfo(const QString &result)
 {
+    auto res_arr = QJsonDocument::fromJson(result.toUtf8()).array();
 
+    for (const auto& ite : res_arr) {
+        _cameraModel.add(ite.toObject().value("name").toString(),
+                         ite.toObject().value("url").toString());
+    }
+
+}
+
+void HSSEngine::and_returnActivityLog(const QString &log)
+{
+    auto res_arr = QJsonDocument::fromJson(log.toUtf8()).array();
+
+    for (const auto& ite : res_arr) {
+        _activityModel.add(ite.toObject().value("timestamp").toString(),
+                           ite.toObject().value("activity").toString());
+    }
 }
 
 void HSSEngine::handleConnectToHost(bool result)
@@ -233,6 +263,19 @@ void HSSEngine::handleConnectToHost(bool result)
         showOnscreen("Connected");
     } else {
         showOnscreen("Connect failed!");
+    }
+}
+
+QString HSSEngine::cameraUrl() const
+{
+    return m_cameraUrl;
+}
+
+void HSSEngine::setCameraUrl(const QString &cameraUrl)
+{
+    if (m_cameraUrl != cameraUrl) {
+        m_cameraUrl = cameraUrl;
+        emit cameraUrlChanged();
     }
 }
 

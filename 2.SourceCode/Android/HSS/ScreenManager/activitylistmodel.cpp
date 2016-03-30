@@ -8,7 +8,12 @@ ActivityListModel::ActivityListModel(QObject* parent) :
 
 void ActivityListModel::add(QString time, QString value)
 {
+    beginInsertRows(index(_activityList.size(), 0),
+                    _activityList.size(),
+                    _activityList.size());
     _activityList.push_back(std::make_pair(time, value));
+    endInsertRows();
+
 }
 
 void ActivityListModel::clear()

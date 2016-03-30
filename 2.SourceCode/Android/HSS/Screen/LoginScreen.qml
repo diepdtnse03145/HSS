@@ -6,26 +6,23 @@ ScreenBase{
     id:root
 
     onBackKeyCaptured: {
-        console.debug("LOGIN backKeyCaptured")
-
         Engine.toHome()
     }
 
-    TextInput {
+    TextField  {
         id: input_user
         x: 261
         y: 608
         width: 737
         height: 113
-        text: qsTr("Username")
-        inputMask: "Username"
+        placeholderText: "Username"
         font.family: "Tahoma"
         horizontalAlignment: Text.AlignLeft
         echoMode: TextInput.Normal
         font.pixelSize: 80
     }
 
-    TextInput {
+    TextField {
         id: input_pass
         x: 261
         y: 736
@@ -35,7 +32,7 @@ ScreenBase{
         horizontalAlignment: Text.AlignLeft
         font.family: "Tahoma"
         echoMode: TextInput.Password
-        inputMask: "Password"
+        placeholderText: "Password"
         font.pixelSize: 80
     }
 
@@ -91,7 +88,9 @@ ScreenBase{
         }
 
         onClicked: {
-            Engine.pi_requestLogin(input_user.text, input_pass.text)
+            if (input_user.text.trim() != '' && input_pass.text.trim() != '') {
+                Engine.pi_requestLogin(input_user.text, input_pass.text)
+            }
         }
     }
 }

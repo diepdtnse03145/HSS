@@ -7,6 +7,7 @@
 #define DoorBellScreen              QUrl(QStringLiteral("qrc:/Screen/DoorbellScreen.qml"))
 #define SettingScreen               QUrl(QStringLiteral("qrc:/Screen/SettingScreen.qml"))
 #define MainScreen                  QUrl(QStringLiteral("qrc:/Screen/MainScreen.qml"))
+#define CameraViewerScreen          QUrl(QStringLiteral("qrc:/Screen/CameraAloneScreen.qml"))
 
 #endif // SCREENDEFINE
 

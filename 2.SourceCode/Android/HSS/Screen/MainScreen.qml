@@ -4,6 +4,10 @@ import "../Component"
 ScreenBase{
     id:root
 
+    onBackKeyCaptured: {
+        Engine.toHome()
+    }
+
     Rectangle {
         id: rectangle1
         x: 0
@@ -57,6 +61,8 @@ ScreenBase{
         }
 
         onClicked: {
+            ActivityModel.clear()
+            Engine.pi_requestActivityLog()
             ScreenManager.toActivityLogScr();
         }
     }
@@ -109,7 +115,7 @@ ScreenBase{
         transformOrigin: Item.Center
         anchors.right: parent.right
         anchors.rightMargin: 190
-		
+
         Text {
             id:textDoorBell
             width: 352
@@ -127,8 +133,8 @@ ScreenBase{
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
         }
-		
-		onClicked: {
+
+        onClicked: {
             ScreenManager.toDoorBellScr();
         }
     }
@@ -144,7 +150,7 @@ ScreenBase{
         transformOrigin: Item.Center
         anchors.right: parent.right
         anchors.rightMargin: 190
-		
+
         Text {
             id:textSetting
             width: 352
@@ -162,8 +168,8 @@ ScreenBase{
             anchors.verticalCenterOffset: 1
             anchors.horizontalCenterOffset: 0
         }
-		
-		onClicked: {
+
+        onClicked: {
             ScreenManager.toSettingScr();
         }
     }

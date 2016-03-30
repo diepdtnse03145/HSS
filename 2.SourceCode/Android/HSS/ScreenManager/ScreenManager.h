@@ -29,6 +29,7 @@ public slots:
     void toDoorBellScr();
     void toSettingScr();
     void toMainScr();
+    void toCameraViewScr();
 
 private:
     QUrl m_currentScreenSource;

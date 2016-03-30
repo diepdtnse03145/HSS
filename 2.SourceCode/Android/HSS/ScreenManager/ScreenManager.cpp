@@ -83,4 +83,12 @@ void ScreenManager::toMainScr()
     }
 }
 
+void ScreenManager::toCameraViewScr()
+{
+    if (m_currentScreenSource != CameraViewerScreen) {
+        m_currentScreenSource = CameraViewerScreen;
+        emit currentScreenChanged(m_currentScreenSource);
+    }
+}
+
 

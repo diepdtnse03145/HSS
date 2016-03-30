@@ -108,12 +108,14 @@ ScreenBase{
     }
 
     Switch {
-        id: switchtch1
+        id: motionSwitch
         x: 773
         y: 348
         width: 240
         height: 80
-
+        onClicked: {
+            Engine.pi_enableDetectMotion(checked)
+        }
     }
 
     Text {
@@ -128,13 +130,15 @@ ScreenBase{
 
 
     Switch {
-        id: switchtch2
+        id: doorSwitch
         x: 773
         y: 558
         width: 240
         height: 80
         scale: 1
-
+        onClicked: {
+            Engine.pi_enableDetectDoor(checked)
+        }
     }
 
     Text {
@@ -147,13 +151,15 @@ ScreenBase{
         font.pixelSize: 70
     }
     Switch {
-        id: switchtch3
+        id: bellSwitch
         x: 773
         y: 780
         width: 240
         height: 80
         scale: 1
-
+        onClicked: {
+            Engine.pi_enableDoorBell(checked)
+        }
     }
 
     HSS_Button {
@@ -174,6 +180,10 @@ ScreenBase{
             text: qsTr("Change Pwd")
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 70
+        }
+
+        onClicked: {
+            ScreenManager.toChangePassScr();
         }
     }
 }

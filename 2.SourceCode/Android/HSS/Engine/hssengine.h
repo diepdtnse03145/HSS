@@ -11,9 +11,19 @@
 class HSSEngine : public ConnectionBase
 {
     Q_OBJECT
+    Q_PROPERTY(QString username MEMBER m_username NOTIFY usernameChanged)
+    Q_PROPERTY(QString cameraUrl READ cameraUrl WRITE setCameraUrl NOTIFY cameraUrlChanged)
+
 public:
     HSSEngine(QObject* parent = 0);
     void run();
+
+    QString cameraUrl() const;
+    void setCameraUrl(const QString &cameraUrl);
+
+signals:
+    void usernameChanged();
+    void cameraUrlChanged();
 
 public slots:
     void showOnscreen(const QString &msg);
@@ -33,6 +43,7 @@ public slots:
     void pi_requestMotionStatus();
     void pi_requestBellStatus();
     void pi_requestCameraInfo();
+    void pi_requestActivityLog();
 
 private:
     void _hss_recvMsg(const QString &msg) override;
@@ -45,8 +56,9 @@ private:
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);
     void and_returnBellStatus(int status);
-    void and_appendCameraInfo(const QString& cameraName,
-                              const QString& cameraUrl);
+    void and_returnCameraInfo(const QString& result);
+    void and_returnActivityLog(const QString& log);
+
 
 private slots:
     void handleConnectToHost(bool result);
@@ -57,6 +69,9 @@ private:
     CameraListModel _cameraModel;
     ActivityListModel _activityModel;
     QAndroidJniObject _javaMainAct;
+    QString m_username;
+    QString m_loginingUsername;
+    QString m_cameraUrl;
 };
 
 extern HSSEngine* ENGINE;

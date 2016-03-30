@@ -70,7 +70,15 @@ ScreenBase{
                 anchors.bottomMargin: 1
                 Text {
                     anchors.fill: parent
-                    text: qsTr("text")
+                    text: name
+                }                
+            }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    Engine.cameraUrl = url
+                    console.debug(Engine.cameraUrl)
+                    ScreenManager.toCameraViewScr()
                 }
             }
         }

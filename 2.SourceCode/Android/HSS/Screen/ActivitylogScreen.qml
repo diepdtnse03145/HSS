@@ -10,12 +10,12 @@ ScreenBase{
 
     Rectangle {
         id: rectangle1
+        x: 0
+        y: 0
+        width: 1080
         height: 200
         color: "#005fbf"
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.left: parent.left
+
 
         HSS_Button{
             id: backButton
@@ -34,6 +34,7 @@ ScreenBase{
             }
         }
 
+
         Text {
             id: mainHeadline
             x: 285
@@ -46,6 +47,32 @@ ScreenBase{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 80
         }
+    }
+
+    ListView {
+        id: listView1
+        x: 0
+        y: 200
+        width: 1080
+        height: 1660
+        clip: true
+        delegate: Item {
+            width: 1080
+            height: 150
+            Rectangle {
+                anchors.fill: parent
+                color: "steelblue"
+            }
+            Rectangle{
+                anchors.fill: parent
+                anchors.bottomMargin: 1
+                Text {
+                    anchors.fill: parent
+                    text: time + ": " + value
+                }
+            }
+        }
+        model: ActivityModel
     }
 }
 

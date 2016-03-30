@@ -22,14 +22,16 @@ void ConnectionBase::_recvMsg()
 void ConnectionBase::_sendMsg(const QString &msg)
 {
     if (_sock.state() != QTcpSocket::ConnectedState) {
-        emit _connectToHostResult(connectToHost("localhost", 13));
+        emit _connectToHostResult(connectToHost("192.168.125.58", 1340));
     }
     _hss_sendMsg(msg);
+    //TEST
+//    qDebug() << __FUNCTION__<<msg;
 }
 
 void ConnectionBase::_hss_sendMsg(const QString &msg)
 {
-    if(_sock.isValid()){
+    if(_sock.state() == QTcpSocket::ConnectedState){
         _sock.write(msg.toUtf8());
         _sock.waitForBytesWritten(-1);
     }
