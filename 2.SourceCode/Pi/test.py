@@ -6,9 +6,8 @@ import signal
 import time
  
 class SecurityCamera:
-  def __init__(self, username='', password='', whitelist=[], camera='', snd_capture='', snd_playback=''):
+  def __init__(self, username='', password='', camera='', snd_capture='', snd_playback=''):
     self.quit = False
-    self.whitelist = whitelist
     callbacks = {
       'call_state_changed': self.call_state_changed,
     }
@@ -57,14 +56,8 @@ class SecurityCamera:
  
   def call_state_changed(self, core, call, state, message):
     if state == linphone.CallState.IncomingReceived:
-      if call.remote_address.as_string_uri_only() in self.whitelist:
         params = core.create_call_params(call)
         core.accept_call_with_params(call, params)
-      else:
-        core.decline_call(call, linphone.Reason.Declined)
-        chat_room = core.get_chat_room_from_uri(self.whitelist[0])
-        msg = chat_room.create_message(call.remote_address_as_string + ' tried to call')
-        chat_room.send_chat_message(msg)
  
   def configure_sip_account(self, username, password):
     # Configure the SIP account
@@ -82,7 +75,7 @@ class SecurityCamera:
       time.sleep(0.03)
  
 def main():
-  cam = SecurityCamera(username='raspberry', password='pi', whitelist=['sip:trusteduser@sip.linphone.org'], camera='V4L2: /dev/video0', snd_capture='ALSA: USB Device 0x46d:0x825')
+  cam = SecurityCamera(username='hung1234', password='hung1234@', camera='V4L2: /dev/video0', snd_capture='ALSA: USB Device 0x46d:0x825')
   cam.run()
  
 main()
