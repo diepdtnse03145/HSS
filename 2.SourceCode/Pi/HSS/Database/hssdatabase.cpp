@@ -37,14 +37,7 @@ bool HSSDatabase::changePWD(const std::string &username,
     query.bind(1, newpwd);
     query.bind(2, username);
 
-    while (query.executeStep()) {
-        int res = query.getColumn(0);
-        if (res) {
-            return true;
-        }
-    }
-
-    return false;
+    return !!query.exec();
 }
 
 void HSSDatabase::writeLog(const std::string &log)

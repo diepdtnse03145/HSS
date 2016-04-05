@@ -160,9 +160,7 @@ void AndroidEngine::pi_changePassword(const std::string &username,
                                       const std::string &oldpwd,
                                       const std::string &newpwd)
 {
-    auto changePwdRes = _db.changePWD(username,
-                                      oldpwd,
-                                      newpwd);
+    auto changePwdRes = _db.changePWD(username, oldpwd, newpwd);
     and_changePwResult(changePwdRes);
 }
 
