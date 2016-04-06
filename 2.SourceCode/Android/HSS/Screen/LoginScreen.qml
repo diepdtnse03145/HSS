@@ -9,6 +9,13 @@ ScreenBase{
         Engine.toHome()
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            console.debug("Login Screen background")
+        }
+    }
+
     TextField  {
         id: input_user
         x: 261
