@@ -19,6 +19,7 @@ import com.pusher.client.channel.Channel;
 import com.pusher.client.channel.SubscriptionEventListener;
 
 import java.io.IOException;
+import org.hss.hss.LpVoIP;
 
 public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
 {
@@ -30,6 +31,18 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
     public static MyActivity getIns()
     {
         return currentActivity;
+    }
+
+    private boolean m_isCalling;
+
+    public boolean isCalling()
+    {
+        return m_isCalling;
+    }
+
+    public void setIsCalling(boolean vl)
+    {
+        m_isCalling = vl;
     }
 
     @Override
@@ -54,5 +67,30 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
+    }
+
+    public void call(final String des) {
+        Log.w("myApp","Moe~~~~~~~~~~~~~~~~~");
+
+        setIsCalling(true);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Log.w("myApp","Moe~~~~~~~~~~~~~~~~~");
+                LpVoIP t = new LpVoIP();
+                try {
+                        t.launch(des);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+    }
+
+    public void endCall()
+    {
+        setIsCalling(false);
     }
 }

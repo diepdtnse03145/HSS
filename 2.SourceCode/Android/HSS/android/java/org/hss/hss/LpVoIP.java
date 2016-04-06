@@ -84,9 +84,6 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
         }
 
 	public void launch(String destinationSipAddress) throws LinphoneCoreException {
-
-		// First instantiate the core Linphone object given only a listener.
-		// The listener will react to events in Linphone core.
                 LinphoneCore lc = LinphoneCoreFactory.instance().createLinphoneCore(this, MyActivity.getIns());
                 lc.migrateToMultiTransport();
 
@@ -98,11 +95,6 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
                             return;
                     }
                     write("Call to " + destinationSipAddress + " is in progress...");
-
-                LinphoneChatRoom chatRoom = lc.getOrCreateChatRoom(destinationSipAddress);
-
-                LinphoneChatMessage chatMessage = chatRoom.createLinphoneChatMessage("Hello world");
-                chatRoom.sendMessage(chatMessage, this);
 
                 running = true;
                 while (running) {
@@ -121,7 +113,6 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
 
 		} finally {
 			write("Shutting down...");
-			// You need to destroy the LinphoneCore object when no longer used
 			lc.destroy();
 			write("Exited");
 		}

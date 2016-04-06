@@ -30,6 +30,7 @@ public slots:
     void toHome();
     void callHandleBack();
     void resumeToLogin();
+    void endCall();
 
     void pi_requestLogin(const QString& username,
                          const QString& pwd);
@@ -44,9 +45,11 @@ public slots:
     void pi_requestBellStatus();
     void pi_requestCameraInfo();
     void pi_requestActivityLog();
+    void pi_requestCallAdd();
 
 private:
     void _hss_recvMsg(const QString &msg) override;
+    void startCall(const QString& address);
 
     void and_loginResult(bool result);
     void and_changePwResult(bool result);
@@ -58,7 +61,7 @@ private:
     void and_returnBellStatus(int status);
     void and_returnCameraInfo(const QString& result);
     void and_returnActivityLog(const QString& log);
-
+    void and_returnCallAdd(const QString& address);
 
 private slots:
     void handleConnectToHost(bool result);

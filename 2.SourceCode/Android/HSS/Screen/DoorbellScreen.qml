@@ -78,7 +78,9 @@ ScreenBase{
         width: 428
         height: 127
         color: "#4ae263"
-
+        onClicked: {
+            Engine.pi_requestCallAdd()
+        }
         Text {
             id: callText
             x: 74
@@ -97,6 +99,10 @@ ScreenBase{
         width: 428
         height: 127
         color: "#e65959"
+        onClicked: {
+            Engine.endCall()
+        }
+
         Text {
             id: endText
             x: 89

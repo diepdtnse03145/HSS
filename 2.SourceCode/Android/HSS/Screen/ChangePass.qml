@@ -134,8 +134,6 @@ ScreenBase{
 
         Text {
             id:textChangePwd
-//            width: 148
-//            height: 65
             color: "#ffffff"
             anchors.centerIn: parent
             text: "Change"

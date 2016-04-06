@@ -47,6 +47,11 @@ void HSSEngine::resumeToLogin()
     _scrMng.setIsLogin(false);
 }
 
+void HSSEngine::endCall()
+{
+    _javaMainAct.callMethod<void>("endCall");
+}
+
 void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
 {
     m_loginingUsername = username;
@@ -55,7 +60,7 @@ void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
             .arg(stringToMsgArg(pwd));
     _sendMsg(msg);
     //TEST
-    //    and_loginResult(true);
+    and_loginResult(true);
 }
 
 void HSSEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
@@ -125,6 +130,15 @@ void HSSEngine::pi_requestActivityLog()
     _sendMsg(msg);
 }
 
+void HSSEngine::pi_requestCallAdd()
+{
+    QString msg = QStringLiteral("pi_requestCallAdd\n");
+    _sendMsg(msg);
+
+    //TEST
+    and_returnCallAdd("sip:diepdtn@sip.linphone.org");
+}
+
 void HSSEngine::_hss_recvMsg(const QString &msg)
 {
     auto v = msg.split(QRegExp{R"mm(\s+)mm"}, QString::SkipEmptyParts);
@@ -168,6 +182,17 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
         QString and_returnActivityLog_arg1 = msgArgToString(v.at(1));
         and_returnActivityLog(and_returnActivityLog_arg1);
     }
+
+    if (v.at(0) == "and_returnCallAdd") {
+        QString and_returnCallAdd_arg1 = msgArgToString(v.at(1));
+        and_returnCallAdd(and_returnCallAdd_arg1);
+    }
+}
+
+void HSSEngine::startCall(const QString &address)
+{
+    auto _add = QAndroidJniObject::fromString(address);
+    _javaMainAct.callMethod<void>("call", "(Ljava/lang/String;)V", _add.object<jstring>());
 
 }
 
@@ -255,6 +280,11 @@ void HSSEngine::and_returnActivityLog(const QString &log)
         _activityModel.add(ite.toObject().value("timestamp").toString(),
                            ite.toObject().value("activity").toString());
     }
+}
+
+void HSSEngine::and_returnCallAdd(const QString &address)
+{
+    startCall(address);
 }
 
 void HSSEngine::handleConnectToHost(bool result)

@@ -43,6 +43,7 @@ DISTFILES += \
     android/gradlew.bat \
     android/java/org/hss/hss/MyActivity.java \
     android/java/org/hss/hss/MyService.java \
-    android/java/org/hss/hss/MyService.java
+    android/java/org/hss/hss/MyService.java \
+    android/java/org/hss/hss/LpVoIP.java
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
