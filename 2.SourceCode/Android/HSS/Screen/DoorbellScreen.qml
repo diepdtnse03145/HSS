@@ -106,8 +106,5 @@ ScreenBase{
             font.pixelSize: 70
         }
     }
-
-
-
 }
 

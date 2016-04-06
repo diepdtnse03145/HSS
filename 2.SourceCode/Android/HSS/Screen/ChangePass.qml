@@ -52,7 +52,7 @@ ScreenBase{
     Text {
         id: textOldPwd
         x: 92
-        y: 303
+        y: 227
         width: 691
         height: 98
         text: qsTr("Enter Old Password:")
@@ -77,7 +77,7 @@ ScreenBase{
     Text {
         id: textNewPwd
         x: 92
-        y: 583
+        y: 501
         width: 691
         height: 98
         text: qsTr("Enter New Password:")
@@ -101,7 +101,7 @@ ScreenBase{
     Text {
         id: textConfirmPwd
         x: 92
-        y: 851
+        y: 772
         width: 691
         height: 98
         text: qsTr("Confirm New Password:")
@@ -124,28 +124,27 @@ ScreenBase{
 
     HSS_Button {
         id: buttonChangePwd
-        x: 359
-        y: 1146
-        width: 400
+        x: 240
+        y: 1067
+        width: 600
         height: 150
         color: "#005fbf"
         anchors.right: parent.right
-        anchors.rightMargin: 359
+        anchors.rightMargin: 240
 
         Text {
             id:textChangePwd
-            width: 148
-            height: 65
+//            width: 148
+//            height: 65
             color: "#ffffff"
             anchors.centerIn: parent
             text: "Change"
-            font.pointSize: 30
+            font.pointSize: 25
         }
 
         onClicked: {
             Engine.pi_changePassword(Engine.username, textOldPwd.text, inputConfirmPwd.text)
         }
     }
-
 }
 

@@ -76,8 +76,6 @@ ScreenBase{
         color: "#005fbf"
         antialiasing: false
         transformOrigin: Item.Center
-        anchors.right: parent.right
-        anchors.rightMargin: 190
 
         Text {
             id:textCamera
@@ -113,8 +111,6 @@ ScreenBase{
         color: "#005fbf"
         antialiasing: false
         transformOrigin: Item.Center
-        anchors.right: parent.right
-        anchors.rightMargin: 190
 
         Text {
             id:textDoorBell
@@ -148,8 +144,6 @@ ScreenBase{
         color: "#005fbf"
         antialiasing: false
         transformOrigin: Item.Center
-        anchors.right: parent.right
-        anchors.rightMargin: 190
 
         Text {
             id:textSetting
