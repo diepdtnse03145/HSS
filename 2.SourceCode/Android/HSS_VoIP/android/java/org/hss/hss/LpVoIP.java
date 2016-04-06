@@ -34,6 +34,7 @@ import org.linphone.core.PublishState;
 import org.linphone.core.SubscriptionState;
 import org.linphone.core.LinphoneInfoMessage;
 import org.linphone.core.LinphoneAuthInfo;
+import org.hss.hss.MyActivity;
 
 
 public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateListener {
@@ -51,7 +52,6 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
 	public void globalState(LinphoneCore lc, GlobalState state, String message) {}
 	public void newSubscriptionRequest(LinphoneCore lc, LinphoneFriend lf,String url) {}
 	public void notifyPresenceReceived(LinphoneCore lc, LinphoneFriend lf) {}
-	public void callState(LinphoneCore lc, LinphoneCall call, State cstate, String msg){}
 	public void callStatsUpdated(LinphoneCore lc, LinphoneCall call, LinphoneCallStats stats) {}
 	public void ecCalibrationStatus(LinphoneCore lc, EcCalibratorStatus status,int delay_ms, Object data) {}
 	public void callEncryptionChanged(LinphoneCore lc, LinphoneCall call,boolean encrypted, String authenticationToken) {}
@@ -76,6 +76,13 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
         //Deprecated
 	}
 
+        public void callState(LinphoneCore lc, LinphoneCall call, State cstate, String msg){
+                write("State: " + msg);
+
+                if (State.CallEnd.equals(cstate))
+                        running = false;
+        }
+
 	public void launch(String destinationSipAddress) throws LinphoneCoreException {
 
 		// First instantiate the core Linphone object given only a listener.
@@ -92,19 +99,18 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
                     }
                     write("Call to " + destinationSipAddress + " is in progress...");
 
-
-
-                // Next step is to create a chat room
                 LinphoneChatRoom chatRoom = lc.getOrCreateChatRoom(destinationSipAddress);
 
-                // Send message
                 LinphoneChatMessage chatMessage = chatRoom.createLinphoneChatMessage("Hello world");
                 chatRoom.sendMessage(chatMessage, this);
 
-                // main loop for receiving notifications and doing background linphonecore work
                 running = true;
                 while (running) {
+                        if(!MyActivity.getIns().isCalling()) {
+                            lc.terminateCall(call);
+                        }
                         lc.iterate();
+
                         try{
                                 Thread.sleep(50);
                         } catch(InterruptedException ie) {
@@ -141,7 +147,6 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
 	public void onLinphoneChatMessageStateChanged(LinphoneChatMessage msg,
 			org.linphone.core.LinphoneChatMessage.State state) {
                 write("Sent message [" + msg.getText() + "] new state is " + state.toString());
-//                stopMainLoop();
 	}
 
         @Override

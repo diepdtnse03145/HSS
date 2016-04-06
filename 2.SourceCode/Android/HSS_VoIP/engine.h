@@ -17,6 +17,7 @@ public slots:
 
 private:
     QAndroidJniObject _javaMainAct;
+    bool _calling;
 };
 
 #endif // ENGINE_H

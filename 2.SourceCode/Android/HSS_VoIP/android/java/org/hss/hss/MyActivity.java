@@ -27,20 +27,47 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         return currentActivity;
     }
 
+    private boolean m_isCalling;
+
+    public boolean isCalling()
+    {
+        return m_isCalling;
+    }
+
+    public void setIsCalling(boolean vl)
+    {
+        m_isCalling = vl;
+    }
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         currentActivity = this;
     }
 
-    public void Moe() {
+    public void call(final String des) {
         Log.w("myApp","Moe~~~~~~~~~~~~~~~~~");
-        LpVoIP t = new LpVoIP();
-        try {
-                String destinationSipAddress = "sip:jackycandy@sip.linphone.org";
-                t.launch(destinationSipAddress);
-        } catch (Exception e) {
-                e.printStackTrace();
-        }
+
+        setIsCalling(true);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                Log.w("myApp","Moe~~~~~~~~~~~~~~~~~");
+                LpVoIP t = new LpVoIP();
+                try {
+                        t.launch(des);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+            }
+        };
+
+        thread.start();
+    }
+
+    public void endCall()
+    {
+        setIsCalling(false);
     }
 }
