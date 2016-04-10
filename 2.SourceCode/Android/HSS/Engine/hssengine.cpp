@@ -60,7 +60,7 @@ void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
             .arg(stringToMsgArg(pwd));
     _sendMsg(msg);
     //TEST
-    and_loginResult(true);
+//    and_loginResult(true);
 }
 
 void HSSEngine::pi_changePassword(const QString &username, const QString &oldpwd, const QString &newpwd)
@@ -290,7 +290,7 @@ void HSSEngine::and_returnCallAdd(const QString &address)
 void HSSEngine::handleConnectToHost(bool result)
 {
     if (result) {
-        showOnscreen("Connected");
+//        showOnscreen("Connected");
     } else {
         showOnscreen("Connect failed!");
     }
