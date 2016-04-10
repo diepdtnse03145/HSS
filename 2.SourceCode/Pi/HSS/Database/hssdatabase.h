@@ -14,7 +14,7 @@ public:
                    const std::string& oldpwd,
                    const std::string& newpwd);
     void writeLog(const std::string& log);
-
+    bool deleteAllActivityLog();
     const std::string getAllCameraInfo();
     const std::string getActivityLog();
 

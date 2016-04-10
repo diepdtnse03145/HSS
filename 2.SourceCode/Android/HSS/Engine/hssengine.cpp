@@ -130,6 +130,12 @@ void HSSEngine::pi_requestActivityLog()
     _sendMsg(msg);
 }
 
+void HSSEngine::pi_deleteActitvityLog()
+{
+    QString msg = QStringLiteral("pi_deleteActitvityLog\n");
+    _sendMsg(msg);
+}
+
 void HSSEngine::pi_requestCallAdd()
 {
     QString msg = QStringLiteral("pi_requestCallAdd\n");
@@ -171,6 +177,11 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
     if (v.at(0) == "and_returnCameraInfo") {
         QString and_returnCameraInfo_arg1 = msgArgToString(v.at(1));
         and_returnCameraInfo(and_returnCameraInfo_arg1);
+    }
+
+    if (v.at(0) == "and_deleteActitvityLogResult") {
+        bool and_deleteActitvityLogResult_arg1 = msgArgToBool(v.at(1));
+        and_deleteActitvityLogResult(and_deleteActitvityLogResult_arg1);
     }
 
     if (v.at(0) == "and_returnActivityLog") {
@@ -274,6 +285,16 @@ void HSSEngine::and_returnActivityLog(const QString &log)
     for (const auto& ite : res_arr) {
         _activityModel.add(ite.toObject().value("timestamp").toString(),
                            ite.toObject().value("activity").toString());
+    }
+}
+
+void HSSEngine::and_deleteActitvityLogResult(bool result)
+{
+    if (result) {
+        showOnscreen("Activity log deleted!");
+//        pi_requestActivityLog();
+    } else {
+        showOnscreen("Delete Activity log failed!");
     }
 }
 

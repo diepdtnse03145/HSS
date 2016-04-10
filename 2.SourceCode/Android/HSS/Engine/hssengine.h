@@ -45,6 +45,7 @@ public slots:
     void pi_requestBellStatus();
     void pi_requestCameraInfo();
     void pi_requestActivityLog();
+    void pi_deleteActitvityLog();
     void pi_requestCallAdd();
 
 private:
@@ -61,6 +62,7 @@ private:
     void and_returnBellStatus(int status);
     void and_returnCameraInfo(const QString& result);
     void and_returnActivityLog(const QString& log);
+    void and_deleteActitvityLogResult(bool result);
     void and_returnCallAdd(const QString& address);
 
 private slots:

@@ -48,8 +48,15 @@ void HSSDatabase::writeLog(const std::string &log)
     query.bind(1, "12:00");
     query.bind(2, log);
 
-    while (query.executeStep()) {};
+    query.exec();
+}
 
+bool HSSDatabase::deleteAllActivityLog()
+{
+    SQLite::Statement   query(_db, "DELETE FROM HSS_Activity;");
+    query.exec();
+
+    return true;
 }
 
 const std::string HSSDatabase::getAllCameraInfo()

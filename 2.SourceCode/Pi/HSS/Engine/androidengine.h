@@ -27,6 +27,7 @@ public:
     void and_returnBellStatus(int status);
     void and_returnCameraInfo(const std::string& cameraInfo);
     void and_returnActivityLog(const std::string& log);
+    void and_deleteActitvityLogResult(bool result);
 
 private:
     ArduinoEngine* _ard;
@@ -48,6 +49,7 @@ private:
     void pi_requestBellStatus();
     void pi_requestCameraInfo();
     void pi_requestActivityLog();
+    void pi_deleteActitvityLog();
 
 };
 

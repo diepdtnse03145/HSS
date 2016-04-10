@@ -84,6 +84,12 @@ void AndroidEngine::and_returnActivityLog(const std::string &log)
     _sendMsg(msg);
 }
 
+void AndroidEngine::and_deleteActitvityLogResult(bool result)
+{
+    std::string msg = fmt::format("and_deleteActitvityLogResult {0}\n", boolToMsgArg(result));
+    _sendMsg(msg);
+}
+
 void AndroidEngine::pushMessage(std::string msg)
 {
     _pushsv.pushMessage(msg);
@@ -144,6 +150,10 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
     }
 
     if(vec.at(0) == "pi_requestActivityLog") {
+        pi_requestActivityLog();
+    }
+
+    if(vec.at(0) == "pi_deleteActitvityLog") {
         pi_requestActivityLog();
     }
 }
@@ -208,4 +218,9 @@ void AndroidEngine::pi_requestCameraInfo()
 void AndroidEngine::pi_requestActivityLog()
 {
     and_returnActivityLog(_db.getActivityLog());
+}
+
+void AndroidEngine::pi_deleteActitvityLog()
+{
+    and_deleteActitvityLogResult(_db.deleteAllActivityLog());
 }

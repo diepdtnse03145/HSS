@@ -49,7 +49,7 @@ ScreenBase{
         }
     }
 
-    Rectangle {
+    HSS_Button {
         id: deleteActivityLogButton
         x: 0
         y: 1200
@@ -68,6 +68,9 @@ ScreenBase{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 80
             verticalAlignment: Text.AlignVCenter
+        }
+        onClicked: {
+            Engine.pi_deleteActitvityLog()
         }
     }
 

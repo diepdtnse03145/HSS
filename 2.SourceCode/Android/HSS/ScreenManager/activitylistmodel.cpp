@@ -1,4 +1,5 @@
 #include "activitylistmodel.h"
+#include <iterator>
 
 ActivityListModel::ActivityListModel(QObject* parent) :
     QAbstractListModel{parent}
@@ -40,11 +41,13 @@ QVariant ActivityListModel::data(const QModelIndex &index, int role) const
     if (index.row() < 0 || index.row() >= _activityList.size())
         return QVariant();
 
+    //view activity from newest to oldest
+
     switch (role){
     case ActivityListModel::TimeRole:
-        return _activityList[index.row()].first;
+        return _activityList.crbegin()[index.row()].first;
     case ActivityListModel::ValueRole:
-        return _activityList[index.row()].second;
+        return _activityList.crbegin()[index.row()].second;
     }
 
     return QVariant();
