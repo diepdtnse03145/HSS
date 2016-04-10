@@ -154,7 +154,7 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
     }
 
     if(vec.at(0) == "pi_deleteActitvityLog") {
-        pi_requestActivityLog();
+        pi_deleteActitvityLog();
     }
 }
 

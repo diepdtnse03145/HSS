@@ -1,6 +1,7 @@
 #include "hssdatabase.h"
 #include "../hss_global.h"
 #include <json.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 HSSDatabase::HSSDatabase() :
     _db{HSS_DATABASE_F, SQLITE_OPEN_READWRITE}
@@ -42,10 +43,11 @@ bool HSSDatabase::changePWD(const std::string &username,
 
 void HSSDatabase::writeLog(const std::string &log)
 {
-    SQLite::Statement   query(_db, "INSERT INTO HSS_Activity (Timestamp, Activity) VALUES (?,?);");
+    SQLite::Statement query(_db, "INSERT INTO HSS_Activity (Timestamp, Activity) VALUES (?,?);");
 
-    //TODO
-    query.bind(1, "12:00");
+    query.bind(1, boost::posix_time::to_simple_string(
+                   boost::posix_time::second_clock::local_time()
+                   ) );
     query.bind(2, log);
 
     query.exec();
@@ -53,7 +55,7 @@ void HSSDatabase::writeLog(const std::string &log)
 
 bool HSSDatabase::deleteAllActivityLog()
 {
-    SQLite::Statement   query(_db, "DELETE FROM HSS_Activity;");
+    SQLite::Statement query(_db, "DELETE FROM HSS_Activity;");
     query.exec();
 
     return true;

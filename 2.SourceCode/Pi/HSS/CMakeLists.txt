@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME} ${HSS_SRC_LIST})
 set(Boost_USE_STATIC_LIBS        ON) # only find static libs
 set(Boost_USE_MULTITHREADED      ON)
 set(Boost_USE_STATIC_RUNTIME    OFF)
-find_package(Boost 1.60.0 COMPONENTS filesystem system python REQUIRED)
+find_package(Boost 1.60.0 COMPONENTS filesystem system python date_time REQUIRED)
 
 if(Boost_FOUND)
   include_directories(${Boost_INCLUDE_DIRS})
