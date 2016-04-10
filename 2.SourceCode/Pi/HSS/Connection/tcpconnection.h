@@ -19,6 +19,7 @@ protected:
 private:
     boost::asio::ip::tcp::acceptor _tcp_sv;
     boost::asio::ip::tcp::socket _sock;
+    boost::asio::ip::tcp::socket _acpsock;
     boost::asio::ip::tcp::endpoint _end;
     boost::asio::streambuf _buf;
     bool _isSending;

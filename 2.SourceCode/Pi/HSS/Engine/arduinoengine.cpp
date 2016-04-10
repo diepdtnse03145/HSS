@@ -13,7 +13,7 @@ ArduinoEngine::ArduinoEngine(Setting &setting,
     _pushsv{pushsv},
     _sensorTimer{io}
 {
-    _requestSensorValue();
+//    _requestSensorValue();
 }
 
 void ArduinoEngine::setAndroidEngine(AndroidEngine *engine)

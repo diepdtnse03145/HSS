@@ -9,6 +9,7 @@ TcpConnection::TcpConnection(Setting &setting, HSSDatabase &db, boost::asio::io_
             _getOptionsValue<unsigned short>(HSS_TCP_SV_PORT_SETTING)}
             },
     _sock{io},
+    _acpsock{io},
     _isSending{false}
 {
     _doAccept();
@@ -24,7 +25,7 @@ void TcpConnection::_hss_sendMsg()
                                  );
         _isSending = true;
     } else {
-//        std::cout<<"Tcp connection is sending msg, your msg will be sent later"<<std::endl;
+        //        std::cout<<"Tcp connection is sending msg, your msg will be sent later"<<std::endl;
     }
 }
 
@@ -35,34 +36,50 @@ bool TcpConnection::_hss_isSending()
 
 void TcpConnection::_doAccept()
 {
-    _tcp_sv.async_accept(_sock, _end, boost::bind(&TcpConnection::_handleAccept,
-                                                  this, boost::placeholders::_1));
+    _tcp_sv.async_accept(_acpsock, _end, boost::bind(&TcpConnection::_handleAccept,
+                                                     this, boost::placeholders::_1));
 }
 
 void TcpConnection::_handleAccept(const boost::system::error_code &ec)
 {
+    _sock.close();
+    _sock = std::move(_acpsock);
     boost::asio::async_read_until(_sock, _buf, "\n",
                                   boost::bind(&TcpConnection::_handleRead,
                                               this, boost::placeholders::_1, boost::placeholders::_2
                                               )
                                   );
+    _tcp_sv.async_accept(_acpsock, _end, boost::bind(&TcpConnection::_handleAccept,
+                                                     this, boost::placeholders::_1));
+
 }
 
 void TcpConnection::_handleRead(const boost::system::error_code &ec, std::size_t len)
 {
-    auto bufs = _buf.data();
-    std::string line(
-                boost::asio::buffers_begin(bufs),
-                boost::asio::buffers_begin(bufs) + len
-                );
-    _buf.consume(len);
-    _recvMsg(line);
+    switch(ec.value()) {
+    case boost::asio::error::operation_aborted:
+    case boost::system::errc::no_such_file_or_directory:
+        break;
+    case boost::system::errc::success:
+    {
+        auto bufs = _buf.data();
+        std::string line(
+                    boost::asio::buffers_begin(bufs),
+                    boost::asio::buffers_begin(bufs) + len
+                    );
+        _buf.consume(len);
+        std::cout<<__FUNCTION__<<": "<<line<<std::endl;
+        _recvMsg(line);
 
-    boost::asio::async_read_until(_sock, _buf, "\n",
-                                  boost::bind(&TcpConnection::_handleRead,
-                                              this, boost::placeholders::_1, boost::placeholders::_2
-                                              )
-                                  );
+    }
+    default:
+        boost::asio::async_read_until(_sock, _buf, "\n",
+                                      boost::bind(&TcpConnection::_handleRead,
+                                                  this, boost::placeholders::_1, boost::placeholders::_2
+                                                  )
+                                      );
+        break;
+    }
 }
 
 void TcpConnection::_handleWrite(const boost::system::error_code &ec, std::size_t len)
