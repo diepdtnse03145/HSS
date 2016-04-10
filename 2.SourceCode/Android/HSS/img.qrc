@@ -4,5 +4,7 @@
         <file>img/logo.png</file>
         <file>img/pass.png</file>
         <file>img/user.png</file>
+        <file>img/external.png</file>
+        <file>img/internal.png</file>
     </qresource>
 </RCC>

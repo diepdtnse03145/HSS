@@ -52,6 +52,16 @@ void HSSEngine::endCall()
     _javaMainAct.callMethod<void>("endCall");
 }
 
+void HSSEngine::externalSpeaker()
+{
+    _javaMainAct.callMethod<void>("externalSpeaker");
+}
+
+void HSSEngine::internalSpeaker()
+{
+    _javaMainAct.callMethod<void>("internalSpeaker");
+}
+
 void HSSEngine::pi_requestLogin(const QString &username, const QString &pwd)
 {
     m_loginingUsername = username;
@@ -142,7 +152,7 @@ void HSSEngine::pi_requestCallAdd()
     _sendMsg(msg);
 
     //TEST
-    and_returnCallAdd("sip:diepdtn@sip.linphone.org");
+//    and_returnCallAdd("sip:diepdtn@sip.linphone.org");
 }
 
 void HSSEngine::_hss_recvMsg(const QString &msg)

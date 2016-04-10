@@ -28,6 +28,7 @@ public:
     void and_returnCameraInfo(const std::string& cameraInfo);
     void and_returnActivityLog(const std::string& log);
     void and_deleteActitvityLogResult(bool result);
+    void and_returnCallAdd(const std::string &address);
 
 private:
     ArduinoEngine* _ard;
@@ -50,7 +51,7 @@ private:
     void pi_requestCameraInfo();
     void pi_requestActivityLog();
     void pi_deleteActitvityLog();
-
+    void pi_requestCallAdd();
 };
 
 #endif // ANDROIDENGINE_H

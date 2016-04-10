@@ -33,11 +33,27 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         return currentActivity;
     }
 
-    private boolean m_isCalling;
+    private boolean m_isCalling;    
+    private boolean m_exSpeaker;
 
     public boolean isCalling()
     {
         return m_isCalling;
+    }
+
+    public boolean isExSpeaker()
+    {
+        return m_exSpeaker;
+    }
+
+    public void externalSpeaker()
+    {
+        m_exSpeaker = true;
+    }
+
+    public void internalSpeaker()
+    {
+        m_exSpeaker = false;
     }
 
     public void setIsCalling(boolean vl)
@@ -73,6 +89,7 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         Log.w("myApp","Moe~~~~~~~~~~~~~~~~~");
 
         setIsCalling(true);
+        internalSpeaker();
         Thread thread = new Thread() {
             @Override
             public void run() {

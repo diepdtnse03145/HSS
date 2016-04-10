@@ -96,11 +96,12 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
                     }
                     write("Call to " + destinationSipAddress + " is in progress...");
 
-                running = true;
-                while (running) {
+                    running = true;
+                    while (running) {
                         if(!MyActivity.getIns().isCalling()) {
                             lc.terminateCall(call);
                         }
+                        lc.enableSpeaker(MyActivity.getIns().isExSpeaker());
                         lc.iterate();
 
                         try{
@@ -108,7 +109,7 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
                         } catch(InterruptedException ie) {
                                 write("Interrupted!\nAborting");
                                 return;
-                        }
+                    }
                 }
 
 		} finally {

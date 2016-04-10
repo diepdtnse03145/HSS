@@ -68,6 +68,7 @@ ScreenBase{
             Engine.pi_requestCallAdd()
             callButton.visible = false
             endButton.visible = true
+            speaker.visible = true
         }
     }
 
@@ -92,24 +93,62 @@ ScreenBase{
             Engine.endCall()
             callButton.visible = true
             endButton.visible = false
+            speaker.visible = false
+            internalSpeaker.visible = false
         }
     }
 
     HSS_Button {
-        id: speakerButton
-        x: 326
-        y: 561
-        width: 428
-        height: 127
-        color: "#4ae263"
+        id: speaker
+        x: 440
+        y: 431
+        width: 200
+        height: 200
+        color: "#ffffff"
+        visible: false
 
-        Text {
-            id: speakerText
-            anchors.centerIn: parent
-            color: "#ffffff"
-            text: qsTr("Speaker")
-            font.pixelSize: 70
+        Image {
+            source: "qrc:/img/external.png"
+            anchors.fill: parent
+        }
+
+        onClicked: {
+            internalSpeaker.visible = true
+            speaker.visible = false
+            Engine.externalSpeaker()
+        }
+
+    }
+
+    HSS_Button {
+        id: internalSpeaker
+        x: 440
+        y: 431
+        width: 200
+        height: 200
+        color: "#ffffff"
+        visible: false
+
+        Image {
+            source: "qrc:/img/internal.png"
+            anchors.fill: parent
+        }
+
+        onClicked: {
+            internalSpeaker.visible = false
+            speaker.visible = true
+            Engine.internalSpeaker()
         }
     }
+
+    Image {
+        id: picture
+        x: 220
+        y: 802
+        width: 640
+        height: 480
+        visible: false
+    }
+
 }
 

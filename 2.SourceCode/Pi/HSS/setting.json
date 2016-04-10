@@ -4,5 +4,6 @@
     "dt_door_enable": true,
     "dt_motion_enable": true,
     "sys_stt_enable": true,
-    "tcp_sv_port": 1340
+    "tcp_sv_port": 1340,
+    "voip_adress": "sip:diepdtn@sip.linphone.org"
 }

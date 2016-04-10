@@ -9,7 +9,9 @@
 #define HSS_SYS_STT_ENABLE_SETTING "sys_stt_enable"
 #define HSS_DT_DOOR_ENABLE_SETTING "dt_door_enable"
 #define HSS_DOOR_BELL_ENABLE_SETTING "door_bell_enable"
+#define HSS_VOIP_ADRESS "voip_adress"
 
 #define HIGH (1)
 #define LOW (0)
+
 #endif // HSS_GLOBAL_H

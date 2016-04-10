@@ -31,6 +31,8 @@ public slots:
     void callHandleBack();
     void resumeToLogin();
     void endCall();
+    void externalSpeaker();
+    void internalSpeaker();
 
     void pi_requestLogin(const QString& username,
                          const QString& pwd);

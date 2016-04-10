@@ -90,6 +90,12 @@ void AndroidEngine::and_deleteActitvityLogResult(bool result)
     _sendMsg(msg);
 }
 
+void AndroidEngine::and_returnCallAdd(const std::string &address)
+{
+    std::string msg = fmt::format("and_returnCallAdd {0}\n", stringToMsgArg(address));
+    _sendMsg(msg);
+}
+
 void AndroidEngine::pushMessage(std::string msg)
 {
     _pushsv.pushMessage(msg);
@@ -155,6 +161,10 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
 
     if(vec.at(0) == "pi_deleteActitvityLog") {
         pi_deleteActitvityLog();
+    }
+
+    if(vec.at(0) == "pi_requestCallAdd") {
+        pi_requestCallAdd();
     }
 }
 
@@ -223,4 +233,9 @@ void AndroidEngine::pi_requestActivityLog()
 void AndroidEngine::pi_deleteActitvityLog()
 {
     and_deleteActitvityLogResult(_db.deleteAllActivityLog());
+}
+
+void AndroidEngine::pi_requestCallAdd()
+{
+     and_returnCallAdd(_getOptionsValue<std::string>(HSS_VOIP_ADRESS));
 }
