@@ -69,10 +69,17 @@ ScreenBase{
                 anchors.fill: parent
                 anchors.bottomMargin: 1
                 Text {
-                    anchors.fill: parent
+                    x: 20
+                    y: 0
+                    width: 1080
+                    height: 150
                     text: name
-                }                
+                    font.pointSize: 22
+                    color: "darkblue"
+                    verticalAlignment: Text.AlignVCenter
+                }
             }
+
             MouseArea {
                 anchors.fill: parent
                 onClicked: {

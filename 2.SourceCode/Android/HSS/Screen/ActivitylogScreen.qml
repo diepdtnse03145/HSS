@@ -66,9 +66,26 @@ ScreenBase{
             Rectangle{
                 anchors.fill: parent
                 anchors.bottomMargin: 1
+
                 Text {
-                    anchors.fill: parent
-                    text: time + ": " + value
+                    x: 0
+                    y: 0
+                    width: 1080
+                    height: 60
+                    text: time
+                    font.pointSize: 12
+                    horizontalAlignment: Text.AlignRight
+                    color: "dimgray"
+                }
+                Text {
+                    x: 20
+                    y: 0
+                    width: 1080
+                    height: 150
+                    text: value
+                    font.pointSize: 22
+                    color: "darkblue"
+                    verticalAlignment: Text.AlignVCenter
                 }
             }
         }
