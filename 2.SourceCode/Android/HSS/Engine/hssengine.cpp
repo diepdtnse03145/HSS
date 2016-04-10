@@ -143,11 +143,6 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
 {
     auto v = msg.split(QRegExp{R"mm(\s+)mm"}, QString::SkipEmptyParts);
 
-    if (v.at(0) == "and_changePwResult") {
-        bool and_changePwResult_arg1 = msgArgToBool(v.at(1));
-        and_changePwResult(and_changePwResult_arg1);
-    }
-
     if (v.at(0) == "and_loginResult") {
         bool and_loginResult_arg1 = msgArgToBool(v.at(1));
         and_loginResult(and_loginResult_arg1);

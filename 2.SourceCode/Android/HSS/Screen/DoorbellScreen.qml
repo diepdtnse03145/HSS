@@ -47,40 +47,15 @@ ScreenBase{
     }
 
 
-    Text {
-        id: statusConnection
-        x: 73
-        y: 413
-        width: 583
-        height: 84
-        text: qsTr("Connection Status:")
-        font.pixelSize: 70
-    }
-
-
-    Text {
-        id: statusConnection1
-        x: 675
-        y: 413
-        width: 372
-        height: 84
-        color: "#e50c0c"
-        text: qsTr("Idle")
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignLeft
-        font.pixelSize: 70
-    }
-
     HSS_Button {
         id: callButton
-        x: 71
-        y: 636
+        x: 326
+        y: 1468
         width: 428
         height: 127
+        visible: true
         color: "#4ae263"
-        onClicked: {
-            Engine.pi_requestCallAdd()
-        }
+
         Text {
             id: callText
             x: 74
@@ -89,26 +64,50 @@ ScreenBase{
             text: qsTr("Start Call")
             font.pixelSize: 70
         }
+        onClicked: {
+            Engine.pi_requestCallAdd()
+            callButton.visible = false
+            endButton.visible = true
+        }
     }
 
 
     HSS_Button {
         id: endButton
-        x: 556
-        y: 636
+        x: 326
+        y: 1468
         width: 428
         height: 127
+        visible: false
         color: "#e65959"
-        onClicked: {
-            Engine.endCall()
-        }
-
         Text {
             id: endText
             x: 89
             y: 22
             color: "#ffffff"
             text: qsTr("End Call")
+            font.pixelSize: 70
+        }
+        onClicked: {
+            Engine.endCall()
+            callButton.visible = true
+            endButton.visible = false
+        }
+    }
+
+    HSS_Button {
+        id: speakerButton
+        x: 326
+        y: 561
+        width: 428
+        height: 127
+        color: "#4ae263"
+
+        Text {
+            id: speakerText
+            anchors.centerIn: parent
+            color: "#ffffff"
+            text: qsTr("Speaker")
             font.pixelSize: 70
         }
     }
