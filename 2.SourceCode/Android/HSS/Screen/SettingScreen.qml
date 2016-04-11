@@ -116,6 +116,7 @@ ScreenBase{
         y: 348
         width: 240
         height: 80
+        checked: Data.isEnableDetectMotion
         onClicked: {
             Engine.pi_enableDetectMotion(checked)
         }
@@ -139,6 +140,7 @@ ScreenBase{
         width: 240
         height: 80
         scale: 1
+        checked: Data.isEnableDetectDoor
         onClicked: {
             Engine.pi_enableDetectDoor(checked)
         }
@@ -160,6 +162,7 @@ ScreenBase{
         width: 240
         height: 80
         scale: 1
+        checked: Data.isEnableDoorBell
         onClicked: {
             Engine.pi_enableDoorBell(checked)
         }

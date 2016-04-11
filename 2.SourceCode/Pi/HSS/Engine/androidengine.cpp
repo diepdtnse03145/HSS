@@ -96,6 +96,16 @@ void AndroidEngine::and_returnCallAdd(const std::string &address)
     _sendMsg(msg);
 }
 
+void AndroidEngine::and_returnSettingStt(bool dtMotion, bool dtDoor, bool bell)
+{
+    std::string msg = fmt::format("and_returnSettingStt {0} {1} {2}\n",
+                                  boolToMsgArg(dtMotion),
+                                  boolToMsgArg(dtDoor),
+                                  boolToMsgArg(bell)
+                                  );
+    _sendMsg(msg);
+}
+
 void AndroidEngine::pushMessage(std::string msg)
 {
     _pushsv.pushMessage(msg);
@@ -165,6 +175,10 @@ void AndroidEngine::_hss_recvMsg(const std::string &msg)
 
     if(vec.at(0) == "pi_requestCallAdd") {
         pi_requestCallAdd();
+    }
+
+    if(vec.at(0) == "pi_requestSettingStt") {
+        pi_requestSettingStt();
     }
 }
 
@@ -237,5 +251,13 @@ void AndroidEngine::pi_deleteActitvityLog()
 
 void AndroidEngine::pi_requestCallAdd()
 {
-     and_returnCallAdd(_getOptionsValue<std::string>(HSS_VOIP_ADRESS));
+    and_returnCallAdd(_getOptionsValue<std::string>(HSS_VOIP_ADRESS));
+}
+
+void AndroidEngine::pi_requestSettingStt()
+{
+    and_returnSettingStt(_getOptionsValue<bool>(HSS_DT_MOTION_ENABLE_SETTING),
+                         _getOptionsValue<bool>(HSS_DT_DOOR_ENABLE_SETTING),
+                         _getOptionsValue<bool>(HSS_DOOR_BELL_ENABLE_SETTING)
+                         );
 }

@@ -5,25 +5,18 @@
 #include "ScreenManager/cameralistmodel.h"
 #include "ScreenManager/activitylistmodel.h"
 #include "Connection/connectionbase.h"
+#include "hssdata.h"
+
 #include <QQmlApplicationEngine>
 #include <QAndroidJniObject>
 
 class HSSEngine : public ConnectionBase
 {
     Q_OBJECT
-    Q_PROPERTY(QString username MEMBER m_username NOTIFY usernameChanged)
-    Q_PROPERTY(QString cameraUrl READ cameraUrl WRITE setCameraUrl NOTIFY cameraUrlChanged)
 
 public:
     HSSEngine(QObject* parent = 0);
     void run();
-
-    QString cameraUrl() const;
-    void setCameraUrl(const QString &cameraUrl);
-
-signals:
-    void usernameChanged();
-    void cameraUrlChanged();
 
 public slots:
     void showOnscreen(const QString &msg);
@@ -49,6 +42,7 @@ public slots:
     void pi_requestActivityLog();
     void pi_deleteActitvityLog();
     void pi_requestCallAdd();
+    void pi_requestSettingStt();
 
 private:
     void _hss_recvMsg(const QString &msg) override;
@@ -66,6 +60,7 @@ private:
     void and_returnActivityLog(const QString& log);
     void and_deleteActitvityLogResult(bool result);
     void and_returnCallAdd(const QString& address);
+    void and_returnSettingStt(bool dtMotion, bool dtDoor, bool bell);
 
 private slots:
     void handleConnectToHost(bool result);
@@ -75,10 +70,9 @@ private:
     ScreenManager _scrMng;
     CameraListModel _cameraModel;
     ActivityListModel _activityModel;
+    HSSData _data;
     QAndroidJniObject _javaMainAct;
-    QString m_username;
     QString m_loginingUsername;
-    QString m_cameraUrl;
 };
 
 extern HSSEngine* ENGINE;

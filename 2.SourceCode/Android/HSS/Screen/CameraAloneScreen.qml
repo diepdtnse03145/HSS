@@ -116,7 +116,7 @@ ScreenBase{
         width: 1080
         height: 1384
 
-        url: Engine.cameraUrl
+        url: Data.cameraUrl
         anchors.fill: parent
     }
 }

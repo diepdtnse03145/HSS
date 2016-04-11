@@ -10,6 +10,7 @@ HSSEngine::HSSEngine(QObject *parent):
     _scrMng{this},
     _cameraModel{this},
     _activityModel{this},
+    _data{this},
     _javaMainAct{QAndroidJniObject::
                  callStaticObjectMethod("org/hss/hss/MyActivity",
                                         "getIns",
@@ -20,6 +21,7 @@ HSSEngine::HSSEngine(QObject *parent):
     _engine.rootContext()->setContextProperty("Engine", this);
     _engine.rootContext()->setContextProperty("CameraModel", &_cameraModel);
     _engine.rootContext()->setContextProperty("ActivityModel", &_activityModel);
+    _engine.rootContext()->setContextProperty("Data", &_data);
 
     connect(this, &ConnectionBase::_connectToHostResult,
             this, &HSSEngine::handleConnectToHost);
@@ -150,9 +152,12 @@ void HSSEngine::pi_requestCallAdd()
 {
     QString msg = QStringLiteral("pi_requestCallAdd\n");
     _sendMsg(msg);
+}
 
-    //TEST
-//    and_returnCallAdd("sip:diepdtn@sip.linphone.org");
+void HSSEngine::pi_requestSettingStt()
+{
+    QString msg = QStringLiteral("pi_requestSettingStt\n");
+    _sendMsg(msg);
 }
 
 void HSSEngine::_hss_recvMsg(const QString &msg)
@@ -175,12 +180,12 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
     }
 
     if (v.at(0) == "and_returnMotionStatus") {
-        bool and_returnMotionStatus_arg1 = msgArgToInt(v.at(1));
+        int and_returnMotionStatus_arg1 = msgArgToInt(v.at(1));
         and_returnMotionStatus(and_returnMotionStatus_arg1);
     }
 
     if (v.at(0) == "and_returnBellStatus") {
-        bool and_returnBellStatus_arg1 = msgArgToInt(v.at(1));
+        int and_returnBellStatus_arg1 = msgArgToInt(v.at(1));
         and_returnBellStatus(and_returnBellStatus_arg1);
     }
 
@@ -203,6 +208,15 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
         QString and_returnCallAdd_arg1 = msgArgToString(v.at(1));
         and_returnCallAdd(and_returnCallAdd_arg1);
     }
+
+    if (v.at(0) == "and_returnSettingStt") {
+        bool and_returnSettingStt_arg1 = msgArgToBool(v.at(1));
+        bool and_returnSettingStt_arg2 = msgArgToBool(v.at(2));
+        bool and_returnSettingStt_arg3 = msgArgToBool(v.at(3));
+        and_returnSettingStt(and_returnSettingStt_arg1,
+                             and_returnSettingStt_arg2,
+                             and_returnSettingStt_arg3);
+    }
 }
 
 void HSSEngine::startCall(const QString &address)
@@ -217,9 +231,7 @@ void HSSEngine::and_loginResult(bool result)
     if (result) {
         showOnscreen("Login Sucessfull!");
         _scrMng.setIsLogin(true);
-        m_username = m_loginingUsername;
-        emit usernameChanged();
-
+        _data.setUsername(m_loginingUsername);
     } else {
         showOnscreen("Login Failed!");
     }
@@ -242,6 +254,8 @@ void HSSEngine::and_enableDetectMotionResult(bool result)
     } else {
         showOnscreen("Motion Detector Disabled!");
     }
+
+    _data.setIsEnableDetectMotion(result);
 }
 
 void HSSEngine::and_enableDetectDoorResult(bool result)
@@ -251,6 +265,8 @@ void HSSEngine::and_enableDetectDoorResult(bool result)
     } else {
         showOnscreen("Door Detector Disabled!");
     }
+
+    _data.setIsEnableDetectDoor(result);
 }
 
 void HSSEngine::and_enableDoorBellResult(bool result)
@@ -260,6 +276,8 @@ void HSSEngine::and_enableDoorBellResult(bool result)
     } else {
         showOnscreen("Door Bell Disabled!");
     }
+
+    _data.setIsEnableDoorBell(result);
 }
 
 void HSSEngine::and_returnDoorStatus(int status)
@@ -313,25 +331,19 @@ void HSSEngine::and_returnCallAdd(const QString &address)
     startCall(address);
 }
 
+void HSSEngine::and_returnSettingStt(bool dtMotion, bool dtDoor, bool bell)
+{
+    _data.setIsEnableDetectMotion(dtMotion);
+    _data.setIsEnableDetectDoor(dtDoor);
+    _data.setIsEnableDoorBell(bell);
+}
+
 void HSSEngine::handleConnectToHost(bool result)
 {
     if (result) {
 //        showOnscreen("Connected");
     } else {
         showOnscreen("Connect failed!");
-    }
-}
-
-QString HSSEngine::cameraUrl() const
-{
-    return m_cameraUrl;
-}
-
-void HSSEngine::setCameraUrl(const QString &cameraUrl)
-{
-    if (m_cameraUrl != cameraUrl) {
-        m_cameraUrl = cameraUrl;
-        emit cameraUrlChanged();
     }
 }
 

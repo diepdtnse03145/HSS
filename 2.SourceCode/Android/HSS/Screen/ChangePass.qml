@@ -141,7 +141,7 @@ ScreenBase{
         }
 
         onClicked: {
-            Engine.pi_changePassword(Engine.username, inputOldPwd.text, inputConfirmPwd.text)
+            Engine.pi_changePassword(Data.username, inputOldPwd.text, inputConfirmPwd.text)
         }
     }
 }

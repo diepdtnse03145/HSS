@@ -14,7 +14,6 @@ void ActivityListModel::add(QString time, QString value)
                     _activityList.size());
     _activityList.push_back(std::make_pair(time, value));
     endInsertRows();
-
 }
 
 void ActivityListModel::clear()
@@ -51,6 +50,5 @@ QVariant ActivityListModel::data(const QModelIndex &index, int role) const
     }
 
     return QVariant();
-
 }
 

@@ -83,8 +83,8 @@ ScreenBase{
             MouseArea {
                 anchors.fill: parent
                 onClicked: {
-                    Engine.cameraUrl = url
-                    console.debug(Engine.cameraUrl)
+                    Data.cameraUrl = url
+                    console.debug(Data.cameraUrl)
                     ScreenManager.toCameraViewScr()
                 }
             }

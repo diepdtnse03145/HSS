@@ -29,6 +29,7 @@ public:
     void and_returnActivityLog(const std::string& log);
     void and_deleteActitvityLogResult(bool result);
     void and_returnCallAdd(const std::string &address);
+    void and_returnSettingStt(bool dtMotion, bool dtDoor, bool bell);
 
 private:
     ArduinoEngine* _ard;
@@ -52,6 +53,8 @@ private:
     void pi_requestActivityLog();
     void pi_deleteActitvityLog();
     void pi_requestCallAdd();
+    void pi_requestSettingStt();
+
 };
 
 #endif // ANDROIDENGINE_H
