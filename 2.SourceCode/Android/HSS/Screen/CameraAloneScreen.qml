@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
-import QtWebView 1.0
 
 import "../Component"
 
@@ -32,7 +31,9 @@ ScreenBase{
             }
             
             onClicked: {
-                ScreenManager.toCameraScr()
+                ScreenManager.toCameraExitScr()
+                cameraLoader.source = ""
+                cameraLoader.visible = false
             }
         }
         
@@ -109,15 +110,13 @@ ScreenBase{
     }
 
 
-    WebView {
-        id: webview
+    Loader{
+        id: cameraLoader
         x: 0
         y: 200
-        width: 1080
+        width: root.width
         height: 1384
-
-        url: Data.cameraUrl
-        anchors.fill: parent
+        source: "qrc:/Component/HSS_CameraView.qml"
     }
 }
 

@@ -28,6 +28,7 @@ ScreenBase{
             }
 
             onClicked: {
+                Engine.endCall()
                 ScreenManager.toMainScr()
             }
         }
@@ -69,6 +70,7 @@ ScreenBase{
             callButton.visible = false
             endButton.visible = true
             speaker.visible = true
+            picture.visible = true
         }
     }
 
@@ -95,6 +97,7 @@ ScreenBase{
             endButton.visible = false
             speaker.visible = false
             internalSpeaker.visible = false
+            picture.visible = false
         }
     }
 
@@ -144,11 +147,18 @@ ScreenBase{
     Image {
         id: picture
         x: 220
-        y: 802
+        y: 767
         width: 640
         height: 480
         visible: false
+        source: ""
+        onStatusChanged: {
+            console.debug(picture.status)
+            console.debug("Moe~~~~~~~~~~~~~~~~~~~~")
+        }
+        onProgressChanged: {
+            console.debug("MoeProgress" + picture.progress)
+        }
     }
-
 }
 

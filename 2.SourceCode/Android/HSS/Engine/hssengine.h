@@ -51,7 +51,7 @@ private:
     void and_loginResult(bool result);
     void and_changePwResult(bool result);
     void and_enableDetectMotionResult(bool result);
-    void and_enableDetectDoorResult(bool result);
+    void and_enableDetectDoorResult(bool result, bool isDoorClosed);
     void and_enableDoorBellResult(bool result);
     void and_returnDoorStatus(int status);
     void and_returnMotionStatus(int status);

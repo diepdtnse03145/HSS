@@ -12,5 +12,7 @@
         <file>Screen/FirstScreen.qml</file>
         <file>Screen/CameraAloneScreen.qml</file>
         <file>Component/ScreenBase.qml</file>
+        <file>Component/HSS_CameraView.qml</file>
+        <file>Screen/CameraExitScreen.qml</file>
     </qresource>
 </RCC>

@@ -115,7 +115,7 @@ public class LpVoIP implements LinphoneCoreListener, LinphoneChatMessage.StateLi
 		} finally {
 			write("Shutting down...");
 			lc.destroy();
-			write("Exited");
+                        write("Exited");
 		}
 	}
 

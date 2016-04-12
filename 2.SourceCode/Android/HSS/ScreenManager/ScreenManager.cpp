@@ -91,4 +91,12 @@ void ScreenManager::toCameraViewScr()
     }
 }
 
+void ScreenManager::toCameraExitScr()
+{
+    if (m_currentScreenSource != CameraExitScreen) {
+        m_currentScreenSource = CameraExitScreen;
+        emit currentScreenChanged(m_currentScreenSource);
+    }
+}
+
 

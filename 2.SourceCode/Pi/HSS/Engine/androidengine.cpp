@@ -40,9 +40,12 @@ void AndroidEngine::and_enableDetectMotionResult(bool result)
     _sendMsg(msg);
 }
 
-void AndroidEngine::and_enableDetectDoorResult(bool result)
+void AndroidEngine::and_enableDetectDoorResult(bool result, bool isDoorClosed)
 {
-    std::string msg = fmt::format("and_enableDetectDoorResult {0}\n", boolToMsgArg(result));
+    std::string msg = fmt::format("and_enableDetectDoorResult {0} {1}\n",
+                                  boolToMsgArg(result),
+                                  boolToMsgArg(isDoorClosed)
+                                  );
     _sendMsg(msg);
 }
 
@@ -209,7 +212,7 @@ void AndroidEngine::pi_enableDetectDoor(bool enable)
 {
     std::cout<<__FUNCTION__<<std::endl;
     _setOptionsValue(HSS_DT_DOOR_ENABLE_SETTING, enable);
-    and_enableDetectDoorResult(enable);
+    and_enableDetectDoorResult(enable, !!_ard->switchValue());
 }
 
 void AndroidEngine::pi_enableDoorBell(bool enable)

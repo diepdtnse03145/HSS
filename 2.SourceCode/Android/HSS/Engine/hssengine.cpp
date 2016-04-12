@@ -96,6 +96,9 @@ void HSSEngine::pi_enableDetectDoor(const bool &enable)
     QString msg = QStringLiteral("pi_enableDetectDoor %1\n")
             .arg(boolToMsgArg(enable));
     _sendMsg(msg);
+    //TEST
+//    and_enableDetectDoorResult(false, false);
+
 }
 
 void HSSEngine::pi_enableDoorBell(const bool &enable)
@@ -128,12 +131,12 @@ void HSSEngine::pi_requestCameraInfo()
     QString msg = QStringLiteral("pi_requestCameraInfo\n");
     _sendMsg(msg);
     //TEST
-    //    QString res = "[\n"
-    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
-    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
-    //                  "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"}\n"
-    //                  "]";
-    //    and_returnCameraInfo(res);
+//        QString res = "[\n"
+//                      "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
+//                      "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"},\n"
+//                      "    {\"name\":\"Camera\", \"url\":\"http://doc.qt.io/qt-5/qjsondocument.html\"}\n"
+//                      "]";
+//        and_returnCameraInfo(res);
 }
 
 void HSSEngine::pi_requestActivityLog()
@@ -217,6 +220,23 @@ void HSSEngine::_hss_recvMsg(const QString &msg)
                              and_returnSettingStt_arg2,
                              and_returnSettingStt_arg3);
     }
+
+    if (v.at(0) == "and_enableDetectMotionResult") {
+        bool and_enableDetectMotionResult_arg1 = msgArgToBool(v.at(1));
+        and_enableDetectMotionResult(and_enableDetectMotionResult_arg1);
+    }
+
+    if (v.at(0) == "and_enableDetectDoorResult") {
+        bool and_enableDetectDoorResult_arg1 = msgArgToBool(v.at(1));
+        bool and_enableDetectDoorResult_arg2 = msgArgToBool(v.at(2));
+        and_enableDetectDoorResult(and_enableDetectDoorResult_arg1,
+                                   and_enableDetectDoorResult_arg2);
+    }
+
+    if (v.at(0) == "and_enableDoorBellResult") {
+        bool and_enableDoorBellResult_arg1 = msgArgToBool(v.at(1));
+        and_enableDoorBellResult(and_enableDoorBellResult_arg1);
+    }
 }
 
 void HSSEngine::startCall(const QString &address)
@@ -258,12 +278,18 @@ void HSSEngine::and_enableDetectMotionResult(bool result)
     _data.setIsEnableDetectMotion(result);
 }
 
-void HSSEngine::and_enableDetectDoorResult(bool result)
+void HSSEngine::and_enableDetectDoorResult(bool result, bool isDoorClosed)
 {
     if(result) {
         showOnscreen("Door Detector Enabled!");
     } else {
         showOnscreen("Door Detector Disabled!");
+    }
+
+    if(isDoorClosed) {
+        showOnscreen("Door is being closed!");
+    } else {
+        showOnscreen("Door is being opened!");
     }
 
     _data.setIsEnableDetectDoor(result);
@@ -336,6 +362,8 @@ void HSSEngine::and_returnSettingStt(bool dtMotion, bool dtDoor, bool bell)
     _data.setIsEnableDetectMotion(dtMotion);
     _data.setIsEnableDetectDoor(dtDoor);
     _data.setIsEnableDoorBell(bell);
+   _scrMng.toSettingScr();
+
 }
 
 void HSSEngine::handleConnectToHost(bool result)

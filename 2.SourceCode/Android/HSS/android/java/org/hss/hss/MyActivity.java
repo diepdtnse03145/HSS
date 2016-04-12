@@ -13,6 +13,8 @@ import android.support.v4.app.NotificationCompat;
 import android.app.NotificationManager;
 import android.app.IntentService;
 import android.widget.Toast;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 
 import com.pusher.client.Pusher;
 import com.pusher.client.channel.Channel;
@@ -35,7 +37,7 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
 
     private boolean m_isCalling;    
     private boolean m_exSpeaker;
-
+    private WakeLock wl;
     public boolean isCalling()
     {
         return m_isCalling;
@@ -66,6 +68,9 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
         super.onCreate(savedInstanceState);
         currentActivity = this;
 
+        PowerManager pm = (PowerManager) this.getSystemService(Context.POWER_SERVICE);
+        wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG");
+
         mServiceIntent = new Intent(this, MyService.class);
         this.startService(mServiceIntent);
     }
@@ -90,6 +95,7 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
 
         setIsCalling(true);
         internalSpeaker();
+        wl.acquire();
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -109,5 +115,6 @@ public class MyActivity extends org.qtproject.qt5.android.bindings.QtActivity
     public void endCall()
     {
         setIsCalling(false);
+        wl.release();
     }
 }

@@ -165,7 +165,6 @@ ScreenBase{
 
         onClicked: {
             Engine.pi_requestSettingStt()
-            ScreenManager.toSettingScr();
         }
     }
 

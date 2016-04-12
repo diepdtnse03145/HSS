@@ -30,6 +30,7 @@ public slots:
     void toSettingScr();
     void toMainScr();
     void toCameraViewScr();
+    void toCameraExitScr();
 
 private:
     QUrl m_currentScreenSource;
