@@ -16,10 +16,18 @@ const char _pushCall[] = "import pusher\n"
 
 
 HSSPushable::HSSPushable() :
-    _t{&HSSPushable::_t_work,this},
-    _PyRunning{true}
+    _PyRunning{true},
+    _t{&HSSPushable::_t_work,this}
 {
-    _t.detach();
+    //    _t.detach();
+}
+
+HSSPushable::~HSSPushable()
+{
+    _setPyRunning(false);
+    if(_t.joinable()) {
+        _t.join();
+    }
 }
 
 void HSSPushable::pushMessage(std::string msg)

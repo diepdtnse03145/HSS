@@ -11,8 +11,9 @@ class HSSPushable
 {
 public:
     HSSPushable();
+    ~HSSPushable();
+
     void pushMessage(std::string msg);
-    void doPush(std::string msg);
     void _setPyRunning(bool vl);
 
 private:

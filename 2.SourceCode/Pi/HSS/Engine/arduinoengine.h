@@ -2,6 +2,7 @@
 #define ARDUINOENGINE_H
 
 #include "../Connection/serialconnection.h"
+#include "hsscamera.h"
 #include <boost/asio/steady_timer.hpp>
 #include <boost/system/error_code.hpp>
 
@@ -27,6 +28,8 @@ private:
     AndroidEngine* _andr;
     HSSPushable& _pushsv;
     boost::asio::steady_timer _sensorTimer;
+    HSSCamera camera;
+
     int _pirValue;
     int _bellValue;
     int _switchValue;

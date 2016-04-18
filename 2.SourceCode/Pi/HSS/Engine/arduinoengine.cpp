@@ -106,6 +106,7 @@ void ArduinoEngine::pi_returnBellValue(int vl)
         //write activity log
         if (_bellValue == HIGH) {
             _db.writeLog("Someone press the door bell!");
+            camera.capture();
         }
 
         //decide to push
