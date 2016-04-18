@@ -70,7 +70,6 @@ ScreenBase{
             callButton.visible = false
             endButton.visible = true
             speaker.visible = true
-            picture.visible = true
         }
     }
 
@@ -97,7 +96,6 @@ ScreenBase{
             endButton.visible = false
             speaker.visible = false
             internalSpeaker.visible = false
-            picture.visible = false
         }
     }
 
@@ -150,8 +148,9 @@ ScreenBase{
         y: 767
         width: 640
         height: 480
-        visible: false
-        source: ""
+        cache: false
+        visible: true
+        source: "http://192.168.125.50/door.jpg"
         onStatusChanged: {
             console.debug(picture.status)
             console.debug("Moe~~~~~~~~~~~~~~~~~~~~")

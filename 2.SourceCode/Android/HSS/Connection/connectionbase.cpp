@@ -22,7 +22,7 @@ void ConnectionBase::_recvMsg()
 void ConnectionBase::_sendMsg(const QString &msg)
 {
     if (_sock.state() != QTcpSocket::ConnectedState) {
-        emit _connectToHostResult(connectToHost("192.168.125.54", 1340));
+        emit _connectToHostResult(connectToHost("192.168.125.50", 1340));
     }
     _hss_sendMsg(msg);
     //TEST
