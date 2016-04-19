@@ -1,4 +1,8 @@
 
+================ RUN LINPHONE ================
+
+python ~/Documents/HSS/2.SourceCode/Pi/HSS_VoIP/PiClient/test2.py
+
 ================ TAKE PHOTO FROM WEBCAM ================
 
 1. Install Apache
