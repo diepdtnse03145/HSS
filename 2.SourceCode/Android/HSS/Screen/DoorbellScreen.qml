@@ -150,7 +150,7 @@ ScreenBase{
         height: 480
         cache: false
         visible: true
-        source: "http://192.168.125.50/door.jpg"
+        source: "http://192.168.125.55/door.jpg"
         onStatusChanged: {
             console.debug(picture.status)
             console.debug("Moe~~~~~~~~~~~~~~~~~~~~")

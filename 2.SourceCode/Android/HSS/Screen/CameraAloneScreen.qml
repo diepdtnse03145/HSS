@@ -50,72 +50,14 @@ ScreenBase{
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 80
         }
-
-
-        Rectangle {
-            id: rectangle2
-            x: 0
-            y: 1583
-            width: 1080
-            height: 277
-            color: "#ffffff"
-        }
     }
-
-    Text {
-        id: statusCameraIDText
-        x: 29
-        y: 1617
-        width: 477
-        height: 84
-        text: qsTr("Camera ID:")
-        font.pixelSize: 70
-
-        Text {
-            id: statusCameraID
-            x: 482
-            y: 0
-            width: 372
-            height: 84
-            color: "#e50c0c"
-            text: qsTr("1")
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignLeft
-            font.pixelSize: 70
-        }
-    }
-
-
-    Text {
-        id: statusCameraIPText
-        x: 29
-        y: 1739
-        width: 477
-        height: 84
-        text: qsTr("Connection IP:")
-        font.pixelSize: 70
-
-        Text {
-            id: statusCameraIP
-            x: 482
-            y: 0
-            width: 508
-            height: 84
-            color: "#e50c0c"
-            text: qsTr("192.168.125.51")
-            horizontalAlignment: Text.AlignLeft
-            font.pixelSize: 70
-            verticalAlignment: Text.AlignVCenter
-        }
-    }
-
 
     Loader{
         id: cameraLoader
         x: 0
         y: 200
         width: root.width
-        height: 1384
+        height: 1660
         source: "qrc:/Component/HSS_CameraView.qml"
     }
 }
