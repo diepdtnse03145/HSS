@@ -5,5 +5,5 @@
     "dt_motion_enable": true,
     "sys_stt_enable": true,
     "tcp_sv_port": 1340,
-    "voip_adress": "sip:diepdtn@sip.linphone.org"
+    "voip_adress": "sip:cuongtv.fl@sip.linphone.org"
 }
