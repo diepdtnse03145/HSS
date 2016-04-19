@@ -17,17 +17,17 @@ class SecurityCamera:
     signal.signal(signal.SIGINT, self.signal_handler)
     linphone.set_log_handler(self.log_handler)
     self.core = linphone.Core.new(callbacks, None, None)
-    self.core.max_calls = 4
+    self.core.max_calls = 4 
     self.core.echo_cancellation_enabled = False
     self.core.video_capture_enabled = False
     self.core.video_display_enabled = False
     self.core.stun_server = 'stun.linphone.org'
     self.core.firewall_policy = linphone.FirewallPolicy.PolicyUseIce
-	if len(snd_capture):
-      self.core.capture_device = snd_capture
+    if len(snd_capture):
+	self.core.capture_device = snd_capture
     if len(snd_playback):
-      self.core.playback_device = snd_playback
-	
+	self.core.playback_device = snd_playback
+     
     # Only enable PCMU and PCMA audio codecs
     for codec in self.core.audio_codecs:
       if codec.mime_type == "PCMA" or codec.mime_type == "PCMU":
