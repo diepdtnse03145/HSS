@@ -141,7 +141,12 @@ ScreenBase{
         }
 
         onClicked: {
-            Engine.pi_changePassword(Data.username, inputOldPwd.text, inputConfirmPwd.text)
+            if (inputOldPwd.text.trim() != '' && inputConfirmPwd.text.trim() != '' && inputNewPwd.text.trim() != '' && inputConfirmPwd.text == inputNewPwd.text) {
+                Engine.pi_changePassword(Data.username, inputOldPwd.text, inputConfirmPwd.text)
+            } else {
+                Engine.showOnscreen("Password unchanged!")
+            }
+
         }
     }
 }

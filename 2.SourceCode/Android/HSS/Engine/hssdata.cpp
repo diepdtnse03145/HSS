@@ -44,6 +44,19 @@ void HSSData::setIsEnableDoorBell(bool isEnableDoorBell)
     }
 }
 
+QUrl HSSData::doorBellPic() const
+{
+    return m_doorBellPic;
+}
+
+void HSSData::setDoorBellPic(const QUrl &pic)
+{
+    if (m_doorBellPic != pic) {
+        m_doorBellPic = pic;
+        emit doorBellPicChanged();
+    }
+}
+
 bool HSSData::isEnableDetectDoor() const
 {
     return m_isEnableDetectDoor;

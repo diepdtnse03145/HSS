@@ -25,6 +25,13 @@ HSSEngine::HSSEngine(QObject *parent):
 
     connect(this, &ConnectionBase::_connectToHostResult,
             this, &HSSEngine::handleConnectToHost);
+
+    connect(this, &ConnectionBase::_ipChanged,
+            [this] (QString ip) {
+        _data.setDoorBellPic(QUrl::fromUserInput(QStringLiteral(R"(http://%1/door.jpg)").arg(ip)));
+        showOnscreen(ip);
+    });
+
     ENGINE = this;
 }
 

@@ -13,6 +13,9 @@ public:
     explicit ConnectionBase(QObject *parent = 0);
     bool connectToHost(const QString &hostName, quint16 port);
 
+public slots:
+    void changeIp(const QString& ip);
+
 private slots:
     void _recvMsg();
 
@@ -22,11 +25,13 @@ protected:
 
 signals:
     void _connectToHostResult(bool res);
+    void _ipChanged(QString ip);
 
 private:
     void _hss_sendMsg(const QString& msg);
 
     QTcpSocket _sock;
+    QString _ip;
 };
 
 #endif // CONNECTIONBASE_H

@@ -9,6 +9,8 @@ ScreenBase{
         Engine.toHome()
     }
 
+    property int m_cl: 0
+
     MouseArea {
         anchors.fill: parent
         onClicked: {
@@ -51,6 +53,12 @@ ScreenBase{
         height: 447
         fillMode: Image.Stretch
         source: "qrc:/img/logo.png"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                m_cl++
+            }
+        }
     }
 
     Image {
@@ -97,6 +105,50 @@ ScreenBase{
         onClicked: {
             if (input_user.text.trim() != '' && input_pass.text.trim() != '') {
                 Engine.pi_requestLogin(input_user.text, input_pass.text)
+            }
+        }
+    }
+
+    TextField {
+        id: input_ip
+        x: 261
+        y: 1258
+        width: 737
+        height: 113
+        text: qsTr("")
+        visible: m_cl > 5
+        horizontalAlignment: Text.AlignLeft
+        font.family: "Tahoma"
+        placeholderText: "Ip"
+        font.pixelSize: 80
+    }
+
+    HSS_Button {
+        id: buttonIp
+        x: 270
+        y: 1502
+        width: 600
+        height: 150
+        color: "#005fbf"
+        visible: input_ip.visible
+
+        Text {
+            anchors.fill: parent
+            color: "#ffffff"
+            text: "Set"
+            anchors.rightMargin: 0
+            anchors.bottomMargin: -8
+            anchors.leftMargin: 0
+            anchors.topMargin: 8
+            font.family: "Arial"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.pointSize: 30
+        }
+
+        onClicked: {
+            if (input_ip.text.trim() != '') {
+                Engine.changeIp(input_ip.text)
             }
         }
     }
